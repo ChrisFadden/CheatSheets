@@ -1,0 +1,172 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{Abstract Algebra Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	\begin{outline}		
+		\1	Examples of Groups
+			\2	$\mathbb{Z}$ The set of all integers
+			\2	$\braket{\mathbb{Z}}{+}$ The set of integers endowed with addition
+			\2	$\mathbb{Z}_n = \{0,1,2,...n-1\}$ The set of integers mod $n$
+				\3	Addition ($+_n$ consists of $\frac{a + b}{n}$ and taking the remainder)
+			\2	$\mathbb{Q}$ The rational numbers
+			\2	$\mathbb{Q}^x = \{\frac{a}{b} \in \mathbb{Q} : a \neq 0\}$
+			\2	$\mathbb{R}$ The real numbers
+			\2	$\mathbb{R}^n = \{(a_1,a_2,...,a_n) : a_1,...a_n \in \mathbb{R} \}$ Vector space of dimension $n$
+			\2	$\mathbb{C}$ The complex numbers	
+			\2	$M_n(\mathbb{R})$ The set of $n \cross n$ matrices with entries in $\mathbb{R}$
+			\2	$GL_n(\mathbb{R}) = \{A \in M_n(\mathbb{R}) : A~invertible\}$ General Linear Group
+			\2	$SL_n(\mathbb{R}) = \{A \in GL_n(\mathbb{R}) : det(A) = 1\}$	Special Linear Group
+			\2	$S_X = \{f : X \rightarrow X : f~is~bijection\}$ Symmetric Group
+				\3	bijection = one-to-one and onto
+				\3	Operation is composition of functions
+				\3	$S_n$ is the set of permutations of $n \in \mathbb{N}$ elements
+					\4	$|S_n| = n!$
+					\4	Non-abelian for $n \ge 3$
+			\2	$D_n$ set of all symmetries of the regular $n$-gon.  Dihedral Group
+				\3	Operation is composition of transformations
+				\3	Transformations include rotations and reflections
+				\3	$|D_n| = 2n$ 
+			
+		\1	Operations on Groups
+			\2	Binary operations
+				\3	$\clubsuit : S \cross S \rightarrow S$
+				\3	$\clubsuit~(a,b) = a~\clubsuit~b$
+				\3	Well Defined
+					\4	One to One
+					\4	Exactly one $c \in S$ such that $a~\clubsuit~b = c$
+				\3	Closed Under $\clubsuit$
+					\4	$\forall~a,b \in S,~a~\clubsuit~b \in S$
+			\2	Order $|G|$ is the number of elements of group G
+				\3	Finite Group $G : |G| < \infty$
+			\2	Finite Order
+				\3	$a^n = a~\clubsuit~a~\clubsuit~... (n~times)$
+				\3	Finite order means $\exists~n \in \mathbb{Z}^+ : a^n = e$
+				\3	o(3) means of finite order 3
+				\3	If no such integer exists, then the group is of Infinite Order
+				\3	$a^na^m = a^{n+m}~\forall~n,m \in \mathbb{Z}$
+				\3	$(a^n)^{-1} = a^{-n} = a^{-1}~\clubsuit~a^{-1}~\clubsuit ... (n~times)$
+			\2	Cyclic Group
+				\3	$\braket{a}{}	= \{a^n : n \in \mathbb{Z}\}$ 	
+				\3	$\exists~a \in G : G = \braket{a}{}$
+				\3	$a$ is the generator for $G$
+				\3	$|G| = o(a)$
+				\3	Always abelian		
+		\1	Definition of Group
+			\2	Set $G$ with binary operation $\clubsuit~:~G \cross G \rightarrow G$ satisfying
+				\3	Associativity
+					\4	$(a~\clubsuit~b)~\clubsuit~c = a~\clubsuit~(b~\clubsuit~c)~\forall~a,b,c \in G$
+				\3	Identity
+					\4	$\exists~e \in G : e~\clubsuit~a = a~\clubsuit~e = a~\forall~a \in G$ 
+				\3	Inverses
+					\4	$\exists~a^{-1} \in G : a~\clubsuit~ a^{-1} = a^{-1}~\clubsuit~ a = e~\forall~a \in G$
+					\4	$\forall a,b \in G : (a~\clubsuit~b)^{-1} = b^{-1}~\clubsuit~ a^{-1}$
+			\2 Abelian if $\clubsuit$ is commutative
+				\3	$a~\clubsuit~b = b~\clubsuit~a$
+				\3	Else is nonabelian
+	
+	\1	Relations Between Groups
+		\2	SubGroup (Group operation is $\clubsuit$)
+			\3	$H \subset G : \braket{H}{\clubsuit}~is~a~group$
+			\3	$H$ and $G$ have same binary operation
+			\3	$H \le G$
+		\2	Equivalence Relations
+			\3	Reflexivity
+				\4	$a \sim a~\forall~a \in S$ 
+			\3	Symmetry
+				\4	$a,b \in S : a \sim b~then~b \sim a$
+			\3	Transitivity
+				\4	$a,b,c \in S : a \sim b~and~b \sim c~then~a \sim c$
+		\2	Homomorphism
+			\3	$\phi : G_1 \rightarrow G_2~,~\phi(a~\clubsuit~b) = \phi(a)~\clubsuit~\phi(b)~\forall~a,b \in G$
+			\3	$\phi$ is one-to-one called monomorphism
+			\3	$\phi$ is onto called epimorphism
+			\3	$\phi$ is a bijection called isomorphism (represented by $\simeq$)
+			\3	$a \in G : \phi(a^n) = \phi(a)^n$
+			\3	$o(\phi(a)) = o(a)~if~\phi~isomorphism$
+			\3	Image of homomorphism
+				\4	$\phi : G_1 \rightarrow G_2$
+				\4	$image(\phi) = \{\exists a , y \in G_2 : y = \phi(a)\}$
+			\3	Kernel of homomorphism
+				\4	$\phi : G_1 \rightarrow G_2$
+				\4	$ker(\phi) = \{x \in G_1 : \phi(x) = e_2\}$
+				\4	$ker(\phi) \leq G_1$
+
+		\2	Cayley's Theorem
+			\3	$|G| = n : G \leq S_n$
+			\3	Finite group of order $n$ is isomorphic to a subgroup of $S_n$
+		
+		\2	Action of a group
+			\3	Representations of a group (i.e. group on vector spaces)
+			\3	$\phi~:~G \cross X \rightarrow X$, G is a group, X is a set
+				\4	$\phi(e,x) = x$
+				\4	$\phi(g,\phi(h,x)) = \phi(g~\clubsuit~ h,x)$
+			\3	Similar to coordinate representation
+
+	\1	Definition of Rings
+		\2	Set $R$ with two binary operations $\clubsuit$ (addition) and $\spadesuit$ (multiplication)
+		\2	$\braket{R}{\clubsuit}$ is an abelian group
+		\2	$\spadesuit$ is associative
+		\2	Unit 
+			\3	$a~\spadesuit~b = b~\spadesuit~a = 1$ ($b = a^{-1}$)
+			\3	Parts of ring with multiplicative inverses
+			\3	Set of all units is the unit group $R^x$
+		\2	Division Ring
+			\3	Ring with a multiplicative inverse
+			\3	Every element is a unit
+			\3	Not necessarily commutative
+			\3	Different from fields, since multiplication is not required to be commutative
+		\2	Commutative Rings
+			\3	multiplication $\spadesuit$ is commutative ($a~\spadesuit~b = b~\spadesuit~a$)	
+		\2	Ring Ideal
+			\3	$I$ is a subset of ring $R$
+			\3	$(I,\clubsuit)$ is a subgroup of $(R,\clubsuit)$ (additive group)
+			\3	$\forall~x\in I,\forall~y\in R~:~x~\spadesuit~y,y~\spadesuit~x\in I$
+			\3	Example:  even integers ($2\mathbb{Z}$) in $\mathbb{Z}$
+	\1	Examples of Rings
+		\2	$\mathbb{R}$ 
+		\2	$\mathbb{C}$ 
+		\2	$\mathbb{Q}$ 
+		\2	$\mathbb{Z}$
+		\2	$\mathbb{Z}_n$ 
+		\2	$M_n(\mathbb{R})$
+		\2	$\mathbb{H}$ Quarternions	
+	
+	\1	Definition of Fields
+		\2	Set with defined addition, subtraction, multiplication and division
+			\3	Commutative ring with multiplicative inverse
+			\3	All operations must be:
+				\4	Associative
+				\4	Commutative
+				\4	Have an identity operation
+				\4	Have an inverse operation
+				\4	multiplication distributes over addition ($a~\spadesuit~(b~\clubsuit~c) = (a~\spadesuit~b)~\clubsuit~ (a~\spadesuit~c)$) 
+		\2	Field Extension
+			\3	$L$ is a field, with a subset (subfield) $K$.  L is a field extension of $K$
+			\3	$\mathbb{C}$ is a field extension of $\mathbb{R}$
+			\3	Field extensions inherit the field operations of the subset
+		\2	Field Norm
+			\3	Group homomorphism from the multiplicative group of $L$ to multiplicative group of $K$
+			\3	$L$ is taken to be a vector space in a given basis
+			\3	There is a linear map $A~:~L \rightarrow L$ 
+			\3	Field norm is the determinant of this map
+			\3	Field trace is the trace of this map		
+	\1	Examples of Fields
+		\2	$\mathbb{R}$ 
+		\2	$\mathbb{C}$ 
+		\2	$\mathbb{Q}$ 
+	\1	Modules 
+		\2	Generalization of vector space over a field
+		\2	Ring $R$, with abelian group $(G,\clubsuit)$, and $\blacklozenge~:~R\cross G \rightarrow G$
+			\3	$r,s~\in R$, $x,y \in G$
+			\3	$r~\blacklozenge~(x~\clubsuit~ y) = (r~\blacklozenge~x)~\clubsuit~(r~\blacklozenge~ y)$
+			\3	$(r ~\clubsuit~ s)~\blacklozenge~x = (r~\blacklozenge~x)~\clubsuit~ (s~\blacklozenge~x)$
+			\3	$(r~\blacklozenge~s)~\blacklozenge~x = r~\blacklozenge~(s~\blacklozenge~x)$
+
+	\end{outline}
+\end{document}
+
+

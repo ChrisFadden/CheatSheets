@@ -1,0 +1,97 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{Topology Cheat Sheet}
+\begin{document}
+	\maketitle
+
+	%http://www.math.colostate.edu/~renzo/teaching/Topology10/Notes.pdf
+	
+	\begin{outline}		
+		\1	Metric Spaces
+			\2	Set $X$ with a notion of distance
+				\3	$d(x,y) \ge 0~\forall~x,y \in X$
+				\3	$d(x,y) = 0 \rightarrow x = y$
+				\3	$d(x,y) = d(y,x)$
+				\3	$d(x,z) \le d(x,y) + d(y,z)$
+		\1	Sets
+			\2	Open Ball $B = \{y \in X~|~d(x,y) < r\}$
+			\2	Open Sets
+				\3	Subset is open if all $x \in O$ there is a ball in $X$ entirely contained in $O$
+				\3	Empty Set is open
+				\3	Whole space $X$ is open
+				\3	Union of collection of open sets is open
+				\3	Intersection of finite number of sets is open
+			\2	Closed Sets
+				\3	Limit Point
+					\4	$z$ is a limit point for set $A$ if every open set $U$ containing $z$ intersects $A$ at a point other than $z$
+				\3	A set $C$ is closed if it contains all its limit points
+				\3	Closure is $C \cup \partial C$
+		\1	Topological Spaces
+			\2	pair $(X,\tau)$
+				\3	$X$ is a set, and $\tau$ is a set of subsets of $X$ satisfying certain axioms
+				\3	$\tau$ is called the topology, satisfies:
+					\4	The empty set and $X$ are both sets in the topology
+					\4	Union of any collection of sets in $\tau$ remains in $\tau$
+					\4	Intersection of finitely many sets in $\tau$ remains in $\tau$
+		\1	Homeomorphism
+			\2	$f~:~X \rightarrow Y$ 
+				\3	Continuous bijection (one-to-one and onto)
+				\3	Has continuous inverse $f^{-1}$
+			\2	Homeomorphic
+				\3	$g~:~Y \rightarrow X$ 
+				\3	$f \circ g = \mathbb{I}$
+				\3	$g \circ f = \mathbb{I}$
+				\3	$X$ and $Y$ are homeomorphic
+			\2	Homeomorphism Theorems
+				\3	$f~:~X\rightarrow Y$ $g~:~Y\rightarrow Z$
+				\3	$f \circ g$ is a homeomorphism
+		\1	Topological Invariants
+			\2	Useful Invariants
+				\3	number of $n-vertices$, $n \ge 3$, where $n$ is the number of curves that intersect at that point
+				\3	number of holes
+				\3	Connectedness
+					\4	$X = A \cup B,~\overline{A} \cap B \ne \emptyset,~or~A \cap \overline{B} \ne \emptyset$
+			\2	Depend solely on topology; shared by homeomorphic spaces
+			\2	$T_1$ Space	
+				\3	Given any pair of distinct points $x,y \in X$ there exists an open set $O_x~:~x \in O_x,~y \notin O_x$
+				\3	Points in $X$ are closed sets
+			\2	Hausdorff Space ($T_2$ Space)
+				\3	Every two distinct points have disjoint neighborhoods (no overlap)
+				\3	Space is compact if every open cover has a finite subcover (bounded and closed)
+				\3	Any locally compact Hausdorff space can be made a compact space by adding a single point
+				\3	Shares propreties of a $T_1$ space
+
+		\1	Operations on Topological Spaces
+			\2	Cartesian Product
+				\3	Intuitive "keep one space the same" combination of spaces
+				\3	The plane $\mathbb{R}^2$ is made up of cartesian products of two lines $\mathbb{R} \cross \mathbb{R}$
+				\3	Cylinder is made up of a circle extended down an interval, $S^1 \cross I$
+				\3	Torus is made up of two circles, $T = S^1 \cross S^1$
+			\2	Projections
+				\3	$p_X~:~X \cross Y \rightarrow X$, $p_Y~:~X\cross Y \rightarrow Y$
+				\3	$p_X(x,y) = x$, $p_Y(x,y) = y$
+				\3	$f~:~Z \rightarrow X \cross Y$ is continuous if:
+					\4	$p_Xf~:~Z\rightarrow X$ and $p_Yf~:~Z\rightarrow Y$ are continuous		
+			\2	Quotient Space (modulation space)
+				\3	$A / B$ is A mod B
+				\3	B is a subset of A
+				\3	$\mathbb{Z} / 2\mathbb{Z} = \{1,-1\}$ 
+				\3	The quotient space is the original space with the subset removed
+		\1	Topology of Surfaces
+			\2	$S$ is a topological space with every $s \in S$ has a neighborhood locally homeomorphic to $\mathbb{R}^2$
+			\2	Projective Plane
+				\3	$\mathbb{R}\bm{P}^2$ is the space of lines through the origin in $\mathbb{R}^3$
+				\3	Non-orientable
+			\2	Any surface can be made up of a combination of a sphere, torus, and the projective plane
+			\2	Euler Characteristic $\chi$ = \# of Vertices - \# of edges - \# of faces
+				\3	Intrinsic to the surface
+				\3	Two surfaces with same Euler characteristic that are orientiable are homeomorphic
+		\1	Homotopy and the Fundamental Group
+			\2	$f,g~:~X\rightarrow Y$
+			\2	f is homotopic to g if $F~:~X\cross I \rightarrow Y,~F(x,0) = f(x),~F(x,1) = g(x)$
+	\end{outline}
+\end{document}
+
+

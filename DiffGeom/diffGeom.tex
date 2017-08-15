@@ -1,0 +1,188 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+%https://ernestyalumni.files.wordpress.com/2015/05/gravity_notes1.pdf
+
+\title{Differential Geometry Cheat Sheet}
+\begin{document}
+	\maketitle
+	\begin{outline}
+		\1	Topological Manifolds (d-dimensional)
+			\2	Topological Space $(\mathcal{M},\mathcal{O})$ with:
+				\3	$\forall~p\in \mathcal{M}:\exists~\mathfrak{U} \in \mathcal{O},~
+						 p \in \mathfrak{U} :\exists~\phi:\mathfrak{U} \subseteq \mathcal{M} 
+						 \rightarrow x(\mathfrak{U}) \subseteq \mathbb{R}^d$
+				\3	x is a continuous bijection
+			\2	Chart $(\mathfrak{U},x)$
+				\3	Open Subset $\mathfrak{U}$ with homeomorphism $\phi$
+				\3	Analogous to a coordinate system
+			\2	Atlas is a collection of charts
+				\3	$\bigcup_{\alpha \in \mathcal{A}} \mathfrak{U}_{\alpha} = \mathcal{M}$
+				\3	$\mathcal{A}$ is an arbitrary (possibly uncountable) set that indexes the chart
+			\2	Transition Map
+				\3	$\tau_{a,b}~:~\phi_a(\mathfrak{U}_a \cap \mathfrak{U}_b) \rightarrow
+							\phi_b(\mathfrak{U}_a \cap \mathfrak{U}_b)$
+				\3	$\tau_{a,b} = \phi_b \circ \phi_a^{-1}$
+	
+		\1	Smooth Manifold $(\mathcal{M},\mathcal{O},\mathcal{A})$
+			\2	$(\mathcal{M},\mathcal{O})$ form a topological manifold
+			\2	$\mathcal{A}$ is a $C^{\infty}$-atlas (All transition maps are infinitely differentiable)
+			\2	Diffeomorphic smooth manifolds
+				\3	$\phi~:~\mathcal{M} \rightarrow \mathcal{N}$
+				\3	$\phi~:~\mathcal{N} \rightarrow \mathcal{M}$
+				\3	$\phi$ and $\phi^{-1}$ are $C^{\infty}$ bijections
+			\2	Functions on Manifolds
+				\3	$f \circ \phi^{-1} : \phi(\mathfrak{U}) \subset \mathbb{R}^d \rightarrow \mathbb{R}$
+				\3	Function depends on the manifold, not the chart
+				\3	Different paraterizations / coordinates / charts lead to different functions
+				\3	Ex. Temperature is a function, independent of which coordinate system used to express the functional dependence
+		
+		\1	Tangent Spaces
+			\2	Velocity of a curve $\gamma$ and point $p$ 
+				\3	$\gamma~:~\mathbb{R} \rightarrow \mathcal{M}$, $\gamma(\lambda_0) = p$
+				\3	$v_{\gamma,p} : C^{\infty}(M) \rightarrow \mathbb{R}$	
+				\3	$v_{\gamma,p} := (f \circ \gamma)'(\lambda_0)$
+				\3	$v_{\gamma,p} = \gamma_x^i(0) \frac{\partial}{\partial x^i}$
+					\4	$\frac{\partial}{\partial x^i}$ is a basis for the velocity vector
+					\4	basis is chart dependent
+					\4	vector components change under change of chart
+					\4	vector itself is chart independent
+			\2	Tangent Space at $p$
+				\3	$T_pM := \{v_{\gamma,p}~|~\gamma~\text{smooth curves}\}$ 
+				\3	Vector space spanned by all the smooth curves defined at $p$
+				\3	$dim(T_pM) = d = dim(\mathcal{M})$
+				\3	Change of basis: $V^j_y = \frac{\partial y^j}{\partial x^i}V^i_x$
+				\3	Collection of all tangent spaces is given by $\Gamma(TM)$
+			\2	Cotangent Spaces
+				\3	$T^*_pM) := \{\phi : T_pM \rightarrow \mathbb{R}\}$
+				\3	$(df)_p \in T_pM$
+				\3	$((df)_p)_j = \partial_j(f \circ \phi^{-1})(\phi(p))$
+				\3	$\{(dx^1)_p, (dx^2)_p,...,(dx^d)_p\}$ form a basis of $T^*_pM$
+				\3	$dx^i$ are known as covectors (distinguished from vectors $\frac{\partial}{\partial x^i}$ of the tangent space)
+				\3	Differential forms live on cotangent spaces
+				\3	covectors are dual of vectors: $(dx^a)_p((\frac{\partial}{\partial x^b})_p) = \delta_b^a$
+				\3	Change of basis:	$\omega_{y,~i} = \frac{\partial x^j}{\partial y^i}w_{x,~j}$
+				\3	Covectors and vectors have their components transform differently under different charts
+		
+		\1	Tensors
+			\2	Multilinear Map $T: V^* \cross V^* \cross ... V^* \cross V \cross V ... \cross V \rightarrow \mathbb{R}$
+				\3	p copies of $V^*$, covectors
+				\3	q copies of $V$, vectors
+				\3	can be mapped to any field, doesn't have to be $\mathbb{R}$
+			\2	$(p,q)$ Tensor
+				\3	$p$ is the number of contravariant indices (covectors)
+				\3	$q$ is the number of covariant indices (vectors)
+				\3	Order of a Tensor = $p + q$
+				\3	1-form is a $(0,1)$ tensor
+				\3	2-form is a $(0,2)$ tensor
+				\3	inner product is a $(0,2)$ tensor
+				\3	vector is a $(1,0)$ tensor
+				\3	Linear Maps are $(1,1)$ tensors
+			\2	Summation convention
+				\3	Repeated indices with one upper and one lower index are summed over
+				\3	$\sum_i v_i w^i := v_iw^i$
+			\2	Tensors are independent of basis
+				\3	A tensor with value $0$ is $0$ in all charts
+
+		\1	Connections
+			\2	Terminology
+				\3	$\nabla_Xf = Xf = (df)(X)$
+				\3	$X~:~C^{\infty}(\mathcal{M}) \rightarrow C^{\infty}(\mathcal{M})$
+				\3	$df~:~\Gamma(TM) \rightarrow C^{\infty}(\mathcal{M})$
+				\3	$\nabla_X~:~C^{\infty}(\mathcal{M}) \rightarrow C^{\infty}(\mathcal{M})$
+			\2	Manifold with connection is the quadruple $(\mathcal{M},\mathcal{O},\mathcal{A},\nabla)$
+				\3	$\nabla : \Gamma(TM) \rightarrow \Gamma(TM)$
+				\3	$\nabla_X f = Xf$
+				\3	$\nabla_X(T + S) = \nabla_XT + \nabla_XS$
+				\3	$\nabla_X(T(\omega,Y)) = (\nabla_XT)(\omega,Y) + T(\nabla_X\omega,Y) + T(\omega,\nabla_XY)$
+				\3	$\nabla_{fX + Z}T = f\nabla_XT + \nabla_ZT$
+			\2	Connection Coefficients (Christoffel Symbols)
+				\3	$(dim(M))^3$ many connection coefficients
+				\3	$\Gamma^i_{jk}~:~\mathfrak{U} \rightarrow \mathbb{R}$
+				\3	$\nabla_{\frac{\partial}{\partial x^k}}dx^i = -\Gamma^i_{jk}dx^j$
+				\3	$(\nabla_XY)^i = X(Y^i) + \Gamma^i_{jk}Y^jX^m$
+				\3	$(\nabla_X\omega)_i = X(\omega_i) - \Gamma^j_{ik}\omega_jX^m$
+				\3	Technically the Christoffel symbols are only the connection coefficients of the Levi-Civita connection
+
+		\1	Parallel Transport along $\gamma$
+			\2	Curve $\gamma : \mathbb{R} \rightarrow \mathcal{M}$	
+			\2	$\nabla_{v_{\gamma}}X = 0$
+			\2	Defined using the tangent space to a curve applied to a vector
+		\1	Torsion
+			\2	Torsion of connection $\nabla$ is a $(1,2)$ tensor field
+			\2	$T(\omega,X,Y) := \omega(\nabla_XY - \nabla_YX - [X,Y])$
+				\3	$[X,Y]f := X(Yf) - Y(Xf)$
+			\2	$(\mathcal{M},\mathcal{O},\mathcal{A},\nabla)$ is torsion free if $T = 0$
+			\2	$T^i_{ab} = \Gamma^i_{ab} - \Gamma^i_{ba}$
+		
+		\1	Curvature of $\nabla$ is a $(1,3)$ tensor field
+			\2	$Riem(\omega,Z,X,Y) := \omega(\nabla_X\nabla_YZ - \nabla_Y\nabla_XZ - \nabla_{[X,Y]}Z)$
+			\2	$R^i_{jab} = \frac{\partial}{\partial x^a}\Gamma^i_{ab} - 
+					\frac{\partial}{\partial x^b}\Gamma^i_{ja} + 
+					\Gamma^i_{ca}\Gamma^c_{jb} - \Gamma^i_{cb}\Gamma^c_{ja}$
+		
+		\1	Metric $g$ on smooth manifold $(\mathcal{M},\mathcal{O},\mathcal{A})$ is a (0,2) tensor
+			\2	$g(X,Y) = g(Y,X)~\forall~X,Y~\text{vector fields}$
+			\2	$g^{-1}$ is a (2,0) tensor
+			\2	$(g^{-1})^{am}g_{mb} = \delta^a_b$
+			\2	$(0,2)$ tensors technically don't have eigenvalues with the properties of linear algebra
+				\3	Instead use signature, the sign of the eigenvalues of the metric tensor matrix
+				\3	$(+,+,+,+)$ for Riemannian metric	
+				\3	$(+,-,-,-)$ for Lorentzian metric
+			\2	Levi-Civita Connection
+				\3	The unique $\nabla$ with $\nabla g = 0$ and $T = 0$
+				\3	$\Gamma^a_{ij} := g^{am} \frac{1}{2}(\frac{\partial}{\partial x^i}g_{mj} +
+							\frac{\partial}{\partial x^j}g_{mi} - \frac{\partial}{\partial x^m}g_{ij})$
+				\3	Parallel transport is an isometry (inner products are preserved)
+				\3	Levi-Civita is the connection with the Christoffel symbols chosen using the
+						metric like above
+			\2	Riemann-Christoffel curvature
+				\3	$R_{abcd} := g_{am}R^m_{bcd}$
+			\2	Ricci Curvature
+				\3	$R_{ab} = R^m_{amb}$
+			\2	Scalar Curvature
+				\3	$R = g^{ab}R_{ab}$
+
+		\1	Pullback and Pushforward
+			\2	$\phi : \mathcal{M} \rightarrow \mathcal{N}$
+			\2	Pushforward:	$\phi_* : T\mathcal{M} \rightarrow T\mathcal{N}$
+				\3	Relates the vectors on the tangent bundles of two manifolds
+				\3	Relates the derivatives on one manifold to another
+				\3	$\phi_*(X)(f) := X(f \circ \phi)$
+				\3	$\phi_*(T_p\mathcal{M}) \subseteq T_{\phi(p)}\mathcal{N}$
+				\3	Vectors are pushed forward
+			\2	Pullback:	$\phi^* : T^*\mathcal{N} \rightarrow T^*\mathcal{M}$
+				\3	$\phi^*(\omega)(X) := \omega(\phi_*(X))$
+				\3	Relates differential forms on different manifolds
+				\3	Differential forms are pulled back
+
+		\1	Lie Derivative
+			\2	$\Gamma(T\mathcal{M}) = \{\text{set of all vector fields}(C^{\infty}-module)\}$
+				\3	$X,Y \in \Gamma(T\mathcal{M})$
+			\2	Lie Bracket
+				\3	$[X,Y]f := X(Yf) - Y(Xf)$
+				\3	$[X,Y] = [Y,X]$
+				\3	$[\lambda X + Z, Y] = \lambda [X,Y] + [Z,Y]$
+				\3	$[X,[Y,Z]] + [Z,[X,Y]] + [Y,[Z,X]] = 0$
+			\2	Lie Algebra $(\Gamma(TM),[\cdot,\cdot])$
+				\3	A $C^{\infty} Module$ (set of vector fields) with an associated Lie Bracket
+			\2	Lie Derivative
+				\3	On a smooth manifold $(\mathcal{M},\mathcal{O},\mathcal{A})$
+					\4	Don't need a metric
+				\3	Sends a pair (vector field $X$, $(p,q)$ tensor $T$) to a $(p,q)$ tensor field
+				\3	$\mathcal{L}_Xf = Xf$
+				\3	$\mathcal{L}_XY = [X,Y]$	
+				\3	$\mathcal{L}_X(T + S) = \mathcal{L}_XT + \mathcal{L}_XS$
+				\3	$\mathcal{L}_X(T(\omega,Y)) = (\mathcal{L}_XT)(\omega,Y) + T(\mathcal{L}_X\omega,Y) + T(\omega,\mathcal{L}_XY)$
+				\3	$\mathcal{L}_{X + Y} T = \mathcal{L}_XT + \mathcal{L}_YT$
+			\2	Symmetry of a metric tensor field $g$
+				\3	Associated with a Lie Algebra $(L,[\cdot,\cdot])$
+				\3	$X,Y \in L$	
+				\3	$(\phi^*g)(X,Y) = g(X,Y)$
+				\3	Isometry
+				\3	$\mathcal{L}_Xg = 0$
+	\end{outline}
+\end{document}
+
+

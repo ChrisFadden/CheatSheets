@@ -1,0 +1,147 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{Convex Optimization Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	%Chapter 5 Boyd
+
+	\begin{outline}		
+		\1	Convex Sets
+			\2	Affine Set
+				\3	set $C \subset \mathbb{R}^n$
+				\3	$x_1,x_2 \in C, \theta \in \mathbb{R}$
+				\3	$\theta x_1 + (1 - \theta)x_2 \in C~\forall~x_1,x_2$
+			\2	Convex Set: $\theta x_1 + (1 - \theta)x_2 \in C~\forall~x_1,x_2,~\forall~\theta = [0,1]$
+			\2	Convex Hull: $conv(C) = \{\theta_1 x_1 + ... + \theta_kx_k~|~x_i \in C,\\~\theta_i \ge 0,~i=1...k,~\theta_1 + ... + \theta_k = 1\}$
+			\2	Cone: $\forall~x_i~\in C,~\theta_i \ge 0,\theta_i x_i \in C$
+				\3	Conic Hull: $\{\theta_1x_1 + ... + \theta_kx_k~|~x_i \in C,~\theta_i \ge 0\}$
+			\2	Examples of Convex Sets
+				\3	Halfspace: $\{\bm{x}~|~\bm{a}^T \bm{x} \le b\}$
+				\3	Ball: $B(\bm{x}_c,r) = \{\bm{x}~|~\norm{\bm{x} - \bm{x}_c} \le r\}$
+				\3	Ellipsoid:	$\xi(x_c) = \{\bm{x}~|~(\bm{x} - x_c)^T P^{-1}(\bm{x} - x_c) \le 1\}$
+					\4	$P$ is a symmetric postive definite matrix
+				\3	Convex Cone:	$C = \{(\bm{x},t)~|~\norm{\bm{x}} \le t\}$
+					\4	Second order cone:  convex cone using the $L_2$ norm
+				\3	Polyhedron: $P = \{\bm{x}~|~A\bm{x} \preceq \bm{b},~C\bm{x} = \bm{d}\}$
+					\4	$\preceq$ means component wise comparison
+				\3	Simplex: $S = \{\theta_1 x_1 + ... + \theta_kx_k~|~\bm{\theta} \succeq 0,~\bm{1}^T\bm{\theta} = 1\}$
+			\2	Operations that preserve convexity
+				\3	Intersection
+				\3	Affine mappings
+				\3	Pointwise sum of elements in sets
+				\3	Pointwise multiplication of elements in sets	
+		
+		\1	Convex Functions
+			\2	$f~:~\mathbb{R}^n \rightarrow \mathbb{R}$ 
+				\3	$dom(f)$ is a convex set
+				\3	$\bm{x},\bm{y} \in dom(f);~\theta \in [0,1]$
+				\3	$f(\theta \bm{x} + (1 - \theta)\bm{y}) \le \theta f(\bm{x}) + (1 - \theta)f(\bm{y})$
+					\4	Known as Jensen's inequality
+			\2	Concanve: $-f(\bm{x})$ is convex
+			\2	$f(\bm{y}) \ge f(\bm{x}) + \nabla f(\bm{x})^T(\bm{y} - \bm{x})$
+			\2	$\forall~\bm{x}~:~\nabla^2f(\bm{x}) \preceq \bm{0}$
+			\2	Examples of Convex Functions
+				\3	Exponential : $exp(a\bm{x})~|~a \in \mathbb{R}$ 
+				\3	Powers:	$\bm{x}^a$ with $a \ge 1$ or $a \le 0$.  Concave for $a \in [0,1]$
+				\3	Powers of absolute value: $|\bm{x}|^p~|~p \ge 1$ 
+				\3	Logarithm: $log(\bm{x})$ (Concave)
+				\3	Negative Entropy:	$\bm{x} log(\bm{x})$
+				\3	Any norm $\norm{\bm{x}}$
+				\3	Geometric mean:	$f(\bm{x}) = (\Pi_{i=1}^n x_i)^{\frac{1}{n}}$ (Concave)
+				\3	Log determinant:	$f(X) = log(det(X))$ (Concave)
+				\3	Sublevel sets of a convex function: $\{\bm{x} \in dom(f) | f(\bm{x}) \le \alpha\}$
+			
+			\2	Operations that preserve convexity on functions
+				\3	Non-negative weighted sum: $f = w_1f_1 + ... + w_m f_m$
+					\4	Includes infinite sums and integrals
+				\3	Composition with affine mapping: $g(\bm{x}) = f(A\bm{x} + \bm{b})$
+					\4	$A$ need not be square \\(i.e. $g~:~\mathbb{R}^m \rightarrow \mathbb{R},~f~:~\mathbb{R}^n \rightarrow \mathbb{R}$)
+				\3	Maximum / minimum of convex functions: $f(\bm{x}) = max\{f_1(\bm{x}),f_2(\bm{x})\}$
+				\3		
+			\2	Convex Conjugate function
+				\3	$f^*(\bm{y}) = sup (\bm{y}^T\bm{x} - f(\bm{x})$
+				\3	$f(\bm{x}) + f^*(\bm{y}) \ge \bm{x}^T\bm{y}$
+					\4	Fenchel or Young Inequality
+				\3	Legendre transformation
+					\4	$\bm{y} = \nabla f(x^*)$
+					\4	$x^*$ is a maximizer of $f^*(\bm{y})$ 
+					\4	Legendre transformation and convex conjugate are equivalent in this case
+		
+		\1	Convex Optimization Problems
+			\2	Terminology:	\begin{align*}
+													& \underset{\bm{x}}{\text{minimize} f_0(\bm{x})}	\\		
+													& \text{subject to}~
+													 g_i(\bm{x}) \le 0,~i=1...m \\
+													 &~~~~~~~~~~~~~~h_j(\bm{x}) = 0,~j=1...k \\
+												\end{align*}
+				\3	Optimization variable $\bm{x} \in \mathbb{R}^n$
+				\3	Objective / Cost function $f_0(\bm{x})~:~\mathbb{R}^n \rightarrow \mathbb{R}$
+				\3	Inequality constraints $g_i(\bm{x})~:~\mathbb{R}^n \rightarrow \mathbb{R}$
+				\3	Equality constraints $h_j(\bm{x})~:~\mathbb{R}^n \rightarrow \mathbb{R}$
+					\4	In order to be convex, $h_j(\bm{x}) = \bm{a}_i^T\bm{x} = b_i$ 
+					\4	Equality constraints must be affine
+				\3	No constraints = unconstrained problem
+				\3	Feasible points = $\bm{x} \in D$ such that the constraints are satisfied
+				\3	Optimal value $p^* = inf \{f_0(\bm{x})\}$ for $\bm{x}$ being a feasible point
+				\3	Optimal point $\bm{x}^* = \{f_0(\bm{x}^*) = p^*$
+				\3	Slack Variables
+					\4	Way to replace inequality constraints in an optimization problem
+					\4	\begin{align*}
+							& \underset{\bm{x}}{\text{minimize} f_0(\bm{x})}	\\		
+							& \text{subject to}~s_i \ge 0 \\
+							&~~~~~~~~~~~~~~g_i(\bm{x}) + s_i =  0,~i=1...m \\
+							&~~~~~~~~~~~~~~h_j(\bm{x}) = 0,~j=1...k \\
+						\end{align*}
+				\3	Any local optimum is a global optimum for convex optimization problems
+		\2	Linear Program (LP)
+			\3		\begin{align*}
+							& \underset{\bm{x}}{\text{minimize}}~~\bm{c}^T\bm{x} + \bm{d}	\\		
+							& \text{subject to}~G\bm{x} \preceq \bm{h} \\
+							&~~~~~~~~~~~~~~Ax = b\\
+						\end{align*}
+			\3	$G \in \mathbb{R}^{m \cross n}$
+			\3	$A \in \mathbb{R}^{p \cross n}$
+			\3	Can ignore $\bm{d}$ as it has no affect on optimal point
+			\3	Standard form LP
+				\4	\begin{align*}	
+							& \underset{\bm{x}}{\text{minimize}}~~\bm{c}^T\bm{x}	\\		
+							& \text{subject to}~A\bm{x} = \bm{b} \\
+							&~~~~~~~~~~~~~~~~\bm{x} \succeq 0\\
+						\end{align*}
+			\3	Inequality form LP
+				\4	\begin{align*}	
+							& \underset{\bm{x}}{\text{minimize}}~~\bm{c}^T\bm{x}	\\		
+							& \text{subject to}~A\bm{x} \preceq \bm{b} \\
+						\end{align*}
+		
+		\2	Quadratic Program (QP)
+			\3	\begin{align*}	
+							& \underset{\bm{x}}{\text{minimize}}~~\frac{1}{2}\bm{x}^TP\bm{x} + \bm{q}^T\bm{x} + \bm{r}	\\		
+							& \text{subject to}~G\bm{x} \preceq \bm{h} \\
+							&~~~~~~~~~~~~~~A\bm{x} =  \bm{b}\\
+						\end{align*}
+			\3	$P \in \mathbb{S}^n_+$ is Symmetric Positive Semidefinite 
+			\3	$G \in \mathbb{R}^{m \cross n}$
+			\3	$A \in \mathbb{R}^{p \cross n}$
+			\3	Quadratically Constrained Quadratic Program (QCQP)
+				\4	\begin{align*}	
+							& \underset{\bm{x}}{\text{minimize}}~~\frac{1}{2}\bm{x}^TP\bm{x} + \bm{q}^T\bm{x} + \bm{r}	\\		
+							& \text{subject to}~\frac{1}{2}\bm{x}^TP_i\bm{x} + \bm{q}_i^T\bm{x} + r_i	 \le 0 \\
+							&~~~~~~~~~~~~~~A\bm{x} =  \bm{b}\\
+						\end{align*}	
+			\3	Second Order Cone Program (SOCP)
+				\4	\begin{align*}	
+							& \underset{\bm{x}}{\text{minimize}}~~\bm{f}^T \bm{x}	\\		
+							& \text{subject to}~\norm{A_i\bm{x} + \bm{b}_i}_2 \le \bm{c}_i^T \bm{x} + \bm{d}_i\\
+							&~~~~~~~~~~~~~~F\bm{x} =  \bm{g}\\
+						\end{align*}	
+		
+	\1	Duality
+
+	\end{outline}
+\end{document}
+
+
