@@ -1,0 +1,75 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+%Gatech ghomi
+
+\title{Differential Geometry of Curves and Surfaces Cheat Sheet}
+
+\begin{document}
+	\maketitle
+	\begin{outline}
+		\1	Euclidean Geometry
+			\2	Standard Inner Product: $\braket{p}{q} = p^1q^1 + p^2q^2 + ... $
+			\2	Norm: $\norm{p} := \sqrt{(\braket{p}{p})}$
+			\2	Cauchy Schwarz Inequality: $\braket{p}{q} \le \norm{p}\norm{q}$
+		\1	Curve
+			\2	$\alpha : I \rightarrow \mathbb{R}^n$
+			\2	Reparameterization
+				\3	$\beta : J \rightarrow \mathbb{R}^n$
+				\3	Bijection $\theta : I \rightarrow J$
+				\3	$\alpha(t) = \beta(\theta(t))$
+			\2	Length of a curve
+				\3	Partition $P = [a,b]$ where $a = t_0$ and $b = t_n$ 
+				\3	$len(\alpha,P) = \sum_{i=1}^n \norm{\alpha(t_i) - \alpha(t_{i-1})}$
+				\3	$len(\alpha) = \int_{I}\norm{\alpha'(t)}dt$
+			\2	Regular Curve: $\norm{\alpha'(t)} \ne 0$
+			\2	Closed curve:	Start and end points are equal
+
+		\1	Isometry in Euclidean Space
+			\2	$f : \mathbb{R}^n \rightarrow \mathbb{R}^n$
+			\2	$f(p) = f(0) + A(p)$
+				\3	$0$ is the origin of the space
+				\3	$A$ is an orthogonal transformation (rotation)
+				\3	This can shift the origin and rotate 
+			\2	Preserves inner products
+			\2	Preserves the length of curves
+		\1	Curvature of Curves
+			\2	Unit tangent vector $T(t) := \frac{\alpha'(t)}{\norm{\alpha'(t)}}$
+			\2	$\kappa := \norm{\od{T}{s}}$ where $s$ is the length of the curve
+			\2	If curve is parameterized by arc length, $\kappa = \norm{\alpha''(t)}$
+			\2	$\kappa := \frac{\sqrt{\norm{\alpha'(t)}^2\norm{\alpha''(t)}^2 - 
+											\braket{\alpha'(t)}{\alpha''(t)}^2  }}{\norm{\alpha'(t)}^3 }$
+			\2	Fox-Milnor Theorem
+				\3	Total $\kappa[\alpha] = \int_a^b \norm{\alpha''(t)}dt$
+				\3	Only valid for unit speed curves ($\norm{\alpha'(t)} = 1$)
+		\1	Convex Curves
+			\2	Total Curvature $\int_I \kappa(t) dt \ge 2\pi$
+			\2	For closed planar curves
+			\2	Equality holds iff the curve is convex
+			\2	vertex
+				\3	Place where the curvature has a maximum or minimum
+				\3	Convex curves have at least 4
+
+		\1	Frenet-Serret Frame and Torsion
+			\2	unit speed curve
+			\2	Normal: $N(t) := \frac{T'(t)}{\kappa(t)}$
+			\2	BiNormal: $B(t) := T(t) \wedge N(t)$	
+			\2	Torsion: $\tau(t) := -\braket{B'(t)}{N'(t)}$
+			\2	$\begin{bmatrix}
+						T(t) \\ N(t) \\ B(t)
+					\end{bmatrix}' = 
+					\begin{bmatrix}
+						0 & \kappa(t) & 0 \\
+						-\kappa(t) & 0 & \tau(t) \\
+						0 & -\tau(t) & 0 \\
+					\end{bmatrix}
+					\begin{bmatrix}
+						T(t) \\ N(t) \\ B(t)
+					\end{bmatrix}$
+		
+		\1	Section 8: Surfaces
+	\end{outline}
+\end{document}
+
+

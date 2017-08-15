@@ -53,18 +53,22 @@
 				\3	number of holes
 				\3	Connectedness
 					\4	$X = A \cup B,~\overline{A} \cap B \ne \emptyset,~or~A \cap \overline{B} \ne \emptyset$
+					\4	The only subspaces that are both open and closed are $X$ and $\emptyset$ 
 			\2	Depend solely on topology; shared by homeomorphic spaces
 			\2	$T_1$ Space	
 				\3	Given any pair of distinct points $x,y \in X$ there exists an open set $O_x~:~x \in O_x,~y \notin O_x$
 				\3	Points in $X$ are closed sets
 			\2	Hausdorff Space ($T_2$ Space)
 				\3	Every two distinct points have disjoint neighborhoods (no overlap)
-				\3	Space is compact if every open cover has a finite subcover (bounded and closed)
+				\3	Space is compact if every open cover (union of spaces) has a finite subcover (bounded and closed)
+					\4	Bounded if $X \subset B_r(0)$(There is an open ball to which it is a subspace)	
+					\4	Closed if its complement is open (can be both open and closed)
 				\3	Any locally compact Hausdorff space can be made a compact space by adding a single point
 				\3	Shares propreties of a $T_1$ space
 
 		\1	Operations on Topological Spaces
 			\2	Cartesian Product
+				\3	$X \cross Y := \{(x,y) | x \in X, y \in Y\}$
 				\3	Intuitive "keep one space the same" combination of spaces
 				\3	The plane $\mathbb{R}^2$ is made up of cartesian products of two lines $\mathbb{R} \cross \mathbb{R}$
 				\3	Cylinder is made up of a circle extended down an interval, $S^1 \cross I$
@@ -79,6 +83,7 @@
 				\3	B is a subset of A
 				\3	$\mathbb{Z} / 2\mathbb{Z} = \{1,-1\}$ 
 				\3	The quotient space is the original space with the subset removed
+				
 		\1	Topology of Surfaces
 			\2	$S$ is a topological space with every $s \in S$ has a neighborhood locally homeomorphic to $\mathbb{R}^2$
 			\2	Projective Plane
@@ -88,9 +93,15 @@
 			\2	Euler Characteristic $\chi$ = \# of Vertices - \# of edges - \# of faces
 				\3	Intrinsic to the surface
 				\3	Two surfaces with same Euler characteristic that are orientiable are homeomorphic
-		\1	Homotopy and the Fundamental Group
-			\2	$f,g~:~X\rightarrow Y$
-			\2	f is homotopic to g if $F~:~X\cross I \rightarrow Y,~F(x,0) = f(x),~F(x,1) = g(x)$
+		
+		\1	Examples of Topolgoical Spaces
+			\2	Euclidean n-space $\mathbb{R}^n := \{(p_1,...,p_n) | p_i \in \mathbb{R}\}$
+			\2	Euclidean half space $\mathbb{H}^n := \{(p_1,...,p_n) | p_1 > 0 \in \mathbb{R}\}$
+			\2	Open Ball of Radius R $B_r(p) := \{x \in X | d(x,p) < r\}$
+			\2	Euclidean n-sphere $\mathcal{S}^n := \{x \in \mathbb{R}^{n+1} | d(x,0) = 1\}$
+			\2	n-dimensional Torus $\mathcal{T}^n := \mathcal{S} \cross \mathcal{S} \cross ...$
+			\2	Real Projective Space (Lines through origin of $\mathbb{R}^{n+1}$) $\mathbb{R}\mathcal{P}^n$
+
 	\end{outline}
 \end{document}
 

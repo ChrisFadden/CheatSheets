@@ -37,7 +37,12 @@
 				\3	Function depends on the manifold, not the chart
 				\3	Different paraterizations / coordinates / charts lead to different functions
 				\3	Ex. Temperature is a function, independent of which coordinate system used to express the functional dependence
-		
+			\2	Boundary of a Manifold
+				\3	Manifold $\mathcal{M}$ without boundary is homeomorphic to $\mathbb{R}^n$
+				\3	Boundary of a Manifold $\partial \mathcal{M}$ is all points 
+						in $\mathcal{M}$ without a neighborhood homeomorphic to $\mathbb{R}^n$
+				\3	$\partial \mathcal{M}$ is always an $n-1$ manifold (without boundary)
+					
 		\1	Tangent Spaces
 			\2	Velocity of a curve $\gamma$ and point $p$ 
 				\3	$\gamma~:~\mathbb{R} \rightarrow \mathcal{M}$, $\gamma(\lambda_0) = p$
@@ -122,6 +127,15 @@
 					\frac{\partial}{\partial x^b}\Gamma^i_{ja} + 
 					\Gamma^i_{ca}\Gamma^c_{jb} - \Gamma^i_{cb}\Gamma^c_{ja}$
 		
+		\1	Geodisics
+			\2	Curve $\gamma : I \rightarrow \mathcal{M}$ is parameterized by t
+			\2	Derivative of $\gamma = \gamma'$ with respect to t
+			\2	Geodisic := $\gamma | \nabla_{\gamma'} \gamma' = 0$
+			\2	Geodisic Equation
+				\3	$\frac{d^2 \gamma^a}{dt^2} + \Gamma^a_{bc}\frac{d \gamma^b}{dt}\frac{d \gamma^c}{dt} = 0$
+			\2	Geodisics are straight lines with respect to connection $\nabla$
+			\2	Motion of geodisics completely determined by bending of the surface (curvature)
+
 		\1	Metric $g$ on smooth manifold $(\mathcal{M},\mathcal{O},\mathcal{A})$ is a (0,2) tensor
 			\2	$g(X,Y) = g(Y,X)~\forall~X,Y~\text{vector fields}$
 			\2	$g^{-1}$ is a (2,0) tensor
@@ -182,6 +196,9 @@
 				\3	$(\phi^*g)(X,Y) = g(X,Y)$
 				\3	Isometry
 				\3	$\mathcal{L}_Xg = 0$
+				\3	Connection using this metric is called a Riemannian Connection
+				\3	Riemannian geodesics have constant speed
+
 	\end{outline}
 \end{document}
 
