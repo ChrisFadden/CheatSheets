@@ -79,11 +79,92 @@
 							 g(\omega)\bar{h}(\omega) + g(\omega + \pi) \hat{h}(\omega + \pi) = 0$
 			
 			\2	Biorthogonal MRA (pg. 31)
+				\3	$\braket{\phi(x)}{\tilde{\phi}(x - k)}	= \delta_{0k}$
+				\3	$\tilde{\phi}$ is the dual of $\phi$
+				\3	$\sum_k h_k \tilde{h}^*_{k-2l} = \delta_{0l}$
+				\3	$h(\omega) \tilde{h}^*(\omega) + h(\omega + \pi) \tilde{h}(\omega + \pi)^* = 1$
+				\3	$P_nf = \sum_k \braket{f}{\tilde{\phi}_{nk}}\phi_{nk}$
+				\3	$\tilde{P}_nf = \sum_k \braket{f}{\phi_{nk}}\tilde{\phi}_{nk}$
+				\3	$Q_nf = P_{n+1}f - P_nf$
+				\3	$\tilde{Q}_nf = \tilde{P}_{n+1}f - \tilde{P}_nf$
+				\3	If $f \in W_n$, then $\braket{f}{\tilde{\phi}_{nk}} = 0$
 
-		\1	Discrete Wavelet Transform
+			\2	Moments of a function
+				\3	Discrete Moments
+					\4	$m_k = \frac{1}{\sqrt{2}} \sum_l l^kh_l$
+					\4	$n_k = \frac{1}{\sqrt{2}} \sum_l l^kg_l$
+				\3	Continuous Moments
+					\4	$\mu_k = \int x^k \phi(x) dx$
+					\4	$\nu_k = \int x^k \psi(x) dx$
+					\4	$\sum_k \phi(x - k) = \int phi(x) dx = \mu_0$
+
+			\2	Approximation Order
+				\3	$\norm{f - P_n f} = O(2^{-np})$
+					\4	$f$ is $C^p$ differentiable
+				\3	$\norm{Q_nf} = O(2^{-np})$
+				\3	Polynomial approximation
+					\4	$x^n = \sum_k c_{nk} \phi(x - k)$
+
+		\1	Discrete Wavelet Transform (pg. 48)
+			\2	Function Approximation
+				\3	$s \in V_n$
+				\3	$s = \sum_k \bar{s}_{nk} \phi_{nk}$
+				\3	$s = \sum_k \bar{s}_{lk} + \sum_{j=l}^{n-1} \sum_k \bar{d}_{jk}\psi_{jk}$
+					\4	$\bar{s}_{nk} = \braket{s}{\tilde{\phi}_{nk}}$
+					\4	$\bar{d}_{nk} = \braket{s}{\tilde{\psi}_{nk}}$
+
+			\2	DWT
+				\3	$\mathbf{s}_n = \{s_{nk}\}$
+				\3	Decomposition
+					\4	$s_{n-1,j} = \sum_k \tilde{h}_{k - 2j} s_{nk}$
+					\4	$d_{n-1,j} = \sum_k \tidle{g}_{k - 2j} s_{nk}$
+				\3	Reconstruction
+					\4	$s_{nk} = \sum_j [\bar{h}_{k - 2j} s_{n-1,j} + \bar{g}_{k-2j}d_{n-1,j}$
 			\2	Modulation Formulation
+				\3	Original signal $s_n(\omega)$
+				\3	Decomposition
+					\4	$s_{n-1}(2\omega) = \frac{1}{\sqrt{2}}(\tilde{h}(\omega)s(\omega) + 
+								\tilde{h}(\omega + \pi) s_n(\omega + \pi))$
+					\4	$d_{n-1}(2\omega) = \frac{1}{\sqrt{2}}(\tilde{g}(\omega)s(\omega) + 
+								\tilde{g}(\omega + \pi) s_n(\omega + \pi))$
+				\3	Reconstruction
+					\4	$\frac{1}{\sqrt{2}}s_n(\omega + \pi) = (\bar{h}(\omega + \pi)s_{n-1}(2\omega) +
+								\bar{g}(\omega + \pi) d_{n-1}(2\omega)$
+				\3	Modulation Matrix
+					\4	$M(\omega) = \begin{bmatrix}
+															h(\omega) & h(\omega + \pi) \\
+															g(\omega) & g(\omega + \pi)
+														\end{bmatrix}$
+					\4 Biorthogonality: $M(\omega)^H \tilde{M}(\omega) = I$ (Paraunitary)
 			\2	Polyphase Formulation
-			\2	Lifting
+				\3	Decomposition
+					\4	$\begin{bmatrix} s_{n-1}(\omega) \\ d_{n-1}(\omega) \end{bmatrix}
+								= \begin{bmatrix}
+										\tilde{h}_0(\omega) & \tilde{h}_1(\omega) \\
+										\tidle{g}_0(\omega) & \tilde{g}_1(\omega)
+									\end{bmatrix}
+									\begin{bmatrix}
+										s_{n,0}(\omega)
+										s_{n,1}(\omega)
+									\end{bmatrix}$
+				\3	Reconstruction
+					\4$		\begin{bmatrix}
+										s_{n,0}(\omega)
+										s_{n,1}(\omega)
+									\end{bmatrix} = 
+									\begin{bmatrix}
+										\bar{h}_0(\omega) & \bar{h}_1(\omega) \\
+										\bar{g}_0(\omega) & \bar{g}_1(\omega)
+									\end{bmatrix}		
+								\begin{bmatrix} s_{n-1}(\omega) \\ d_{n-1}(\omega) \end{bmatrix}	
+						$
+				\3	Polyphase Matrix
+					\4	$P(\omega) = \begin{bmatrix} 
+								h_0(\omega) & h_1(\omega) \\
+								g_0(\omega) & g_1(\omega)
+							\end{bmatrix}$
+					\4	Same Birothogonality condition as Modulation Matrix
+	
 		\1	Types of Wavelets
 			\2	Bezout Equation
 			\2	Daubechies Wavelets
@@ -91,6 +172,7 @@
 		\1	Applications
 			\2	Signal Processing
 			\2	Linear Algebra
+			\2	Calculating Integrals (pg. 71)
 		\1	Existence and Regularity
 
 	\end{outline}
