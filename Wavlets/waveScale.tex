@@ -1,0 +1,99 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{Scalar Wavelets Cheat Sheet}
+\begin{document}
+	\maketitle
+
+	\begin{outline}		
+		\1	Multiresolution Analysis
+			\2	Refinable Function $\phi : \mathbb{R} \rightarrow \mathbb{C}$
+				\3	$\phi(x) = \sqrt{2} = \sum_{k} h_k\phi(2x - k)$
+				\3	Orthogonal if $\braket{\phi(x)}{\phi(x - k)} = \delta_{0k}, k \in \mathbb{Z}$
+					\4	$\sum_k h_k \bar{h}_{k-2l} = \delta_{0l}$
+					\4	$|h(\omega)|^2 + |h(\omega + \pi)|^2 = 1$
+				\3	$\sum_k |h_k|^{1 + \epsilon} < \infty$
+				\3	$h(\omega) = \frac{1}{\sqrt{2}}\sum_k h_k exp(-ik\omega)$
+				\3	$\hat{\phi}(\omega) = h(\frac{\omega}{2})\hat{\phi}(\frac{\omega}{2})$ (Fourier Transform)
+				\3	$\hat{\phi}(\omega) = (\prod_k h(2^{-k}\omega) ) \hat{\phi}(0)$
+				\3	Fixed Point Iteration for finding refinable functions
+					\4	$\phi^{(n)}(x) = \sqrt{2}\sum_k h_k \phi^{(n-1)}(2x - k)$
+			\2	Haar function
+				\3	$\phi(x) = 1, x = [0,1]$
+				\3	$\phi(x) = \phi(2x) + \phi(2x-1) = \sqrt{2}(\frac{1}{\sqrt{2}}\phi(2x) + \frac{1}{\sqrt{2}}\phi(2x-1))$
+				\3	$h_0 = h_1 = \frac{1}{\sqrt{2}}$
+				\3	Orthogonal
+			\2	Compact Support
+				\3	Support is the closure of set $\{x : \phi(x) \ne 0\}$
+				\3	Compact support means bounded support
+				\3	Linearly Independent Shifts
+					\4	$\sum_k \bar{c}_k \phi(x - k) = 0 \rightarrow c_k = 0~\forall~k$
+				\3	$h(0) = 1$
+				\3	$\sum_k \phi(x - k) = const \ne 0$
+				\3	$h(\pi) = 0$
+			
+			\2	Multiresolution Approximation (MRA) of $\mathfrak{L}^2$
+				\3	Doubly infinite nested sequence of subspaces of $\mathfrak{L}^2$
+					\4	$... \subset V_{-1} \subset V_0 \subset V_1 ...$
+				\3	$\bigcup_n V_n$ is dense in $\mathfrak{L}^2$
+				\3	$\bigcap_n V_n = \{0\}$
+				\3	$f(x) \in V_n \rightarrow f(2x) \in V_{n+1}~\forall~n\in \mathbb{Z}$
+				\3	$f(x) \in V_n \rightarrow f(x - 2^{-n}k) \in V_n~\forall~n,k \in \mathbb{Z}$
+				\3	$\phi \in \mathfrak{L}^2 : \{\phi(x - k) : k \in \mathbb{Z}\}$ forms a stable basis of $V_0$
+				\3	Basis function $\phi$ is the scaling function
+				\3	$f \in V_0 : f(x) = \sum_k \hat{f_k}\phi(x - k)$
+				\3	$\phi(x) = \sqrt{2}\sum_k h_k \phi(2x - k)$
+				\3	$\phi_{nk}(x) = 2^{\frac{n}{2}} \phi(2^nx - k)$
+				\3	Orthogonal Projection 
+					\4	Orthogonal basis functions
+					\4	Arbitrary function $f \in \mathfrak{L}^2$ onto $V_n$
+					\4	$P_nf = \sum_k \braket{f}{\phi_{nk}}\phi_{nk}$
+					\4	$V_n$ has resolution (scale) $2^{-n}$
+					\4	$\lim_{n \rightarrow \infty} P_nf = f$
+				\3	Detail Subspace
+					\4	$Q_nf(x) = P_{n+1}f(x) - P_nf(x)$
+					\4	$W_n$ is the image of $Q_n$
+					\4	$V_n \oplus W_n = V_{n+1}$
+					\4	$P_nP_{n-k} = P_{n-k}P_n = P_{n-k}$
+					\4	$P_nQ_n = 0$
+					\4	$P_nQ_{n-k} = Q_{n-k}$
+					\4	$V_n = \oplus_{k = -\infty}^{n-1} W_k$
+					\4	$\oplus_nW_n$ is dense in $\mathfrak{L}^2$
+					\4	$W_k \perp W_n (k \ne n)$
+					\4	$f(x) \in W_n \rightarrow f(2x) \in W_{n+1}~\forall~n\in \mathbb{Z}$
+					\4	$f(x) \in W_n \rightarrow f(x - 2^{-n}k) \in W_n~\forall~n,k \in \mathbb{Z}$
+				\3	$\psi \in \mathfrak{L}^2 : \{\psi(x - k\} : k \in \mathbb{Z}$ forms a basis of $W_0$
+				\3	$\psi_{nk}$ forms a basis for $\mathfrak{L}^2$
+				\3	$\psi(x) = \sqrt{2} \sum_k g_k \phi(2x - k)$
+				\3	$g_k = (-1)^kh_{N-k}$ where $N$ is an odd number
+				\3	$\psi$ is the (mother) wavelet function
+				\3	$\phi$ and $\psi$ together form a wavelet
+				\3	$g(\omega) = \frac{1}{\sqrt{2}}\sum_k g_k exp(-ik\omega)$
+				\3	$\hat{\psi}(\omega) = g(\frac{\omega}{2})\hat{\phi}(\frac{\omega}{2})$
+				\3	Orthogonality of $\phi$ and $\psi$
+					\4	$\sum_k h_k \bar{h}_{k-2l} = \sum_kg_k\bar{g}_{k-2l} = \delta_{0l}$
+					\4	$\sum_k h_k \bar{g}_{k-2l} = \sum_kg_k\bar{h}_{k-2l} = 0$
+					\4	$|h(\omega)|^2 + |h(\omega + \pi)|^2 = |g(\omega)|^2 + |g(\omega + \pi)|^2 = 1$
+					\4	$h(\omega)\bar{g}(\omega) + h(\omega + \pi) \hat{g}(\omega + \pi) = \\ 
+							 g(\omega)\bar{h}(\omega) + g(\omega + \pi) \hat{h}(\omega + \pi) = 0$
+			
+			\2	Biorthogonal MRA (pg. 31)
+
+		\1	Discrete Wavelet Transform
+			\2	Modulation Formulation
+			\2	Polyphase Formulation
+			\2	Lifting
+		\1	Types of Wavelets
+			\2	Bezout Equation
+			\2	Daubechies Wavelets
+			\2	Coiflets
+		\1	Applications
+			\2	Signal Processing
+			\2	Linear Algebra
+		\1	Existence and Regularity
+
+	\end{outline}
+\end{document}
+
+
