@@ -78,7 +78,7 @@
 					\4	$h(\omega)\bar{g}(\omega) + h(\omega + \pi) \hat{g}(\omega + \pi) = \\ 
 							 g(\omega)\bar{h}(\omega) + g(\omega + \pi) \hat{h}(\omega + \pi) = 0$
 			
-			\2	Biorthogonal MRA (pg. 31)
+			\2	Biorthogonal MRA 
 				\3	$\braket{\phi(x)}{\tilde{\phi}(x - k)}	= \delta_{0k}$
 				\3	$\tilde{\phi}$ is the dual of $\phi$
 				\3	$\sum_k h_k \tilde{h}^*_{k-2l} = \delta_{0l}$
@@ -117,7 +117,7 @@
 				\3	$\mathbf{s}_n = \{s_{nk}\}$
 				\3	Decomposition
 					\4	$s_{n-1,j} = \sum_k \tilde{h}_{k - 2j} s_{nk}$
-					\4	$d_{n-1,j} = \sum_k \tidle{g}_{k - 2j} s_{nk}$
+					\4	$d_{n-1,j} = \sum_k \tilde{g}_{k - 2j} s_{nk}$
 				\3	Reconstruction
 					\4	$s_{nk} = \sum_j [\bar{h}_{k - 2j} s_{n-1,j} + \bar{g}_{k-2j}d_{n-1,j}$
 			\2	Modulation Formulation
@@ -141,15 +141,15 @@
 					\4	$\begin{bmatrix} s_{n-1}(\omega) \\ d_{n-1}(\omega) \end{bmatrix}
 								= \begin{bmatrix}
 										\tilde{h}_0(\omega) & \tilde{h}_1(\omega) \\
-										\tidle{g}_0(\omega) & \tilde{g}_1(\omega)
+										\tilde{g}_0(\omega) & \tilde{g}_1(\omega)
 									\end{bmatrix}
 									\begin{bmatrix}
-										s_{n,0}(\omega)
+										s_{n,0}(\omega) \\
 										s_{n,1}(\omega)
 									\end{bmatrix}$
 				\3	Reconstruction
 					\4$		\begin{bmatrix}
-										s_{n,0}(\omega)
+										s_{n,0}(\omega) \\
 										s_{n,1}(\omega)
 									\end{bmatrix} = 
 									\begin{bmatrix}
@@ -165,15 +165,30 @@
 							\end{bmatrix}$
 					\4	Same Birothogonality condition as Modulation Matrix
 	
-		\1	Types of Wavelets
-			\2	Bezout Equation
+		\1	Types of Wavelets	
 			\2	Daubechies Wavelets
+				\3	Highest number $k$ of vanishing moments for support $2k - 1$
+				\3	$dbX$ where $X$ is the number of vanishing moments
 			\2	Coiflets
+				\3	Orthogonal wavelets with general number of vanishing moments $k$ for \\
+						the scaling functions and $l$ for the wavelet functions
+				\3	Useful in applications involving Calderon-Zygmund Operators
+			\2	Cohen Wavelet
+				\3	Biorthogonal wavelet
+				\3	Scaling function is the B-spline of order $p$
+		
 		\1	Applications
 			\2	Signal Processing
+				\3	Wavelet Shrinkage (denoising / thresholding)
+					\4	Threshold the detail coefficients
+					\4	Hard Thresholding $\rightarrow$ set coefficient below threshold to zero
+					\4	Soft Thresholding $\rightarrow$ subtract threshold from signal
 			\2	Linear Algebra
-			\2	Calculating Integrals (pg. 71)
-		\1	Existence and Regularity
+				\3	Sparsifying Matrix Vector multiplication
+				\3	Galerkin Methods
+					\4	Expand operator in a scaling function series	
+					\4	Differentiation
+					\4	Integral Methods
 
 	\end{outline}
 \end{document}
