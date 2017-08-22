@@ -1,0 +1,42 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{Statistical Signal Processing Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	%Statistical Signal Processing Vol 1:  Estimation   Stephen Kay
+	
+	\begin{outline}		
+		\1	Minimum Variance Unbiased Estimation	%Chap 2
+			\2	Unbiased Estimators
+				\3	$E(\hat{\theta}) = \theta$
+				\3	$\theta = (a,b)$
+				\3	$E(\hat{\theta}) = \int g(\bm{x}) p(\bm{x} | \hat{\theta}) d\bm{x} = \theta~\forall~\theta$
+			\2	Bias of an Estimator
+				\3	$b(\theta) = E(\hat{\theta}) - \theta$
+			\2	Minimum Variance Criterion
+				\3	Mean Squared Error
+					\4	$MSE(\hat{\theta}) = E[(\theta - \hat{\theta})^2]$
+					\4	$MSE(\hat{\theta}) = var(\hat{\theta}) + b(\theta)^2$
+				\3	If a bias exists, since it depends on the parameter, the estimator
+						is not very useful.  Therefore, it makes sense to find an unbiased
+						esimator, which obtains its optimal value by minimizing the variance
+						of the estimated parameter
+				\3	Unbiased estimator may or may not exist
+			\2	Finding the Minimum Variance Unbiased (MVU) Estimator
+				\3	Determine a Cramer Rao Lower Bound (CRLB), and find an estimator that satisfies it
+					\4	An estimator who achieves a variance equal to the CRLB $\forall~\theta$ must be a MVU estimator
+				\3	Apply the Rao-Blackwell-Lehmann-Scheffe Theorem
+					\4	Find a sufficient statistic which uses all the data
+					\4	Find a function of that statistic which is an unbiased estimator of $\theta$
+				\3	Restrict estimator to be a linear unbiased estimator
+					\4	Specific to particular data sets
+		\1	Cramer-Rao Lower Bound	%Chap 3
+		\1	Maximum Likelihood Estimation	%Chap 7
+		\1	Bayesian Estimation %Chap 10 (The Bayesian Philosophy)
+	\end{outline}
+\end{document}
+
+
