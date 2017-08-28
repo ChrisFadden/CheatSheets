@@ -1,0 +1,45 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{Differential Geometry for Antenna Arrays Cheat Sheet}
+\begin{document}
+	\maketitle
+	\begin{outline}
+		\1	Antenna Array Curves (Linear Array with Omnidirectional Antennas)
+			\2	Array of N sensors: $\vec{a}(s) \in \mathbb{C}^N$
+				\3	Symmetric array with $m$ symmetrical pairs
+				\3	$d = 2N - m - 1\delta_{center}$
+				\3	$\delta_{center}$ is 1 if there is a sensor at the center of the array
+				\3	$d-1$ non-zero curvatures are defined 
+			\2	Frame Matrix (Moving Frames)
+				\3	Made up of orthonormal coordinates in the Tangent Bundle
+				\3	$\bm{U}(s) = [\vec{u}_1(s), \vec{u}_2(s),...\vec{u}_d(s)] \in \mathbb{C}^{N x d}$	
+				\3	Cartan Matrix $\bm{C}(s) \in \mathbb{C}^{d x d}$
+					\4	Skew-symmetric Matrix with curvatures on the diagonals	
+					\4	$\bm{C}(s) = \begin{bmatrix}
+								0 & -\kappa_1(s) & 0 & ... & 0 & 0 \\
+								\kappa_1(s) & 0 & -\kappa_2(s) & ... & 0 & 0 \\
+								0 & \kappa_2(s) & 0 & ... & 0 & 0 \\
+								... & ... & ... & ... & ... & ... \\
+								0 & 0 & 0 & ... & 0 & -\kappa_{d-1}(s) \\
+								0 & 0 & 0 & ... & \kappa_{d-1}(s) & 0 \\ 
+							 \end{bmatrix}$
+				\3	$\bm{U}(s) = \bm{U}(0) expm(s \bm{C}(s))$
+				\3	$Re\{\bm{U}^H(s)\bm{U}(s)\} = \bm{I}_d$
+				\3	$Re\{\bm{U}^H(s)\bm{U}'(s)\} = \bm{C}(s)$ 	
+			\2	Curve Parameters
+				\3	$\vec{a}(p) = exp(-j(\pi \vec{r}cos(p) + \vec{v}))$
+				\3	$s(p) = \pi \norm{\vec{r}}(1 - cos(p))$
+				\3	$\od{s}{p} = \pi \norm{vec{r}}sin(p)$
+				\3	$\Delta s \approx \pi \norm{\vec{r}}\Delta p sin(\frac{p_1 + p_2}{2})$
+				\3	$l_m = s(\pi) = 2\pi \norm{\vec{r}}$ (Manifold Length)
+			\2	Hyperhelical Manifolds
+				\3	Any linear array of N omni-directional sensors can be represented by a hyperhelix
+				\3	Lies on a complex N-dimensional sphere with radius $\sqrt{N}$
+				\3	A uniform linear array are hypercircular arcs (closed hyperhelices)
+			\2	Uniform Linear Array %38 of pdf, 2.3.2
+	\end{outline}
+\end{document}
+
+
