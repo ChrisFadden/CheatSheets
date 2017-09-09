@@ -38,7 +38,22 @@
 				\3	Any linear array of N omni-directional sensors can be represented by a hyperhelix
 				\3	Lies on a complex N-dimensional sphere with radius $\sqrt{N}$
 				\3	A uniform linear array are hypercircular arcs (closed hyperhelices)
-			\2	Uniform Linear Array %38 of pdf, 2.3.2
+			\2	Uniform Linear Array (Omnidirectional Sensors)
+				\3	Constant Curvatures
+				\3	Curvatures depend on relative spacing between sensors
+					\4	3 element array with spacing 1.5 and 1 = 3 element with spacing 0.75 and 0.5
+					\4	Spacings measured in half-wavelengths
+					\4	Length of manifold 1 twice as long as manifold 2
+				\3	$\kappa_1 > \frac{1}{\sqrt{N}}$
+			\2	Manifold Length and Number of Windings
+				\3	Manifold Length $l_m = 2\pi \norm{\vec{r}}$ 
+				\3	$\xi_w(s) = Trace\{C expm(s C)\}$
+					\4	$C$ is the Cartan matrix parameterized by arc length
+					\4	$l_w$ is the $(N-1)$ root of $\xi_w$ 
+				\3	Number of Windings (Half windings if $N$ is even)
+					\4	$n_w = \frac{l_m}{l_w}$
+			\2	Everything after this seems useless	
+	\1	Antenna Array Surfaces %pg. 59 Chapter 3
 	\end{outline}
 \end{document}
 

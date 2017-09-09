@@ -5,29 +5,84 @@
 \title{Algebraic Topology Cheat Sheet}
 \begin{document}
 	\maketitle
+	
+	%Hatcher Algebraic Topology
 
 	\begin{outline}		
-
-		\1	Simplex
-		\1	Simplicial Complex
-		\1	CW-Complex	
-		\1	Chain (algebraic topology)
-		\1	Singular Homology
-		\1	Cellular Homology
-		\1	Relative Homology
-			\2	Excision Theorem
-		\1	Mayer-Vietoris Sequence
-		\1	Universal coefficient Theorem
+		\1	Fundamental Group
+			\2	Basic Construction	
+				\3	Path
+					\4	$f : I \rightarrow X$
+					\4	$I = [0,1]$
+				\3	Homotopy
+					\4	$f_t : I \rightarrow X$
+					\4	$f_t(0) = x_0$
+					\4	$f_t(1) = x_1$
+					\4	$F: I \cross I \rightarrow X$
+					\4	$F(s,t) = f_t(s)$ Continuous
+					\4	Homotopy relation: $\simeq$
+				\3	Linear Homotopies
+					\4	Two paths having the same endpoints
+					\4	$f_t(s) = (1-t)f_0(s) + tf_1(s)$
+				\3	Product Paths
+					\4	$f \cdot g = \begin{cases}
+														f(2s) & 0 \le s \le \frac{1}{2}	\\
+														g(2s-1) & \frac{1}{2} \le s \le 1 \\
+														\end{cases}
+													$
+					\4	$f(1) = g(0)$
+					\4	$f_0 \simeq f_1$ and $g_0 \simeq g_1$
+					\4	$f_0 \cdot g_0 \simeq f_1 g_1$
+				\3	Loops
+					\4	$f : I \rightarrow X$
+					\4	$f(0) = f(1) = x_0 \in X$
+					\4	$x_0$ is the basepoint
+				\3	Fundamental Group $\pi_1(X,x_0)$
+					\4	Set of all homotopy classes $f$ of loops at the basepoint $x_0$
+					\4	Group operation $[f][g] = [f \cdot g]$
+					\4	Also occassionally denoted just $\pi_1(X)$ or $\pi_1X$
+					\4	$\pi_1(X \cross Y)$ is isomorphic to $\pi_1(X) \cross \pi_1(Y)$ 
+							if $X$ and $Y$ are path connected
+				\3	Fundmental Group of Convex Sets
+					\4	Convex Set $X \in \mathbb{R}^n$
+					\4	$\pi_1(X,x_0) = 0$
+					\4	Any two loops based at $x_0$ are homotopic since its a convex space
+				\3	Change of Basepoint
+					\4	$\beta_h : \pi_1(X,x_1) \rightarrow \pi_1(X,x_0)$
+					\4	isomorphism ($\approx$)
+				\3	Simply Connected Spaces
+					\4	Path connected
+					\4	Trivial fundamental group
+				\3	Fundamental Group of the Circle
+					\4	$\pi_1(S^1) \approx \mathbb{Z}$
+					\4	Infinite cyclic group 
+					\4	Loop $\omega(s) = (cos(2\pi s), sin(2 \pi s))$ based at $(1,0)$
+					\4	Loops homotopic to $\omega_n(s) = (cos(2\pi n s),sin(2\pi n s))~~\forall~n \in \mathbb{Z}$
+				\3	Fundamental Group of the Torus
+					\4	$\pi_1(S^1 \cross S^1) \approx \mathbb{Z} \cross \mathbb{Z}$
+					\4	$\pi_1(S_1^1 \cross S_2^1 \cross ... \cross S_n^1) \approx 
+								\mathbb{Z}_1 \cross \mathbb{Z}_2 ... \cross \mathbb{Z}_n$
+				\3	Induced Homomorphisms
+					\4	$\phi : X \rightarrow Y$
+					\4	$\phi_* : \pi(X) \rightarrow \pi(Y)$
+					\4	$\phi_*$ is a homomorphism, $\phi(f \cdot g) = (\phi f) \cdot (\phi g)$
+				\3	Fundamental Group of $S^n$
+					\4	$\pi_1(S^n) = 0 | n \ge 2$
+			\2	Van Kampen Theorem
+			\2	Covering Spaces
+		\1	Homology
+			\2	Simplicial and Singular Homology
+			\2	Computing Homology
+			\2	Basic Category Theory
 		\1	Cohomology
-		\1	Poincare Duality
-		\1	Fundamental Class
-		\1	De Rham Cohomology
-		\1	Characteristic Classes
-		\1	Chain Complex
-		\1	Exact Sequence
-		\1	Spectral Sequence
-		\1	Sheaf
-		\1	Persistent Homology
+			\2	Cohomology Groups
+			\2	Cup Product
+			\2	Poincare Duality
+		\1	Homotopy
+			\2	Homotopy Groups
+			\2	Computing Homotopy
+			\2	Connecting Homotopy to Cohomology
+		
 	\end{outline}
 \end{document}
 
