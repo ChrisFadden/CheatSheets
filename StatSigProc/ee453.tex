@@ -180,8 +180,27 @@
 			\2	$X(exp(j\omega)) = \frac{1}{T}\sum_{k = -\infty}^{\infty} 
 					X_a(j(\frac{\omega}{T} - k \frac{2\pi}{T}))$
 			\2	$\Omega_s \ge 2\Omega_{max}$ (Nyquist Sampling Theorem)
-
-
+		
+		\1	Discrete Fourier Transform (DFT)
+			\2	$X[k] = \sum_{n=0}^{N-1} x[n] exp(-j\frac{2\pi k n}{N}$	
+			\2	$X[k] = X(exp(j \omega )) |_{\omega = \frac{2\pi k}{N}}$	
+				\3	DFT is sampled DTFT
+			\2	$X[k] = \sum_{n=0}^{N-1} x[n] W_N^{kn}$
+				\3	$W_N = exp(-j \frac{2\pi}{N})$
+			\2	$x[n] = \frac{1}{N}\sum_{k=0}^{N-1}X[k] W_N^{-nk}$
+			\2	Modulo-N indexing
+				\3	$x[<x - n_0>_N] = \begin{cases}
+																x[n - n_0] & n_0 \le n < N \\
+																x[N + n - n_0] & 0 \le n < n_0
+															\end{cases}$
+				\3	$x[<x - n_0>_N] \rightarrow W_N^{kn_0}X[k]$
+				\3	$W_N^{-k_0n}x[n] \rightarrow X[<k - k_0>_N]$
+			\2	Circular Convolution
+				\3	Because of modulo-N indexing, DFT convolution is circular convolution
+				\3	Equivalent to time aliased linear convolution
+				\3	Convolve $L-pt$ with $M-pt$, must have $N \ge L + M - 1$ 
+					\4	Pad sequences until both are length $N$
+					\4	Then convolve / IDFT
 	\end{outline}
 \end{document}
 
