@@ -1,0 +1,90 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+
+\title{EE 560 Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	\begin{outline}		
+		\1	Basic Definitions
+			\2	$P[A] = lim_{n \rightarrow \infty} \frac{n(A)}{n}$
+			\2	$P[A] = \frac{N_A}{N}$
+			\2	Axioms of Probability
+				\3	$P[A] \ge 0$
+				\3	$P[\Omega] = 1$
+				\3	$P[\bigcup_{i=1}^{\infty} A_i] = \sum_{i=1}^{\infty} P[A_i]$
+					\4	$A_i \cap A_j = \emptyset~\forall~i,j~i \ne j$
+			\2	Probability Space
+				\3	$\Omega$ The Sample Space:	Set of all possible outcomes of an experiment
+					\4	Given a set with $N$ elmentary outcomes, there can be $2^N$ events in F
+					\4	$2^N$ field of events is called the power set
+				\3	$F$ the field of events.  Subsets of sample space which are assigned probabilities
+					\4	$\emptyset \in F$
+					\4	$\Omega \in F$
+					\4	$A \in F$ and $B \in F \rightarrow A\cup B \in F$ and $A \cap B \in F$
+					\4	$A \in F \rightarrow \bar{A} \in F$
+				\3	$P$ A probability function which assigns a real number to each event in F
+		\1	Set Theory
+			\2	Set is a collection of objects, with no repetition
+			\2	Set membership
+				\3	$a \in A$ a is in the set A
+				\3	$d \notin A$ d is not in the set A
+				\3	$\emptyset = \{\}$ is the empty or null set
+			\2	Types of Sets
+				\3	Universal set (or Sample Space) is the set of all elements
+				\3	Subset
+					\4	$A \subset B$ iff $x \in A \rightarrow x \in B$, $x \in B$ does not mean $x \in A$
+					\4	$\emptyset \subset A \subset B \subset \Omega$
+					\4	$A \subset B$ and $B \subset C \rightarrow A \subset C$
+				\3	Equality between sets: $A = B$ iff $A \subset B$ and $B \subset A$
+			\2	Set Operations
+				\3	Union:	$x \in A \cup B$ iff $x \in A$ or $x \in B$
+					\4	$A \cup B = B \cup A$
+					\4	$(A \cup B) \cup C = A \cup (B \cup C)$
+					\4	if $A \subset B \rightarrow A \cup B = B$
+					\4	$A \cup A = A$
+					\4	$A \cup \emptyset = A$
+					\4	$A \cup \Omega = \Omega$
+				\3	Intersection
+					\4	$x \in A \cap B$ iff $x \in A$ and $x \in B$
+					\4	Commutative and Associative
+					\4	$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+					\4	$A \subset B \rightarrow A \cap B = A$
+					\4	$A \cap \emptyset = \emptyset$
+					\4	$A \cap \Omega = A$
+			\2	Mutual Exclusion: $A \cap B = \emptyset$
+			\2	De-Morgan's Law
+				\3	$\bar{A \cup B} = \bar{A} \cap \bar{B}$
+				\3	$\bar{A \cap B} = \bar{A} \cup \bar{B}$
+			\2	Inclusion-Exclusion
+				\3	Size of a union of sets can be written as:
+					\4	Sum of Individual sets
+					\4	Minus sum over all pairs of sizes of intersection
+					\4	plus the sum over all triples of the sizes of their intersections
+			\2	Probability Results
+				\3	$P[A] = P[A \cup \emptyset] \rightarrow P[\emptyset] = 0$
+				\3	$P[A] = 1 - P[\bar{A}] \le 1$
+				\3	$A \subset B \rightarrow P[A] \le P[B]$
+				\3	$P[A \cup B] = P[A] + P[B] - P[A \cap B]$
+
+	\end{outline}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
