@@ -54,6 +54,7 @@
 					\4	$A \cap \emptyset = \emptyset$
 					\4	$A \cap \Omega = A$
 			\2	Mutual Exclusion: $A \cap B = \emptyset$
+			\2	Independence:	$P[A \cap B] = P[A]P[B]$ DIFFERENT FROM MUTUAL EXCLUSION
 			\2	De-Morgan's Law
 				\3	$\bar{A \cup B} = \bar{A} \cap \bar{B}$
 				\3	$\bar{A \cap B} = \bar{A} \cup \bar{B}$
@@ -67,6 +68,66 @@
 				\3	$P[A] = 1 - P[\bar{A}] \le 1$
 				\3	$A \subset B \rightarrow P[A] \le P[B]$
 				\3	$P[A \cup B] = P[A] + P[B] - P[A \cap B]$
+		\1	Conditional Probability
+			\2	$P[A | B] = \frac{P[A \cap B]}{P[B]}$
+		\1	Baye's Rule
+			\2	$P[A | B] = \frac{P[B|A] P[A]}{P[B]}$
+				\3	Technically $P[A | B] = \frac{P[B | A] = P[A]}{\sum_i P[B|A_i]P[A_i]}$
+			\2	$P[A |B]$ is the posterior (knowledge after we know B)
+			\2	Conditioning on independent events does not help the probability
+		\1	Combinatorics
+			\2	Ordered subset or Sampling WITHOUT Replacement
+				\3	Permutations	
+				\3	Size $n$, with $r$ subsets
+				\3	$P = \frac{n!}{(n - r)!}$
+			\2	Unordered Subset 
+				\3	Combinations
+				\3	$C = \binom{n}{r} = \frac{n!}{(n-r)!r!}$
+				\3	$r$ heads in $n$ coin tosses
+				\3	$\sum_{r = 0}^n \binom{n}{r} = 2^n$
+			\2	Birthday Problem
+				\3	Ratio of sampling with replacement to sampling without replacement
+				\3	$P[Shared] = 1 - \frac{\Pi_{k = 1}^r (365 - k + 1)}{365^r}$
+			\2	Occupancy Problem
+				\3	Number of distributions of $r$ balls in $n$ cells
+				\3	Balls are distinguishable
+					\4	$P = n^r$
+				\3	Balls are not distinguishable
+					\4	$P = \binom{n+r-1}{r}$
+		\1	Borel Cantelli Theorem
+			\2	$P[A]$ is the probability of infinite number of successes
+			\2	$\sum_{n=1}^{\infty} P_n < \infty \rightarrow P[A] = 0$
+			\2	$\sum_{n=1}^{\infty} P_n = \infty \rightarrow P[A] = 1$
+		\1	Random Variables
+			\2	$X : \Omega \rightarrow \mathbb{R}$
+			\2	$P[X = x] := P[s : X(s) = x]$
+			\2	$P[X \le x] := P[s : X(s) \le x]$
+			\2	Probability Mass Function (PMF)
+				\3	$P[x] \ge 0~\forall~x$
+				\3	$\sum_{x \in \Omega_X}P[x] = 1$
+				\3	$B \subset \Omega_X \rightarrow P[B] = \sum_{x \in B}P[x]$
+		\1	Types of Random Variables
+			\2	Bernoulli RV
+				\3	$P[x] = \begin{cases} 1 - p & x = 0 \\ p & x = 1   \end{cases}$
+				\3	Coin flip, bit transmit, success and failure
+			\2	Geometric RV
+				\3	$P[x] = p(1-p)^{x-1}$
+				\3	Number of Bernoulli trials until and including the first success
+				\3	Toss a coin, probabilty of $x$ tosses until the first heads
+			\2	Binomial RV
+				\3	$P[x] = \binom{n}{x}p^x(1-p)^{n-x}$
+				\3	Flip a coin $n$ times, probability $x$ is the number of heads
+			\2	Negative Binomial
+				\3	$P[x] = \binom{x-1}{k-1}p^k(1-p)^{x-k},~x=k,k+1,...$
+				\3	number of bernoulli trials until and including the $k$th success
+			\2	Discrete Uniform Distribution
+				\3	$P[x] = \frac{1}{b - a + 1}$
+				\3	Uniformly distributed between $[a,b]$
+			\2	Poisson
+				\3	$P[x] = \frac{e^{-\lambda}\lambda^x}{x!}$
+				\3	$\lambda = np$ is the mean
+				\3	Poisson approximates the binomial when the number of trials is large
+						and the probability of success is small
 
 	\end{outline}
 \end{document}
