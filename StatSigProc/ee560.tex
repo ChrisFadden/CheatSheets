@@ -128,6 +128,54 @@
 				\3	$\lambda = np$ is the mean
 				\3	Poisson approximates the binomial when the number of trials is large
 						and the probability of success is small
+		\1	Cumulative Distribution Function (CDF)
+			\2	$F_X(x) = \sum_{m < x}p(m)$
+				\3	CDF is a sum of pmfs
+			\2	$F_X(x) = P[X \le x]$
+			\2	$F_x(-\infty) = 0$
+			\2	$F_x(\infty) = 0$
+			\2	$a \ge b \rightarrow F_X(a) \ge F_X(b)$
+			\2	$F_X(b) - F_X(a) = P[a < X < b]$
+		\1	Continuous Random Variables
+			\2	$P[X = x] = 0$
+			\2	Cumlative Distribution Function (CDF for Continuous)
+				\3	CDF is non-decreasing
+				\3	$P[a < X < b] = F_X(b) - F_X(a)$
+			\2	Probability Density Function (PDF => PMF)
+				\3 $P[a < X < b] = \int_a^b f_X(m) dm$
+				\3	$f_X(x) = \pd{}{x}F_X(x)$
+				\3	$F_X(x) = \int_{-\infty}^x f_x(m)dm$
+				\3	$\int_{-\infty}^{\infty} f_X(x) dx = 1$
+		\1	Mixed Random Variables
+			\2	Use $\delta(x)$ functions to simulate discrete random variables in a
+					continuous setting
+		\1	Conditional CDF and PDF
+			\2	$F_X(x | X \in B) = P[X \le x | X \in B]$
+			\2	$F_X(x | X \in B) = \frac{\int_{B \cap (X \le x)}f_X(m) dm}{\int_B f_X(m) dm}$
+			\2	$f_X(x | B) = \pd{}{x}F_X(x | B)$
+			\2	$P[B | X = x] = \frac{f_X(x | B)p[B]}{f_X(x)}$
+		\1	Continuous Distributions
+			\2	Uniform distribution
+				\3	$f_X(x) = \frac{1}{b-a}$
+				\3	$F_X(x) = \frac{x - a}{b-a}$
+			\2	Exponential Distribution
+				\3	$f_X(x) = a~exp(-ax)$
+				\3	$F_X(x) = 1 - exp(-ax)$
+				\3	$P[X > t + s | X > t] = P[X > s]$
+					\4	Memoryless property
+			\2	Gaussian Distribution
+				\3	$f_X(x) = \frac{1}{\sqrt{2\pi \sigma^2}}exp(\frac{-(x - \mu)^2}{2\sigma^2})$
+				\3	Standard Normal:	$f_Z(z) = \frac{1}{\sqrt{2\pi}}exp(\frac{-x^2}{2})$
+					\4	$z = \frac{x - \mu}{\sigma}$
+					\4	Approximation of Binomial:	$Z = \frac{S_n - np}{\sqrt{np(1-p)}}$
+			\2	Gamma Distribution
+				\3	$f_X(x) = \frac{\lambda exp(-\lambda x) (\lambda x)^{t-1}}{\Gamma (t)}$
+					\4	$\Gamma(t) = (t-1)!$
+					\4	When $n = 1$ its a form of teh exponential distribution, called chi-squared distribution
+
+
+
+
 
 	\end{outline}
 \end{document}
