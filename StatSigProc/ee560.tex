@@ -172,11 +172,86 @@
 				\3	$f_X(x) = \frac{\lambda exp(-\lambda x) (\lambda x)^{t-1}}{\Gamma (t)}$
 					\4	$\Gamma(t) = (t-1)!$
 					\4	When $n = 1$ its a form of teh exponential distribution, called chi-squared distribution
+		
+		\1	Functions of a Random Variable
+			\2	$P[Y = y] = P[g(X) = y]$
+			\2	$P[X = g^{-1}(y)]$
+			\2	$f_Y(y) = f_X(g^{-1}(y)) |\pd{g^{-1}(y)}{y}|$
+			\2	Example
+				\3	$Y = e^X \rightarrow g(X) = e^x$
+				\3	$X ~ U[0,1]$
+				\3	$Y = e^X \rightarrow X = ln(Y)$
+				\3	$f_Y(y) = f_X(ln(y)) (\frac{1}{y})~1 \le y \le e$
+				\3	$f_X(X) = \frac{1}{b - a} = 1 \rightarrow f_X(ln(y)) = 1$
+				\3	$f_Y(y) = \frac{1}{y}~1 \le y \le e$
+		
+		\1	Simulation
+			\2	Given $X$ with distribution $f_X(x)$, want $Y$ with distribution $f_Y(y)$
+			\2	Find $Y = g(X)$ 
+			\2	$Y = F_Y^{-1}(F_X(x))$
+			\2	Example:	Have uniform, want exponential
+				\3	$F_Y(y) = 1 - e^{-y} = u$
+				\3	$e^{-y} = 1 - u$
+				\3	$y = -ln(1 - u)$
+				\3	$Y = -ln(1 - U) = -ln(U)$
+					\4	$U$ and $1 - U$ are both uniform, and so can be interchanged since they're equivalent
+	
+		\1	Expectation of a Random Variable
+			\2	$E[X] = \int_{-\infty}^{\infty}xf_X(x) dx$
+				\3	Center of mass interpretation:	
+				$E[X] = \frac{\int_{-\infty}^{\infty} xf_X(x)dx}{\int_{-infty}^{\infty} f_X(x)dx}$
+			\2	$E[X] = \sum_{x \in \Omega_X}	xP[x]$
+			\2	$E[X | B] = \int_{-\infty}^{\infty}x f_{X | B}(x | B)dx$
+			\2	Examples
+				\3	Bernoulli: $p$
+				\3	Gaussian: $\mu$
+				\3	Binomial: $n p$
+				\3	Poisson: $\lambda$
+				\3	Geometric:	$\frac{1}{p}$
 
+			\2	$E[g(X)] = \int_{-\infty}^{\infty}g(X) f_X(dx)$
 
+		\1	Variance of a random variable
+			\2	$E[(X - \mu)^2] = E[X^2] - \mu^2$	
+			\2	$\sigma^2 \ge 0$
+		
+		\1	Moments of a random Variable
+			\2	Characteristic Function
+				\3	$\phi_X(\omega) = \int_{-\infty}^{\infty} e^{j\omega t} f_X(x) dx$
+				\3	$\phi_X(\omega) = \sum_{x = \Omega_X}e^{j\omega t} P[x]$
+				\3	Inverse Fourier Transform of $f_X(x)$
+			\2	Moment Generating Function (MGF)
+				\3	$\phi_X(s) = \int_{-\infty}^{\infty} e^{sx} f_X(x) dx$
+				\3	$\phi_X(s) = \sum_{x = \Omega_X} e^{sx}P[x]$
+				\3	Inverse Laplace Transform of $f_X(x)$
+			\2	Calculate Moments from the MGF
+				\3	$E[X^n] = \frac{d^n\phi_X(s)}{ds^n}|_{s = 0}$
+				\3	$\phi_X(s) = \sum_{n=0}^{\infty} \frac{\phi_X^n(0)s^n}{n!}$
 
+		\1	Probability Inequalities
+			\2	Markov:	$P[X \ge c] \le \frac{E[X]}{c}$
+			\2	Chebyshev:	$P[|X - \mu| \ge c|] \le \frac{Var(Y)}{c^2}$
+			\2	Chernoff:	$P[X \ge c] \le min\{e^{-sc}\phi_X(s)\}$
 
+		\1	Joint PMF
+			\2	$P[X = x, Y = y]$
+			\2	$P[B] = \sum_{(x,y) \in B}P[x,y]$
+			\2	$P[X = x] = \sum_{y \in \Omega_Y}P[x,y]$
+			\2	$P[X = x | Y = y] = \frac{P[X=x,Y=y]}{P[Y = y]}$
+		
+		\1	Joint CDF
+			\2	$F_{X,Y}(x,y) = P[X \le x, Y \le y]$
+			\2	$f_{X,Y}(x,y) = \frac{\partial^2 F_{X,Y}(x,y)}{\partial x \partial y}$
+			\2	$P[x_1 \le X \le x_2, y_1 \le Y \le y_2] =
+				F_{X,Y}(x_2,y_2) - F_{X,Y}(x_1,y_2) - F_X(x_2,y_1) + F_{X,Y}(x_1,y_1)$
+			\2	$f_{Y | X}(y,x) = \frac{f_{X,Y}(x,y)}{f_X(x)}$
 
+		\1	Expectations involving functions of RV
+			\2	$E[X + Y] = E[X] + E[Y]$
+		\1	Covariance
+			\2	$Cov(X,Y) = E[XY] - E[X]E[Y] = E[(X - \mu_x)(Y - \mu_y)]$ 
+			\2	$Var(X + Y) = Var(X) + Var(Y) + 2Cov(X,Y)$
+			\2	Correlation:	$\rho(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}}$
 	\end{outline}
 \end{document}
 
