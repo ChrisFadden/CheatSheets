@@ -1,0 +1,250 @@
+\documentclass[14pt]{article}
+\usepackage{researchPaper}
+
+\title{Inverse Scattering Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	\section{Lippman Schwinger Equation}
+		Considered here is a two dimensional and time-harmonic scattering problem.
+	THe background medium is inhomogeneous and decsribed by the following refractive
+	index:	
+		\begin{align}
+			n_b(x) &= \frac{1}{\varepsilon_0}[\varepsilon(x) + j\frac{\sigma(x)}{\omega}]
+		\end{align}
+	The $x = (x_1,x_2) \in \mathbb{R}^2$, $\varepsilon_0 > 0$ is the background
+	permittivity, $\varepsilon(x) \ge 1$ and $\sigma(x) \ge 0$ are the relative
+	permittivity and conductivity of the medium, and $\omega$ is the temporal
+	frequency.~\\
+	
+		The domain is made up of several open and connected $C^2$-domains $\Omega_i \subset \mathbb{R}^2$.
+	This means that $\Omega_i \cap \Omega_j = \emptyset$ for $i \ne j$.  
+	$\bigcup_{i=0}^N \bar{\Omega_i} = \mathbb{R}^2$.  $\Omega_i$ is bounded for $i \ne 0$.
+	$n_b|_{\Omega_i} \in C^1(\bar{\Omega_i})~\forall~i$.  $n_b = n_0 \in \mathbb{C},
+	~x \in \Omega_0$.  The space $\bar{\Omega_0}$ is made up of all the regions with
+	permittivity equal to the background, i.e. $x \in \mathbb{R}^2~:~n_b(x) = n_0$.
+	The domain is assumed to be non-magnetic.  The regions $\Omega_i$ need not be
+	simply connected, and the boundaries $\partial \Omega_i$ may be either curves
+	where a discontinuity of $n_b$ occurs, or boundaries of virtual domains that
+	contain a scatterer.~\\	
+
+		The Green's function is the solution of:
+			\begin{align}
+				\Delta_x G(x,y) + k^2n_b(x)G(x,y) = -\delta(x - y)
+			\end{align}
+	The wavenumber is given by $k = \frac{\omega}{c}$, where $c$ is the wave
+	propagation speed in the background material.  In free space, the two dimensional
+	Green's function is given by $\Phi(x,y) = \frac{j}{4}H_0^{(1)}(k_0|x - y|)$, 
+	where $H_0^{(1)}$ is the Hankel function of the first kind or order 0.  The
+	complete Green's function can be written $G(x,y) = \Phi(x,y) + u_b^s(x,y)$ 
+	where $u_b^s(x,y)$ is the pertubation due to the inhomogeneous medium in
+	$\mathbb{R}^2 \backslash \bar{\Omega_0}$.
+
+		The differential form of the scattering problem can be stated as:
+			\begin{align}
+				&\Delta_xu(x,x_0) + k^2n(x) u(x,x_0) = -\delta(x - x_0) \\
+				&u(x,x_0) = u^i(x,x_0) + u^s(x,x_0) \\
+				&\lim_{r \rightarrow \infty} [\sqrt{r}(\pd{u^s}{r} - jk_0u^s)] = 0 
+			\end{align}
+		Where $u^i = G(x,x_0)$ is the incident field, $u^s(x,x_0)$ is the scattered
+		field, and the last condition is the Sommerfeld radiation condition.  $x_0$
+		is the location of a point source.  The differential form can be rewritten
+		in the Lippmann-Schwinger Integral Equation form as:
+			\begin{align}
+				u^s(x,x_0) = -k_0^2 \int_{\mathbb{R}^2} G(x,y) m(y)u(y,x_0) dy
+			\end{align}
+		Where $m(y) := \frac{n_b(x) - n(x)}{n_0}$.
+	
+	\section{Constrast Source Inversion Method}
+		The contrast source inversion method splits the inverse scattering problem
+	up into two parts.  The first is defined on a region $T$ and the other on the
+	boundary where field measurements are taken $\partial T = \Gamma$.  The 
+	Lippman Schwinger equation for the total field is given by:
+		\begin{align}
+			u(x,x_0) = u^i(x,x_0) - k_0^2 \int_T G(x,y) m(y)u(y,x_0) dy
+		\end{align}
+	This integral equation is replaced by the system of equations, where
+	$w(x,x_0) := m(x)u(x,x_0)$:
+		\begin{align}
+			w(x,x_0) = m(x)u^i(x,x_0) - m(x) k_0^2 \int_T G(x,z)w(z,x_0) dz~\forall~x \in T \\
+			u^s(x,x_0) = -k_0^2 \int_T G(x,z)w(z,x_0) dz~\forall~x \in \Gamma 
+		\end{align}
+			
+	The system of equations can be written as the minimization of a functional,
+	if we first define the operators $\mathcal{G}^T : L_2(T) \rightarrow L_2(T)$
+	and $\mathcal{G}^{\Gamma} : L_2(T) \rightarrow L_2(\Gamma)$
+		\begin{align}
+			[\mathcal{G}^Tf](x) := k_0^2 \int_T G(x,z) f(z) dz~\forall~x\in T \\
+			[\mathcal{G}^{\Gamma}f](x) := k_0^2 \int_T G(x,z) f(z) dz~\forall~x\in \Gamma 
+		\end{align}
+	The functional to be minimized is then given by:
+		\begin{align}
+			F(w,m) = \frac{\norm{u^s - \mathcal{G}^{\Gamma}w}_{\Gamma}^2}{\norm{u^s}_{\Gamma}^2} +
+							 \frac{\norm{mu^i - w - m\mathcal{G}^Tw}_T^2}{\norm{mu^i}_T^2}
+		\end{align}
+	\section{Born Approximation}
+		The Lippmann Schwinger equation is a nonlinear problem, and is not trivially
+		solved.  Therefore in order to make some problems tractable, a linear 
+		approximation to it is made, the Born approximation.  The Born approximation
+		replaces the total field by the incident field inside the integral, leading
+		to a linear equation that can be solved.  However, this is only valid in the
+		weakly scattering case, where there is little difference between the 
+		scatterer and the background material.
+		\begin{align}
+			u(x,x_0) = u^i(x,x_0) - k_0^2 \int_T G(x,y) m(y)u^i(y,x_0) dy
+		\end{align}
+		For a given total field, incident field, and Green's function, this can
+		be solved for the contrast difference $m(y)$ for all $y \in \mathbb{R}^2$,
+		giving the shape and permittivity of the scatterer.
+
+	\section{Time Reversal MUSIC (TR-MUSIC)}
+
+			The basic idea behind time reversal is that any function that satisfies the
+	wave equation with time moving in the positive direction will also satisfy the
+	wave equation with time moving in the negative direction.  This allows the
+	scattered fields to be focused back onto the scatterer, giving the location
+	of the scatterer.~\\
+
+		The equation these fields satisfy is the frequency domain Helmholtz equation
+	\begin{align}
+		\Delta u(x,\omega) + k^2 u(x,\omega) = 0
+	\end{align}
+	If $u(x,\omega)$ is a solution, its time reversed version, which corresponds
+	to phase conjugation in the frequency domain, is also a solution.  Therefore,
+	both $u(x,\omega)$ and $u^*(x,\omega)$ are solutions.~\\
+
+		The incident field and scattered field due to the $j$th antenna in a system
+	of $N$ antennas could be given by
+	\begin{align}
+		u_j^{(i)}(x,\omega) = G(x,x_j)e_j(\omega) \\
+		u_j^{(s)}(x,\omega) = \sum_{m=1}^MG(x,x_m)\tau_m(\omega)G(x_m,x_j)e_j(\omega) \\
+	\end{align}
+	It is assumed there are $M$ scatterers at locations $x_m$, with $\tau_m(\omega)$ being the 
+	scattering amplitude (reflection coefficient).  When each antenna is excited,
+	the incident and scattered field at each point in space can be given as
+	\begin{align}
+		u^{(i)}(x,\omega) = \sum_{j=1}^N G(x,x_j)e_j(\omega) \\
+		u^{(s)}(x,\omega) = \sum_{j=1}^N \sum_{m=1}^M G(x,x_m)\tau_m(\omega)G(x_m,x_j)e_j(\omega)
+	\end{align}
+	
+	The multi-static response matrix (MSR matrix) can be represented as
+	\begin{align}
+		K = K_{ij} = \sum_{m=1}^M G(x_i,x_m)\tau_m(\omega)G(x_m,x_j)
+	\end{align}
+	Where $x_i$ is the location of the $i$th source, and $x_j$ the location of the
+	$j$th receiver.
+	The output voltage (scattered field) at each antenna can then be written as
+	$v_l = \sum_{j=1}^N K_{lj}e_j = K e$.~\\
+	
+	The time reversal operator is given by
+	\begin{align}
+		T = K^H K
+	\end{align}
+	The rank of the time reversal matrix $T$ is the same as that of $K$ and is
+	an extremely important quantity for identifying how many scatterers there are.
+	The time reversal matrix $T$ for an $N$ element array embedded in a 
+	three-dimensional homogeneous background and containing $1 < M \le N$ targets
+	will have $rank~<~M$ if and only if the following conditions hold:
+		\begin{itemize}
+			\item	All of the targets are located in a single plane $P$ that is orthogonal
+			to at least $N - M + 1$ lines connecting the different antenna elements
+			\item	The plane $P$ is the perpendicular bisector of the $N - M + 1$ lines
+			or all targets on $P$ are equidistant from every one of the $N - M + 1$ lines
+		\end{itemize}
+	
+	It is usually assumed that the rank of $T$ is equal to $M$, and so there are
+	exactly $M$ non-zero eigenvalues, corresponding to each of the scatterers.~\\
+
+	Targets can be well resolved when the Green's function vectors form an 
+	approximate orthogonal set betweent the scatterers.
+	\begin{align}
+		\sum_{n=1}^N G^*(x_n,x_i)G(x_n,x_j) = \sum_{n=1}^N g_i^*(n) g_j(n) \approx 0
+	\end{align}
+	
+	The time reversal matrix can be written using this condensed notation as
+	\begin{align}
+		T &= (\sum_{i=1}^M \tau_i g_ig_i^T)^*\sum_{j=1}^M \tau_j g_jg_j^T \\
+			&=	\sum_{i=1}^M\sum_{j=1}^M \Lambda_{ij}g_i^*g_j^T \\
+		\Lambda_{ij} &= \tau_i^* \tau_j g_i^Hg_j \\
+								 &= \tau_i^* \tau_j \sum_{n=1}^N g_i^*(n)g_j(n) \\
+								 &= \tau_i^* \tau_j \braket{g_i}{g_j} 
+	\end{align}
+
+	\begin{align}
+		H(x,x_m) = \sum_{n=1}^N G^*(x_n,x)G(x_n,x_m)
+	\end{align}
+
+	The coherent point spread function (CPSF) of the antenna array given by $H(x,x_m)$
+	is an indication about how well the array can resolve a target.  
+	It will have a maximum at the scatterer location $x_m$, and will decay in
+	amplitude away from this point.  The transverse effective spatial region for 
+	the CPSF is roughly a square having sides of length $\frac{z\lambda}{a}$.  
+	$z$ is the distance from the array, $a = N \delta$ is the length of the 
+	side of the array with $\delta$ being the inter element spacing.  When the
+	targets are well-resolved (i.e. larger than the effective spatial region of the
+	CPSF) then $\Lambda_{ij}$ becomes diagonolized to
+	\begin{align}
+		\Lambda_{ij} &= |\tau_i|^2\rho_i \delta_{ij}
+		\rho_i &= H(x_i,x_i) = \braket{g_i}{g_i}
+	\end{align}
+	
+	This gives the time reversal matrix a very simple form, where the eigenvectors
+	are exactly the green's function vectors of the location of the scatterer.  
+	This makes the time reversal operator a projection onto the subspace spanned
+	by the green's function vectors associated with the scatterers.
+	\begin{align}
+		T &= \sum_{m=1}^M |\tau_m|^2 \rho_m  g_m^*g_m^T
+		Tg_{m_0}^* &= |\tau_{m_0}|^2|\rho_{m_0}|^2 g_{m_0}^*
+	\end{align}
+		
+	The green's function vectors not associated with scatterers must then be 
+	projected to zero, $Tv_{noise} = 0$.  This allows the space to be broken down
+	into a signal and noise subspace, $\mathbb{C}^n = \mathcal{S} \oplus  \mathcal{N}$.~\\
+
+	For the non-resolved case, everything is more or less the same, but
+	$\Lambda_{ij}$ is not a diagonal matrix.  Therefore, the time-reversal matrix
+	still acts as a projection operator, but this time onto linear combinations
+	of the green's function vectors, and onto the entire space spanned by them.
+
+	\begin{align}
+		T = \sum_{i=1}^M \sum_{j=1}^M \Lambda_{ij}g_i^* g_j^T
+	\end{align}
+	The decomposition into signal and noise is still valid.  The set of eigenvectors
+	of the time reversal operator is given by $v_m$, with $m = 1,2,...,M,M+1,...,N$.
+	The first $M$ eigenvalues are non-zero, and their eigenvectors span the signal
+	subspace, while the other eigenvalues are zero, adn their eigenvectors span
+	the noise subspace.  
+	\begin{align}
+		T v_m &= \lambda_m v_m~m = 1,2,...,M \\
+		T v_m &= 0~m = M+1,...,N \\
+		\braket{v_i}{v_j} &= \delta_{ij} \\
+	\end{align}
+	The projection operators onto the signal and noise subspaces are given by
+	\begin{align}
+		P_{\mathcal{S}} &= \sum_{m=1}^M v_mv_m^H \\
+		P_{\mathcal{N}} &= \sum_{m=M+1}^N v_m v_m^H \\
+		P_{\mathcal{S}} + &P_{\mathcal{N}} = I_N
+	\end{align}
+
+	The MUSIC algorithm is one way of using these eigenvalues and eigenvectors in
+	order to identify the location of the scatterers.  This is achieved by projecting
+	the green's function from each antenna onto the noise eigenvectors of the 
+	time reversal matrix.  The inverse of this operation will result in peaks 
+	at the scatterer's location.
+
+	\begin{align}
+		g_p(\omega) &= [G(x_1,x_p), G(x_2,x_p),...,G(x_N,x_p)]^T \\
+		D(x_p) &= \frac{1}{\sum_{m_0 = M+1}^N |\braket{v_{m_0}^*}{g_p}|^2}
+	\end{align}
+	
+	This denominator can be rewritten in terms of either the noise or signal 
+	projection operators, and whichever subspace has smaller dimension can be used
+	to identify the signals.
+	\begin{align}
+		\sum_{m_0 = M+1}^N |\braket{v_{m_0}^*}{g_p}|^2 &= \sum_{m_0 = M+1}^N |\braket{v_{m_0}}{g_p^*}|^2 \\
+					&=	|P_{\mathcal{N}} g_p^*|^2 \\
+					&= |[I - P_{\mathcal{S}}]g_p^*|^2 
+	\end{align}
+\end{document}
+
+
