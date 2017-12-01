@@ -1,18 +1,50 @@
-\documentclass[14pt]{extarticle}
+\documentclass[14pt]{article}
 \usepackage{researchPaper}
-\usepackage{outlines}
 
 \title{Microwave Imaging Cheat Sheet}
 \begin{document}
 	\maketitle
-	\begin{outline}
-		\1	Delay and Sum (DAS) Beamformer
-		\1	Robsut Capon (RCB) Beamformer 
-		\1	Amplitude and Phase Estimation (APES)
-		\1	Multistatic Adaptive Microwave Imaging (MAMI)
-		\1	Decomposition of Time Reverse Operator (DORT)
-		\1	Time Reversal MUSIC (TR-MUSIC)
-	\end{outline}
+		
+		%Data Independent radar beamforming algorithms for breast cancer detection
+		%	Byrne, O'Halloran, Glavin, Jones
+		\section*{Delay and Sum (DAS) Beamformer}	
+			The power associated with a given focal point (from the phase center of 
+			the array) for a Delay and Sum Beamformer is given by:
+			\begin{align}
+				I(\bm{r}) &= \int_0^{T_{win}} [ \sum_{i=1}^M w_n S_i(t - \tau_i(\bm{r}))]^2 dt
+			\end{align}
+			where:
+				\begin{itemize}
+					\item	M:	Number of antennas
+					\item	$S_i$:	Backscattered signal at antenna $i$
+					\item	$\bm{r}$:	focal point $\bm{r} = (x,y,z)$	
+					\item	$\tau_i(\bm{r}) = \frac{2d_i(\bm{r})}{v_p T_s}$:	$i$th discrete time delay
+					\item	$d_n(\bm{r}) = |\bm{r} - \bm{r}_i|$
+					\item	$\bm{r}_i$:	location of the $i$th antenna
+					\item	$v_p$:	average velocity of the wave 
+					\item	$T_{win}$:	length of the window
+					\item	$T_s$:	sampling interval
+					\item	$w_n$:	weight that can be applied to the signal, or just set to 1
+				\end{itemize}
+			
+			An improved version of the delay and sum algorithm uses a quality factor,
+			which measures the coherence of ultrawideband (UWB) scattering at a 
+			particular focal point.  At the focal point $(\bm{r})$ energy is collected
+			across the window for each multistatic signal and stored.  The energy is
+			then cumuatively summed and plotted against the number of channels used.
+			A second order polynomial is fitted to that curve, with the quadratic term
+			taken to be the quality factor.  The improved algorithm is then given by
+			\begin{align}
+				I(\bm{r}) &= QF(\bm{r}) \int_0^{T_{win}} [\sum_{i=1}^{M(M+1)/2} w_i S_i(t - \tau_i(\bm{r}))]^2 dt
+			\end{align}
+	
+
+		\section*{Robust Capon (RCB) Beamformer}
+			%Zhisong Wang, Jian Li, Renbiao Wu
+			%TimeDelay and TimeReversal Robust Capon Beamformers for Ultrasound Imaging
+		\section*{Amplitude and Phase Estimation (APES)}
+		\section*{Multistatic Adaptive Microwave Imaging (MAMI)}
+	
 \end{document}
 
 
