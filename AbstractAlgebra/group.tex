@@ -1,22 +1,56 @@
 \documentclass[14pt]{extarticle}
 \usepackage{researchPaper}
 \usepackage{outlines}
-
 %www.math.mtu.edu/~kreher/ABOUTME/syllabus/GTN.pdf
+
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
 
 \title{Group Theory Cheat Sheet}
 \begin{document}
 	\maketitle
 	\begin{outline}		
-		\1	Definition
+		\1	\Definition \textbf{Group}
 			\2	Set $G$ together with the operation $\cdot$
 			\2	Group Axioms:
 				\3	Closure:	$a \cdot b \in G$, $\forall~a,b \in G$
 				\3	Associativity:	$(a \cdot b) \cdot c = a \cdot (b \cdot c),~a,b,c \in G$
-				\3	Identity:	$e \cdot a = a \cdot e = a$
-				\3	Inverse: $a \cdot a^{-1} = a^{-1} \cdot a = e$
-		\1	Subgroups
-		\1	Cosets
+				\3	Identity:	$e \cdot a = a \cdot e = a$ and $e$ is unique
+				\3	Inverse: $a \cdot a^{-1} = a^{-1} \cdot a = e$ and $a^{-1}$ is unique
+		\1	\Definition \textbf{Order} of a Group $|(G)|$
+			\2	Cardinality:	The number of elements
+			\2	Period:	Smallest integer $m$ such that $a^m = e$
+				\3	If no $m$ exists, $G$ has infinite order
+				\3	Usually $|a|$, order of an element in the group
+		\1	\Definition \textbf{Direct Product}s of a Group $G \cross H$
+			\2	$G \cross H = \{(g,h)~:~g \in G~\text{ and } h \in H\}$
+			\2	$(a,b) \cdot (c,d) = (ac,bcd)$
+		\1	\Definition \textbf{Subgroup} $H \le G$
+			\2	$H \subset G$
+			\2	$ab^{-1} \in H,~\forall~a,b \in H$
+			\2	Elements in $H$ form a group that is closed within $H$ under products and inverses
+			\2	Proper subgroup $H \subseteq G$
+			\2	Properties:
+				\3	$e_H = e_G$
+				\3	$A \le G$ and $B \le G$, $\Rightarrow$ $A \cap B \le G$
+		\1	\Definition \textbf{Cosets}
+			\2	$H \le G$
+			\2	Left Coset:	 $gH = \{gh~:~h \in H\}$
+			\2	Right Coset: $Hg = \{hg~:~h \in H\}$	
+			\2	Order of right and left cosets is equal, and is equal to $H$
+		\1	\Definition \textbf{Normal Group}
+			\2	Left Coset is equivalent to the Right Coset
+			\2	$N$ is normal $\Leftrightarrow$ $gN = Ng~\forall~g \in G$
+		\1	\Theorem \textbf{Lagrange's Theorem}
+			\2	$|G| = [G:H] \cdot |H|$
+			\2	$H \le G \Rightarrow |H| \text{ divides } |G|$ (i.e. $\frac{|H|}{|G|} \in \mathbb{N}$)
+			\2	$[G : H]$ is the index of subgroup $H$, number of cosets that fill
+					up $G$
+			\2	Places heavy restrictions on the sizes of possible subgroups based
+					on size of the larger group
+		\1	\Theorem \textbf{Cauchy's Theorem}
+			\2	$G$ is a finite group, $p$ is prime: $\frac{|G|}{p} \in \mathbb{N} \rightarrow \exists~g^p = e \in G$
+			\2	If $p$ divides the order of $G$, then $G$ has an element of order $p$
 		\1	Cyclic Groups
 		\1	Group Generators
 		\1	Normal Subgroups
