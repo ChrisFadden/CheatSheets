@@ -38,9 +38,12 @@
 			\2	Left Coset:	 $gH = \{gh~:~h \in H\}$
 			\2	Right Coset: $Hg = \{hg~:~h \in H\}$	
 			\2	Order of right and left cosets is equal, and is equal to $H$
+		\1	\Definition \textbf{Conjugation}
+			\2	$a \in G$ and $b \in G$ are conjugate if $\exists~g\in G$ st. $gag^{-1} = b$
 		\1	\Definition \textbf{Normal Group}: $N \triangleleft G$
 			\2	Left Coset is equivalent to the Right Coset
 			\2	$N$ is normal $\Leftrightarrow$ $gN = Ng~\forall~g \in G$
+			\2	$a \in N$ and $b \in G$ then $gag^{-1} \in N$
 		\1	\Definition \textbf{Quotient Group}: $G/N$
 			\2	$N$ is a normal subgroup of $G$
 			\2	Set of cosets of $N$ in $G$
@@ -63,8 +66,7 @@
 					every element of $S$.
 		\1	\Definition \textbf{Cyclic Groups}
 			\2	$G = \langle S \rangle$
-			\2	$S$ generates $G$, elements of $S$ are group generators	
-		
+			\2	$S$ generates $G$, elements of $S$ are group generators		
 		\1	\Definition \textbf{Homomorphism}
 			\2	Groups $(G,\cdot)$ and $(H,*)$
 			\2	Function $f~:~G \rightarrow H$
@@ -81,17 +83,49 @@
 			\2	$ker(f) = \{e_G\}$
 			\2	If $G$ is abelian, than $H$ is abelian
 			\2	$a \in G$ and $f(a) \in H$ share the same order $|a| = n$		
-		\1	\Theorem \textbf{Fundamental Theorem of Homomorphisms}
+		\1	\Theorem \textbf{Fundamental Theorem of Homomorphisms:}
 			\2	$f~:~G \rightarrow H$
 			\2	$K \triangleleft G$
 			\2	$\phi~:~G \rightarrow G/K$
 			\2	{\color{purple}If $K \subset ker(f)$ then $\exists~h~:~G/K \rightarrow H$ 
 						s.t. $f = h \circ \phi$}
-		\1	\Theorem \textbf{Isomorphism Theorems}
-		\1	Free Group		
-		\1	Conjugation
-		\1	Group Actions
-		\1	Abelian Group
+		\1	\Theorem \textbf{First Isomorphism Theorem:}
+			\2	$\phi~:~G \rightarrow H$, $\phi$ homomorphism
+			\2	{\color{purple} $ker(\phi) \triangleleft G$}
+				\3	Kernel of $\phi$ is a normal subgroup of $G$
+			\2	{\color{purple} $im(\phi) \le G$}
+				\3	Image of $\phi$ is a subgroup of $G$
+			\2	{\color{purple} $im(\phi) \cong G/ker(\phi)$}
+				\3	Image of $\phi$ is isomorphic to the quotient group $G/ker(\phi)$
+		\1	\Theorem	\textbf{Second Isomorphism Theorem:}
+			\2	$S \le G$, $N \triangleleft G$
+			\2	{\color{purple}$(S \cross N) \le G$}
+			\2	{\color{purple}$(S \cap N) \triangleleft S$}
+			\2	{\color{purple}$(S \cross N)/N \cong S/(S\cap N)$}
+		\1	\Theorem \textbf{Third Isomorphism Theorem:}
+			\2	$N \triangleleft G$
+			\2	Subgroup Versions:
+				\3	{\color{purple} If $K \le G$ s.t. $N \subseteq K \subseteq G$ then 
+							$K/N \le G/N$}
+				\3	{\color{purple} Every subgroup of $G/N$ is of the form $K/N$ for 
+						some $K \le G$ st. $N \subseteq K \subseteq G$}
+			\2	Normal Subgroup Versions:
+				\3	{\color{purple} If $K \triangleleft G$ s.t. $N \subseteq K \subseteq G$,
+						then $K / N \triangleleft G/N$}
+				\3	{\color{purple} Every normal subgroup of $G/N$ is of the form $K/N$
+						for some $K \triangleleft G$ st. $N \subseteq K \subseteq G$}
+				\3	{\color{purple} If $K \triangleleft G$ st. $N \subseteq K \subseteq G$ 
+						then $(G/N)/(K/N) \cong G/K$}
+		\1	\Theorem	\textbf{Zassenhaus Lemma (Butterfly Lemma):}
+			\2	$B \triangleleft A$, $D \triangleleft C$, $A,C \le G$
+			\2	{\color{purple} $((A \cap C) \cross B) / ((A \cap D) \cross B) \cong
+						((A \cap C) \cross D) / ((B \cap C)\cross D)$}	
+	\1	\Theorem \textbf{Isomorphism of Cyclic Groups:}
+			\2	$G = \langle S \rangle$, $|S| = n$
+			\2	{\color{purple} $G \cong Z_n$}
+	\1	Free Group		
+	\1	Group Actions
+	\1	Abelian Group
 	
 	\end{outline}
 \end{document}
