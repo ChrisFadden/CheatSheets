@@ -3,7 +3,7 @@
 \usepackage{outlines}
 \usepackage[dvipsnames]{xcolor}
 
-\def\Definition{{\color{MidnightBlue} \textbf{Definition:} }}
+\def\Definition{{\color{Blue} \textbf{Definition:} }}
 \def\Theorem{{\color{Red} \textbf{Theorem:} }}
 
 \title{Topology Cheat Sheet}
@@ -11,14 +11,71 @@
 	\maketitle
 
 
-	\begin{outline}		
-		\1	\Definition \textbf{Fields}
-		\1	\Theorem \textbf{Fields are Integral Domains}
-		\1	\Definition \textbf{Field Characteristic}
-		\1	\Definition \textbf{Subfields}	
-		\1	\Definition \textbf{Finite Fields}
-		\1	\Definition \textbf{Residue Field}
-		
+	\begin{outline}	
+		\section{Sets and Functions}
+		\1	\Definition \textbf{Set}
+		\1	\Definition \textbf{Demorgan's Laws}
+		\1	\Definition \textbf{Cartesian Product}
+		\1	\Definition \textbf{Function (Mapping)}
+			\2	Composition
+			\2	Injective
+			\2	Surjective
+		\1	\Definition \textbf{Bijective (Invertible)}
+		\1	\Definition \textbf{Ordered Sets}
+		\1	\Definition \textbf{Bounded Set (Supremum and Infimum)}
+		\1	\Definition \textbf{Sequence}
+			\2	Strictly increasing
+			\2	Strictly decreasing
+		\1	\Theorem \textbf{Increasing Sequences converge to Supremum}
+		\section{Metric Spaces}
+		\1	\Definition \textbf{Metric Space}
+		\1	\Definition \textbf{Discrete Metric}
+		\1	\Theorem \textbf{Cauchy Schwarz Inequality}
+		\1	\Theorem \textbf{Subsets inherit the metric}
+		\1	\Definition \textbf{Open/Closed Balls}
+		\1	\Definition \textbf{Open/Closed Sets}
+			\2	\Theorem \textbf{Finite Intersection of Open Sets is Open}
+		\1	\Theorem \textbf{Reverse Triangle Inequality}
+		\1	\Definition \textbf{Interior, Closure, and Boundary}
+		\1	\Theorem \textbf{$A \subset X$ is closed iff $A = cl(A)$}
+		\1	\Theorem \textbf{$A \subset X$ is open iff $A = int(A)$}
+		\1	\Theorem \textbf{$X \setminus int(A) = cl(X \setminus A)$}
+		\1	\Theorem \textbf{$\partial A = cl(A) \setminus int(A)$}
+		\1	\Definition \textbf{$E \subset X$ is dense if $cl(E) = X$} 
+		\1	\Definition \textbf{$(X,d)$ is seperable if it admits a countable dense subset}
+		\section{Sequences in Metric Spaces}
+		\1	\Definition \textbf{Convergence in a metric space}
+		\1	\Definition \textbf{Limit point}
+		\1	\Definition \textbf{Subsequence}
+		\1	\Theorem \textbf{Closure, Interior, and Boundary in Metric Spaces}
+		\1	\Theorem	\textbf{Every convergent sequence is a Cauchy sequence}
+		\1	\Definition \textbf{A metric space where every Cauchy sequence converges is complete}
+		\1	\Definition \textbf{Diameter of $E \subset (X,d)$ is $diam(E) = \text{sup}\{d(x,y) ~:~x,y \in E\}$}
+		\1	\Theorem	\textbf{Cantor's Theorem}
+		\1	\Theorem	\textbf{$\mathbb{R}^n~n \in \mathbb{N}$ is a complete metric space}
+		\1	\Definition \textbf{Bounded means $diam(A) < \infty$}
+		\section{Functions Between Metric Spaces}
+		\1	\Definition \textbf{Continuous function between metric spaces}	
+		\1	\Theorem	\textbf{Properties of continuous functions between metric spaces}
+		\1	\Theorem	\textbf{Urysohn's Lemma}
+		\1	\Definition \textbf{Homemorphism}
+		\1	\Theorem	\textbf{Properties of Homeomorphisms}
+		\1	\Definition \textbf{Equivalent Metrics}
+		\1	\Theorem \textbf{Equivalent metrics do not necessarily have the same Cauchy Sequences}
+		\section{Compact Subsets in Metric Spaces}
+		\1	\Definition \textbf{Cover}
+		\1	\Theorem	\textbf{Extreme Value Theorem}
+		\1	\Definition \textbf{Totally Bounded}
+		\1	\Definition \textbf{Finite Intersection Property}
+		\1	\Theorem	\textbf{Heine-Borel Theorem}
+		\section{Connectedness in Metric Spaces}
+		\1	\Definition \textbf{Connected Set}
+		\1	\Theorem \textbf{Intermediate Value Theorem}
+		\1	\Definition \textbf{Component of a metric space}
+		\1	\Definition \textbf{$\varepsilon$-chain}
+		\section{Baire Category Theorem}
+		\1	\Theorem	\textbf{Baire Category Theorem}
+
 	\end{outline}
 \end{document}
 
