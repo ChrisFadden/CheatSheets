@@ -14,68 +14,294 @@
 	\begin{outline}	
 		\section{Sets and Functions}
 		\1	\Definition \textbf{Set}
+			\2	For each set $\emptyset \subset X$
+			\2	$\emptyset \subset \{x\} \subset X$
+			\2	If $A \subset B$ and $B \subset A$ then $A = B$
+			\2	\textbf{Union: }$A \cup B = \{x \in X~:~x \in A \text{ or } x \in B\}$
+			\2	\textbf{Intersection: }$A \cap B = \{x \in X~:~x \in A \text{ and } x \in B\}$
+			\2	\textbf{Disjoint: } $A \cap B = \emptyset$
+			\2	\textbf{Set Difference: } $A \setminus B = \{x \in X~:~x \in A \text{ and } x \notin B\}$
+			\2	\textbf{Complement: } $A^c = X \setminus A$ 
+				\3	$X \setminus (X \setminus A) = A$		
 		\1	\Definition \textbf{Demorgan's Laws}
+			\2	$X \setminus (A \cup B) = (X \setminus A) \cap (X \setminus B)$
+			\2	$X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$
+		\1	\Definition \textbf{Index Set}
+			\2	$\forall i \in I$, $\exists~A_i \in X$
+			\2	$\bigcup_{i \in I}A_i = \{x \in X~:~x \in A_i \text{ for at least one value of } i \in I\}$
+			\2	$\bigcap_{i \in I}A_i = \{x \in X~:~x \in A_i \text{ for all values of } i \in I\}$
+		\1	\Theorem \textbf{Demorgan's Laws on Index Sets}
+			\2	$X \setminus (\bigcup_{i \in I} A_i) = \bigcap_{i \in I}(X \setminus A_i)$
+			\2	$X \setminus (\bigcap_{i \in I} A_i) = \bigcup_{i \in I}(X \setminus A_i)$
 		\1	\Definition \textbf{Cartesian Product}
+			\2	$X \cross Y = \{(x,y)~:~x \in X,~y \in Y\}$
 		\1	\Definition \textbf{Function (Mapping)}
-			\2	Composition
-			\2	Injective
-			\2	Surjective
+			\2	$f~:~X \rightarrow Y$
+				\3	assigns each $x \in X$ to a unique point $y \in Y$
+				\3	\textbf{Domain: } is $X$
+				\3	\textbf{Range: } is $Y$
+				\3	\textbf{Image: } $f(X) = \{f(x) \in Y~:~x \in X\}$
+				\3	Set of all functions from $X$ into $Y$ is denoted $Y^X$
+					\4	$\mathbb{R}^2 = \mathbb{R}^{0,1}$
+			\2	\textbf{Indicator (Characteristic) Function}
+				\3	$\chi_A(x) = 1$ if $x \in A$ or $\chi_A(x) = 0$ and $x \notin A$
+			\2	\textbf{Composition}
+				\3	$f~:~X \rightarrow Y$ and $g~:~Y \rightarrow Z$
+				\3	$g \circ f~:~X \rightarrow Z$ 
+				\3	$g \circ f(x) = g(f(x))$
 		\1	\Definition \textbf{Bijective (Invertible)}
+			\2	Both Injective and Surjective
+			\2	\textbf{Injective}
+				\3	$f(x_1) = f(x_2) \Rightarrow x_1 = x_2$
+			\2	\textbf{Surjective}
+				\3	$\forall~y \in Y,~\exists~x \in X~s.t.~f(x) = y$
+			\2	\textbf{Inverse}
+				\3	$f^{-1}~:~Y \rightarrow X$
+				\3	$f \circ f^{-1} = id_Y$
+				\3	$f^{-1} \circ f^{-1} = id_X$
+				\3	$(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
 		\1	\Definition \textbf{Ordered Sets}
+			\2	$x \le x~\forall~x \in S$
+			\2	$(x \le y) \text{ and } (y \le x) \Rightarrow x = y$
+			\2	$(x \le y) \text{ and } (y \le z) \Rightarrow x \le z$
 		\1	\Definition \textbf{Bounded Set (Supremum and Infimum)}
+			\2	$E \subset S$, $S$ is totall ordered
+			\2	\textbf{Bounded above: } $\exists~b~s.t.~x \le b~\forall~x \in E$
+				\3	$b$ is an upper bound of $E$
+			\2	\textbf{Bounded below: } $\exists~b~s.t.~a \le x~\forall~x \in E$
+				\3	$a$ is a lower bound of $E$
+			\2	\textbf{Bounded: } bounded above and bounded below
+			\2	\textbf{Supremum: } Least upper bound
+				\3	$\beta$ is an upper bound of $E$
+				\3	$\beta \le $ every other upper bound of $E$
+				\3	$\exists~x\in E~s.t.~\beta - \varepsilon < x \le \beta$
+			\2	\textbf{Infimum: } Greatest lower bound
+				\3	$\alpha$ is a lower bound of $E$
+				\3	$\alpha \ge $ every other lower bound of $E$
+				\3	$\exists~y\in E~s.t.~\alpha \le y < \alpha + \varepsilon$
+		\1	\Definition \textbf{Ordered Field}
+			\2	Field $(\mathbb{F},+,\cdot)$ with a total order $\le$ on $F$
+			\2	If $a \le b \Rightarrow a + c \le b + c$
+			\2	If $0 \le a$ and $0 \le b$ then $0 \le a \cdot b$
+		\1	\Definition \textbf{Least Upper Bound Property}
+			\2	Totally ordered set $S$ with every subset $E$ that is non-empty is bounded
+					above and has a least upper bound in $S$
+		\1	\Theorem \textbf{$\mathbb{Q}$ is dense in $\mathbb{R}$}
+			\2	$a < b~\exists~x~s.t.~a < x < b~\forall~a,b \in \mathbb{R},x \in \mathbb{Q}$
 		\1	\Definition \textbf{Sequence}
-			\2	Strictly increasing
-			\2	Strictly decreasing
+			\2	A function $n \in \mathbb{N} \rightarrow x_n \in \mathbb{R}$
+			\2	\textbf{Strictly increasing}
+				\3	$x_n < x_{n+1}~\forall~n \in \mathbb{N}$
+			\2	\textbf{Strictly decreasing}
+				\3	$x_n > x_{n+1}~\forall~n \in \mathbb{N}$
+			\2	\textbf{Cauchy Sequence}
+				\3	$\exists~N~s.t.~\forall~m,n > N,~|a_m - a_n| < \varepsilon$
 		\1	\Theorem \textbf{Increasing Sequences converge to Supremum}
 		\section{Metric Spaces}
 		\1	\Definition \textbf{Metric Space}
+			\2	$(X,d)$ where $X$ is a set and $d$ is a metric (distance) function
+			\2	$d~:~X \cross X \rightarrow [0,\infty)$
+				\3	$d(x,y) = d(y,x)$
+				\3	$d(x,y) = 0$ iff $x = y$
+				\3	$d(x,y) \le d(x,z) + d(z,y)$
 		\1	\Definition \textbf{Discrete Metric}
+			\2	$d(x,y) = 0$ if $x = y$
+			\2	$d(x,y) = 0$ if $x \ne y$
+			\2	Can be defined on any set, and therefore any set can be a metric space
 		\1	\Theorem \textbf{Cauchy Schwarz Inequality}
+			\2	$\braket{x}{y}^2 \le \braket{x}{x}\braket{y}{y}$
 		\1	\Theorem \textbf{Subsets inherit the metric}
 		\1	\Definition \textbf{Open/Closed Balls}
+			\2	\textbf{Open Ball: } $B(x;r) = \{y \in X~:~d(x,y) < r\}$
+			\2	\textbf{Closed Ball: } $\bar{B}(x;r) = \{y \in X~:~d(x,y) \le r\}$
 		\1	\Definition \textbf{Open/Closed Sets}
+			\2	\textbf{Open Set: } $\forall~x \in G,~\exists~r > 0~s.t. B(x;r) \subset G$
+			\2	\textbf{Closed Set: } $F$ is closed if $X \setminus F$ is open
+			\2	\Theorem \textbf{$X$ is an open subset of $(X,d)$}
+			\2	\Theorem \textbf{$\emptyset$ is an open subset of $(X,d)$}
+			\2	\Theorem \textbf{$X$ is a closed subset of $(X,d)$}
+			\2	\Theorem \textbf{$\emptyset$ is a closed subset of $(X,d)$}
 			\2	\Theorem \textbf{Finite Intersection of Open Sets is Open}
+			\2	\Theorem \textbf{Finite Union of Closed Sets is Closed}
+			\2	\Theorem \textbf{Finite amount of points is closed}
 		\1	\Theorem \textbf{Reverse Triangle Inequality}
+			\2	$|d(x,y) - d(y,z)| \le d(x,z)$
 		\1	\Definition \textbf{Interior, Closure, and Boundary}
+			\2	\textbf{Interior: } $int(A)$ Union of all open subsets of $X$ contained in $A$
+			\2	\textbf{Closure: } $cl(A)$ Intersection of all closed sets of $X$ containing $A$
+			\2	\textbf{Boundary: } $\partial A = cl(A) \cap cl(X \setminus A)$
 		\1	\Theorem \textbf{$A \subset X$ is closed iff $A = cl(A)$}
 		\1	\Theorem \textbf{$A \subset X$ is open iff $A = int(A)$}
 		\1	\Theorem \textbf{$X \setminus int(A) = cl(X \setminus A)$}
 		\1	\Theorem \textbf{$\partial A = cl(A) \setminus int(A)$}
-		\1	\Definition \textbf{$E \subset X$ is dense if $cl(E) = X$} 
+		\1	\Theorem \textbf{$E \subset X$ is dense if $cl(E) = X$}
+		\1	\Theorem \textbf{$E \subset X$ is dense iff $B(x;r) \cap E \ne \emptyset$}
 		\1	\Definition \textbf{$(X,d)$ is seperable if it admits a countable dense subset}
+		\1	\Definition \textbf{Countable}
+			\2	There exists a function $f~:~\mathbb{N} \rightarrow X$	
 		\section{Sequences in Metric Spaces}
 		\1	\Definition \textbf{Convergence in a metric space}
+			\2	$d(x,x_n) < \varepsilon$ when $n > N$, equivalently $\lim_{n \rightarrow \infty} x_n = x$
+			\2	\Theorem	$F \subset X$ is closed iff for every sequence in $F$ converges
+										to a point in $F$
 		\1	\Definition \textbf{Limit point}
+			\2	Point $x$ is a limit point of $A$ if $x \in X~:~\exists~a \in B(x;\varepsilon) \cap A~s.t.~a \ne x$
+			\2	$x$ does not have to belong to $A$ to be a limit point
+		\1	\Definition \textbf{Isolated point}
+			\2	$x \in A$ but $x$ is not a limit point of $A$
 		\1	\Definition \textbf{Subsequence}
+			\2	Composition of a strictly increasing function $k \in \mathbb{N} \rightarrow n_k \in \mathbb{N}$
+					with function $n \in \mathbb{N} \rightarrow x_n \in X$
+			\2	$(x_{n_k})_{k \in \mathbb{N}}$
+		\1	\Theorem $A$ is closed iff it contains all its limit points
+		\1	\Definition \textbf{Distance from a point to a set}	
+			\2	$\text{dist}(x,A) = \text{inf}\{d(x,a)~:~a \in A\}$
+			\2	\Theorem	$x \in A \Rightarrow dist(x,A) = 0$
+				\3	$X = \mathbb{R}$, $A = \mathbb{R} \setminus \{0\}$, $0 \notin A$ and $\text{dist}(0,A) = 0$
 		\1	\Theorem \textbf{Closure, Interior, and Boundary in Metric Spaces}
+			\2	$cl(A) = \{x \in X~:~\text{dist}(x,A) = 0\}$
+			\2	$int(A) = \{x \in X~:~\text{dist}(x,X\setminus A) > 0\}$
+			\2	$\partial A = \{x \in X~:~\text{dist}(x,A) = 0~\text{ and dist}(x,X\setminus A) = 0\}$
+		\1	\Definition \textbf{Cauchy Sequence in a metric space}
+			\2	For a sequence $(x_n)_{n \in \mathbb{N}} \in X$ is a Cauchy sequence 
+					if $\exists~N~s.t.~m,n \ge N \Rightarrow d(x_n,x_m) < \varepsilon$
 		\1	\Theorem	\textbf{Every convergent sequence is a Cauchy sequence}
 		\1	\Definition \textbf{A metric space where every Cauchy sequence converges is complete}
-		\1	\Definition \textbf{Diameter of $E \subset (X,d)$ is $diam(E) = \text{sup}\{d(x,y) ~:~x,y \in E\}$}
-		\1	\Theorem	\textbf{Cantor's Theorem}
+		\1	\Theorem \textbf{A subsequence of a convergent sequence converges to the same point}
+		\1	\Definition \textbf{Diameter of $E \subset (X,d)$ is $\text{diam}(E) = \text{sup}\{d(x,y) ~:~x,y \in E\}$}
+		\1	\Theorem	$\text{diam}(E) = \text{diam}(cl(E))$
+		\1	\Theorem	\textbf{Cantor's Theorem} (All below are equivalent)
+			\2	$(X,d)$ is complete
+			\2	Given any nested sequence $F_1 \supset F_2 \supset F_3 ...$ of non
+					empty closed subsets of $X$ such that $\lim_{n \rightarrow \infty} \text{diam}(F_n) = 0$, 
+					the intersection $\bigcap_{n=1}^{\infty} F_n$ contains exactly one single point
 		\1	\Theorem	\textbf{$\mathbb{R}^n~n \in \mathbb{N}$ is a complete metric space}
 		\1	\Definition \textbf{Bounded means $diam(A) < \infty$}
+		\1	\Theorem \textbf{$A$ is bounded iff $A \subset B(x;r)$}
+		\1	\Theorem \textbf{Union of finite number of bounded sets is bounded}
+		\1	\Theorem \textbf{Cauchy sequence is a bounded set}
 		\section{Functions Between Metric Spaces}
-		\1	\Definition \textbf{Continuous function between metric spaces}	
-		\1	\Theorem	\textbf{Properties of continuous functions between metric spaces}
+		\1	\Definition \textbf{Continuous function between metric spaces}
+			\2	$f~:~(X,d) \rightarrow (Z,\rho)$
+			\2	$d(a,x) < \delta \Rightarrow \rho(f(a),f(x)) < \varepsilon$
+		\1	\Theorem	\textbf{Properties of continuous functions between metric spaces} (All are equivalent)
+			\2	Function $f$ is continuous at $a$ 
+			\2	For every sequence that converges
+					to $a$, $\lim_{n\rightarrow \infty}f(x_n) = f(a)$
+			\2	If $U$ is an open subset of $Z$, then $f^{-1}(U)$ is an open subset of $X$
+			\2	If $D$ is a closed subset of $Z$, then $f^{-1}(D)$ is a closed subset of $X$
+			\2	Other properties:
+				\3	$|dist(x,A) - dist(y,A)| \le d(x,y)$ and $f(x) = dist(x,A)$ is continuous
+				\3	$f~:~X \rightarrow Z$ and $g~:~Z \rightarrow W$ continuous
+					\4	$g \circ f$ is continuous
+					\4	$f + g$ is continuous
+					\4	$fg$ is continuous
+					\4	$\frac{1}{f(x)}$ is continuous (if $f(x) \ne 0$)	
 		\1	\Theorem	\textbf{Urysohn's Lemma}
+			\2	$A$ and $B$ are two disjoint closed subsets of a metric space $X$, 
+					there exists a continuous $f~:~X \rightarrow \mathbb{R}$
+			\2	$0 \le f(x) \le 1$
+			\2	$f(x) = 0$ for $x \in A$
+			\2	$f(x) = 1$ for $x \in B$
+			\2	Example: $f(x) = \frac{\text{dist}(x,A)}
+					{\text{dist}(x,A) + \text{dist}(x,B)}$
+		\1	\Theorem \textbf{Urysohn's Lemma corollary}
+			\2	Let $F$ be a closed subset and $G$ be an open set containing $F$.  
+					There exists a continuous function $f~:~X \rightarrow \mathbb{R}$
+			\2	$0 \le f(x) \le 1$
+			\2	$f(x) = 1$ for $x \in F$
+			\2	$f(x) = 0$ for $x \ne G$
 		\1	\Definition \textbf{Homemorphism}
-		\1	\Theorem	\textbf{Properties of Homeomorphisms}
+			\2	A bijection where both $f$ and $f^{-1}$ are continuous
+		\1	\Theorem	\textbf{Properties of Homeomorphisms} (All are equivalent)
+			\2	$f$ is a homeomorphism
+			\2	Sequence converges to $x \in X$ iff it converges to $f(x) \in Z$
+			\2	Set $U$ is open in $X$ iff $f(U)$ is open in Z
+			\2	Set $F$ is closed in $X$ iff $f(F)$ is closed in Z
+			\2	Further properties
+				\3	$g \circ f$ is a homeomorphism
+				\3	Every isometry is a homeomorphism
 		\1	\Definition \textbf{Equivalent Metrics}
+			\2	The identity map $(X,d) \rightarrow (X,\rho)$ is a homeomorphism
+			\2	Equivalent metrics determine the same collection of open sets in $X$
 		\1	\Theorem \textbf{Equivalent metrics do not necessarily have the same Cauchy Sequences}
 		\section{Compact Subsets in Metric Spaces}
 		\1	\Definition \textbf{Cover}
+			\2	Collection $G$ is said to be a cover of $E$ if $E \subset \bigcup_{g \in G} g$
+			\2	If all $g$ are open, then $G$ is an open cover
+			\2	$H \subset G$ such that $E \subset \bigcup_{g \in H} g$ is called a subcover
+		\1	\Definition \textbf{A subset is compact if every open cover admits a finite subcover}
+		\1	\Theorem	$F \subset K \subset X$, $K$ compact and $F$ closed $\Rightarrow$ $F$ is compact
+		\1	\Theorem \textbf{Continuous functions map compact sets to compact sets}	
 		\1	\Theorem	\textbf{Extreme Value Theorem}
+			\2	$K$ is compact, $f$ is continuous, $\exists~a,b \in K$ s.t. 
+					$f(a) \le f(x) \le f(b)~\forall~x \in K$
+			\2	A continuous real-valued function on a compact set must attain a maximum
+					and a minimum	
 		\1	\Definition \textbf{Totally Bounded}
+			\2	$S \subset \bigcup_{k=1}^n B(x_k;r)$
 		\1	\Definition \textbf{Finite Intersection Property}
+			\2	$\bigcap_{k=1}^n F_k \ne \emptyset$
+		\1	\Theorem \textbf{Properties of Compact Spaces} (All are equivalent)
+			\2	$K$ is compact
+			\2	$bigcap_{f \in F} f = \emptyset$ then there exists $\bigcap_{k=1}^n f_k = \emptyset$
+			\2	Every collection of closed subsets of $K$ satisfying the finite 
+					intersection property has a nonempty intersection $\bigcap_{f \in F} f \ne \emptyset$
+			\2	Every infinite subset of $K$ admits a limit point
+			\2	Every sequence of points in $K$ admits a convergent subsequence
+			\2	$(K,d)$ is a complete metric space and is totally bounded
+		\1	\Theorem \textbf{Lemma of compact spaces}
+			\2	$G$ is an open cover of $K$.  If every sequence of $K$ admits a 
+					convergent subsequence, then $\forall~x\in K~B(x;r) \subset G$
 		\1	\Theorem	\textbf{Heine-Borel Theorem}
+			\2	A subset of $\mathbb{R}^p$ is compact iff it is closed and bounded
+		\1	\Theorem	\textbf{A compact metric space is necessarily separable}
 		\section{Connectedness in Metric Spaces}
 		\1	\Definition \textbf{Connected Set}
+			\2	$\emptyset$ and $X$ are the only subsets of $(X,d)$ that are simultaneously
+					open and closed
+			\2	$A$ and $B$ open, $A \cup B = X$, $A \cap B = \emptyset$ $\Rightarrow$
+					$A = \emptyset$ or $B = \emptyset$
+			\2	For a subset $E$ to be connected: 
+					When $A$ and $B$ are disjoint open subsets of $X$ such that $E \subset A \cup B$
+					then either $E \subset A$ or $E \subset B$
+			\2	Continuous functions preserve connected sets
 		\1	\Theorem \textbf{Intermediate Value Theorem}
+			\2	$(X,d)$ connected, $f$ continuous, $a < b$, then for $c \in [a,b]$
+			$\exists~p \in X~s.t.~f(p) = c$
+		\1	\Theorem	\textbf{In Euclidean space, open balls are connected}
+		\1	\Theorem	\textbf{A discrete metric space containing at least two
+				distinct points is not connected}
+		\1	\Theorem \textbf{$E$ and $F$ are connected subsets and $E \cap F \ne \emptyset$
+						then $E \cup F$ is connected}
 		\1	\Definition \textbf{Component of a metric space}
+			\2	Maximally connected subset
+			\2	Connected subset $C$ such that $C$ is not contained in any other 
+					strictly larger subset of $X$
+		\1	\Theorem	\textbf{Components of a metric space are disjoint}
+		\1	\Theorem	\textbf{Every connected subset is contained in a component}
+		\1	\Definition \textbf{Partition}
+			\2	The components of $(X,d)$ form a partition of $X$, i.e. a metric space
+					is the disjoint union of its components.
+		\1	\Theorem \textbf{If $C$ is connected, and $C \subset Y \subset cl(C)$ then Y is connected}
+		\1	\Theorem	\textbf{If $C$ is connected, then $cl(C)$ is also connected}
+		\1	\Theorem	\textbf{Components of a metric space are closed sets}
 		\1	\Definition \textbf{$\varepsilon$-chain}
+			\2	$\{x,y\}\subset E \subset X$
+			\2	Finite family of points $x_1,x_2,...,x_n \in E$ such that
+				\3	$x_1 = x$ and $x_n = y$
+				\3	$B(x_k;\varepsilon) \subset E$ for $1 \le k \le n$
+				\3	$x_{k-1} \subset B(x_k,\varepsilon)$ for $2 \le k \le n$
+			\2	Only points in the interior of $E$ can be linked by an $\varepsilon$-chain
+		\1	\Theorem	\textbf{G an open set in Euclidean space is connected iff 
+					there exists an $\varepsilon$-chain in G connecting all pairs of points}
 		\section{Baire Category Theorem}
 		\1	\Theorem	\textbf{Baire Category Theorem}
-
+			\2	$U_1,U_2,...$ are open subsets of $X$
+			\2	If $U_k$ is dense in $X$, then $\bigcap_{k=1}^{\infty} U_k$ is dense in $X$
+			\2	$F_1,F_2,...$ is a sequence of closed subsets of $X$
+			\2	If $int(F_k) = \emptyset$ then $int(\bigcup_{k=1}^{\infty} F_k = \emptyset$
+			\2	If $X = \bigcup_{k=1}^{\infty} F_k$ then $\exists~j \in \mathbb{N}~s.t. int(F_j) \ne \emptyset$
 	\end{outline}
 \end{document}
 
