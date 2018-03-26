@@ -1,0 +1,39 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+%Tu - Differential Geometry
+
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+
+\title{Euclidean Spaces Cheat Sheet}
+\begin{document}
+	\maketitle
+	\begin{outline}	
+
+		\1	\Definition $C^k$ functions
+			\2	$U$ is open, $k > 0$, $f~:~U \rightarrow \mathbb{R}$
+			\2	A function is $C^k$ at $p \in U$ if 
+					$\partial^j f / \partial x^{i_1}... \partial x^{i_j}$ for $j \le k$
+					exist and are continuous at $p$
+					\3	$f~:~U \rightarrow \mathbb{R}$ is $C^{\infty}$ at $p$ if it
+							is $C^k~\forall~k \ge 0$.
+			\2	$C^k$ on $U$ if it is $C^k$ $\forall~p \in U$	
+					\3	$C^{\infty} \equiv $ smooth
+
+		%\1	\Theorem \textbf{Lagrange's Theorem}
+			%\2	$|G| = [G:H] \cdot |H|$
+			%\2	{\color{purple}$H \le G \Rightarrow |H| \text{ divides } |G|$ 
+					%(i.e. $\frac{|H|}{|G|} \in \mathbb{N}$)}
+			%\2	$[G : H]$ is the index of subgroup $H$, number of cosets that fill
+					%up $G$
+			%\2	Places heavy restrictions on the sizes of possible subgroups based
+					%on size of the larger group
+		%\1	\Definition \textbf{Group Generators}: $\langle a \rangle$
+			%\2	$\langle a \rangle = \{e,a,a^2,...,a^{n-1}\} = a^n,~n \in \mathbb{Z}$
+			%\2	$S \le G$, then $\langle S \rangle$ is the smallest subgroup of $G$ containing
+					%every element of $S$.
+			\end{outline}
+\end{document}
+
+
