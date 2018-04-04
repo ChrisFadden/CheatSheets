@@ -136,6 +136,92 @@
 		\2	Let $f~:~U \rightarrow \mathbb{C}$ be a differentiable function on open
 				set $U$, then $f$ is analytic on $U$
 \section*{Singularities}
+	\1	\Definition \textbf{Isolated Singularity}
+		\2	A function $f$ has an isolated singularity at $z = a$ if there is an 
+				$R > 0$ such that $f$ is defined and analytic in $B(a;R) \setminus \{a\}$
+				but not in $B(a;R)$.  
+		\2	The point $a$ is a removable singularity if there is an analytic function
+				$g~:~B(a;R) \rightarrow \mathbb{C}$ such that $g(z) = f(z)$ for 
+				$0 < \abs{z - a} < R$.
+	\1	\Theorem \textbf{Removable Singularity}
+		\2	If $f$ has an isolated singularity at $a$ then the point $z = a$ is
+				a removable singularity iff $\lim_{z \rightarrow a} (z-a)f(z) = 0$
+	\1	\Definition \textbf{Pole}
+		\2	If $z = a$ is an isolated singularity, then $a$ is a pole of $f$ if
+				$\lim_{z \rightarrow a} \abs{f(z)} = \infty$
+	\1	\Definition \textbf{Essential Singularity}
+		\2	If an isolated singularity is neither a removable singularity nor a pole,
+				it is called an essential singularity
+	\1	\Definition \textbf{Order of Poles}
+		\2	If $f$ has a pole at $z = a$ and $m$ is the smallest positive integer
+				such taht $f(z)(z - a)^m$ has a removable singularity at $z = a$ then
+				$f$ has a pole of order $m$ at $z = a$
+	\1	\Definition \textbf{Absolute Convergence}
+		\2	A series $\sum_{n=-\infty}^{\infty} z_n$ is absolutely convergent if 
+				both $\sum_{n=0}^{\infty}z_n$ and $z={n=1}^{\infty} z_{-n}$ are absolutely
+				convergent.
+	\1	\Definition \textbf{Annulus}
+		\2	For $0 \le R_1 < R_2 \le \infty$, $a \in \mathbb{C}$, 
+				$ann(a;R_1,R_2) = \{z~:~R_1 < \abs{z - a} < R_2\}$
+	\1	\Definition \textbf{Laurent Series}
+		\2	$f(z) = \sum_{n=-\infty}^{\infty} a_n (z - a)^n$
+		\2	$f$ must be analytic in the annulus $ann(a;R_1,R_2)$
+		\2	The convergence is absolute and uniform over $ann(a;r_1,r_2)$, 
+				with $R_1 < r_1 < r_2 < R_2$
+		\2	$a_n = \frac{1}{2\pi i} \int_{\gamma} \frac{f(z)}{(z - a)^{n+1}}dz$
+			\3	$\gamma$ is the circle $\abs{z - a} = r$, $\forall~r~:R_1 < r < R_2$
+		\2	The Laurent Series is unique
+	\1	\Theorem \textbf{Classification of Singularities using Laurent Series}
+		\2	Let $z = a$ be an isolated singularity of $f$, and let
+				$f(z) = \sum_{n=-\infty}^{\infty} a_n(z - a)^n$ be its Laurent expansion
+				in $ann(a;0,R)$ Then:
+				\3	$z = a$ is a removable singularity iff $a_n = 0$ for $n \le -1$
+				\3	$z = a$ is a pole of order $m$ iff $a_{-m} \ne 0$ and $a_n = 0$ for $n \le -(m+1)$
+				\3	$z = a$ is an essential singularity iff $a_n \ne 0$ for infinitely
+						many negative integers $n$
+	\1	\Theorem \textbf{Casorati-Weierstrass Theorem}
+		\2	If $f$ has an essential singularity at $z = a$ then $\forall~\delta > 0$,
+				$f[ann(a;0,\delta)] = \mathbb{C}$
+		\2	As $z$ approaches $a$ (an essential singularity) the values of $f(z)$
+				come arbitrarily close to every complex number
+	\1	\Definition \textbf{Residue}
+		\2	Let $f$ have an isolated singularity at $z = a$ and let $f$ have a 
+				Laurent Series
+		\2	The residue of $f$ at $z = a$ is the coefficient $a_{-1}$
+		\2	The residue is denoted $Res(f;a) = a_{-1}$
+	\1	\Theorem	\textbf{Cauchy's Residue Theorem}
+		\2	Let $f$ be analytic in $U$ except for the isolated singularities 
+				$a_1,a_2,...,a_n$.  If $\gamma$ is a closed rectifiable curve in $U$
+				which does not pass through any of the points $a_k$ and if 
+				$\gamma \approx 0$ in $U$ then:
+		\2	$\frac{1}{2\pi i}\int_{\gamma} f = \sum_{k=1}^n I(\gamma;a_k) Res(f;a_k)$
+			\3	$I$ is the winding number of $\gamma$ around $a_k$
+	\1	\Theorem \textbf{Residue Theorem with Poles of Order m}
+		\2	Suppose $f$ has a pole of order $m$ at $z = a$ and $g(z) = (z-a)^mf(z)$
+		\2	$Res(f;a) = \frac{1}{(m-1)!}g^{m-1}(a)$
+	\1	\Definition \textbf{Meromorphic Function}
+		\2	If $U$ is open, and $f$ is a function defined and analytic in $U$ except
+				for poles, then $f$ is a meromorphic function on $U$
+	\1	\Theorem \textbf{Cauchy's Argument Principle}
+		\2	Let $f$ be meromorphic on $U$ with poles $p_1,p_2,...,p_m$ and zeros
+				$z_1,z_2,...,z_n$ counted with multiplicity.  If $\gamma$ is a closed
+				rectifiable curve in $U$ with $\gamma \approx 0$ and not passing through
+				$p_1,p_2,...,p_m$ or $z_1,...,z_n$ then:
+		\2	$\frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)}dz = 
+					\sum_{k=1}^n I(\gamma;z_k) - \sum_{j=1}^n I(\gamma;p_j)$
+	\1	\Theorem	\textbf{Inverse Function using Argument Principle}
+		\2	Let $f$ be analytic on $U$ containing $\bar{B}(a;R)$ and suppose that
+				$f$ is injective on $\bar{B}(a;R)$.  If $\Omega = f[B(a;R)]$ and $\gamma$
+				is the circle $\abs{z - a} = R$ then $f^{-1}(\omega)$ is defined 
+				$\forall~\omega~\in \Omega$ by
+		\2	$f^{-1}(\omega) = \frac{1}{2\pi i}\int_{\gamma}\frac{zf'(z)}{f(z) - \omega}dz$
+	\1	\Theorem \textbf{Rouche's Theorem}
+		\2	$f$ and $g$ are meromorphic in a neighborhood $\bar{B}(a;R)$ with no zeros
+				or poles on the circle $\gamma = \{z~:~\abs{z - a} = R\}$.  If $Z_f$,$Z_g$,
+				$P_f$,$P_g$ are the number of zeros and poles of $f$ and $g$ inside $\gamma$,
+				counting multiplicties and if $\abs{f(z) + g(z)} < \abs{f(z)} + \abs{g(z)}$
+				on $\gamma$ then $Z_f - P_f = Z_g - P_g$
+\section*{Maximum Modulus Theorem}
 \end{outline}
 \end{document}
 
