@@ -1,0 +1,133 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+
+\title{ElectroOptics Systems and Computing Cheat Sheet}
+\begin{document}
+\maketitle
+
+%Conway A function of single complex variable
+\begin{outline}		
+\section*{Geometric Optics}
+	\1	\Definition \textbf{Maxwell's Equations}
+		\2	$\nabla \cross \bm{E} = -\mu \pd{\bm{H}}{t} + \mu \bm{J}$
+		\2	$\nabla \cross \bm{H} = \varepsilon \pd{\bm{E}}{t}$
+		\2	$\nabla \cdot \bm{D} = \rho$
+		\2	$\nabla \cdot \bm{B} = 0$
+	\1	\Definition \textbf{Eikonal Equation}
+		\2	$[\nabla S(\bm{r})]^2 = n^2$
+		\2	$\nabla S \cross \bm{E} = \frac{\omega \mu}{k_0}\bm{H}$
+		\2	$\nabla S \cross \bm{H} = \frac{-\omega \varepsilon}{k_0}\bm{E}$
+		\2	$S = const$ geometrical wavefront
+	\1	\Definition \textbf{Equation of a ray}
+		\2	$r = as + b$ (a ray)	
+		\2	$\od{}{s}(n \od{r}{s}) = \nabla n$
+		\2	$\od{r}{s} = \frac{\nabla S}{n}$
+		\2	$n \od{r}{s} = p$ (Snell's Law)
+	\1	\Definition \textbf{Fermat's Principle}
+		\2	$\int_A^B n ds$
+		\2	$\pd{L}{x} = \pd{n}{x}\sqrt{1 + x^2 + y^2}$
+		\2	$\od{}{s}(n \od{r}{s}) = \nabla n$
+	\1	\Definition \textbf{Conjugate Points}
+		\2	OPL(A,B) is the optical path length
+		\2	Conjugate points have the same optical path length no matter what
+				physical path the light travels
+	\1	\Theorem \textbf{Maxwell's Theorem}
+		\2	$\frac{A_2B_2}{A_1B_1} = \frac{n_1}{n_2}$
+	%Born and Wolf Chapters 3 and 4
+	\1	\Theorem \textbf{Perfect Surface Imaging}
+		\2	$\frac{sin(\phi_1)}{sin(\phi_0)} = \frac{OQ}{OP_0} = \frac{n_0}{n_1}$
+	\1	\Theorem \textbf{Sine Condition (Smith Helmholtz)}
+		\2	$n_0 y_0 sin(\phi_0) = n_1 y_1 sin(\phi_1)$
+		\2	$y_0 \phi_0 = y_1 \phi_1$ (Smith Helmholtz)
+			\3 Small Angle approximation
+	\1	\Theorem \textbf{Telescope Magnification}
+		\2	$MP = \frac{f_0}{f_e}$
+	\1	\Theorem \textbf{Pinhole Visibility}
+		\2	$h(\bm{x}_i,x_0) = circ(\frac{\bm{x}_i + \frac{l}{\bm{z}_0}x_0}{d + \frac{ld}{z_0}})$
+		\2	$g(\bm{z}) = \iiint f(\bm{y}) h(\bm{x}_i,\bm{y}) d\bm{y}$
+		\2	$\delta \bm{x} \approx 2 \sqrt{l \lambda}$
+		\2	$\delta \theta = 2 \sqrt{\frac{\lambda}{l}}$
+	\1	\Definition \textbf{Coded Aperture}
+		\2	$g = t \star f$
+		\2	$f_e = \tau \star g$
+		\2	$f_e = \tau \star (t \star f) + \tau \star b$
+		\2	$\tau \star t = I$
+		\2	Lets in more light than pinhole
+	\1	\Definition \textbf{Modified Uniform Redundant Array}
+		\2	Set $t_{ij} = 1$ only when both or neither are quadratic residues mod p
+		\2	$\tau = 1$ when $i,j = 0$ or $t_{ij} = 1$
+		\2	$\tau = -1$ when $t_{ij} = 0$
+	\1	\Definition \textbf{Radon Transform}
+	
+\section*{Fourier Optics}
+	\1	\Definition \textbf{Diffraction}
+		\2	$F(u,v) = \iint f(x,y) e^{-j 2\pi (u x + vy)} dx dy$
+		\2	$T(u,v) = e^{j 2\pi \sqrt{\frac{1}{\lambda^2} - u^2 - v^2}d}$
+		\2	$h(x,y) = \mathcal{F}^{-1}\{T(u,v)\}$
+		\2	$g(\bm{y}) = \iint f(\bm{x}) \star h(\bm{y} - \bm{x}) d\bm{x}$
+	\1	\Theorem \textbf{Impulse Response}
+		\2	$h(x,y) \approx \frac{1}{j\lambda d} e^{j \frac{2\pi}{\lambda}d}
+				e^{j \frac{\pi}{\lambda d}(x^2 + y^2)}$
+	\1	\Definition \textbf{Franhofer Approximation}
+		\2	$g(\bm{y}) \approx h(x,y) 
+					\mathcal{F}\{f\}(u = \frac{\bm{y}_1}{\lambda d},v = \frac{\bm{y}_2}{\lambda d})$
+		\2	$\bm{x} << \lambda d$
+	\1	\Definition \textbf{Grating Transmittance}
+		\2	$t(x,y) = e^{j\phi_0}e^{2\pi j \frac{\gamma}{\lambda}sin(Kx)}$
+		\2	$t(x,y) = \sum_{q=-\infty}^{\infty} J_q(\frac{2\pi \alpha}{\lambda})e^{j q K x}$
+	\1	\Theorem \textbf{Grating Diffraction}
+		\2	$\Theta = arcsin(\frac{\lambda}{\Lambda})$
+		\2	$\Theta$ is the angle between $0th$ and $1st$ order diffraction fields
+	\1	\Definition \textbf{Thin Lens}
+		\2	$h(x,y) = \frac{e^{jk_0 z}{\lambda z}}e^{i\pi \frac{x^2 + y^2}{\lambda F}}$
+		\2	$t(x,y) = e^{i\pi \frac{x^2 + y^2}{\lambda F}}$
+		\2	$F = \frac{1}{\Delta n \alpha}$
+	\1	\Definition \textbf{Phase Delay Transmittance (Thin Lens)}
+		\2	$t(x,y) = e^{j \phi(x,y)}P(x,y)$
+		\2	$\phi(x,y) = \pi \frac{x^2 + y^2}{\lambda F}$
+	\1	\Definition \textbf{Thin Lens Case 1: }$z_1 = z_2 = F$
+		\2	$g(\bm{z}) = \frac{e^{j2k_0 F}}{j \lambda F}
+					\int f(\bm{x})e^{-j \frac{2\pi}{\lambda F}(\bm{x}_1\bm{y}_1 +
+						\bm{x}_2\bm{y}_2)} P(\bm{x} + \bm{z})d\bm{x}$
+	\1	\Definition \textbf{Thin Lens Case 2: } $\frac{1}{z_1} + \frac{1}{z_2} = \frac{1}{F}$
+		\2	$h_r(\bm{x}) = \frac{1}{\lambda^2 d_i^2}
+				\iint P(\bm{y}) e^{-j \frac{2\pi}{\lambda d_i}(\bm{y}_1\bm{x}_1 +
+					\bm{y}_2\bm{x}_2)}d\bm{y}$
+		\2	If $P(x,y) = circ(\sqrt{x^2 + y^2} / A)$ then
+				$h_r(x,y) = \frac{A^2}{\lambda^2 d_i^2}jinc(\frac{A}{\lambda d_i \sqrt{x^2 + y^2}}$
+\section*{Holography}
+	\1	$I(x,y) = \abs{U(x,y,0) + Ae^{jk_x x}}^2$
+	\1	$t(x,y) \sim \abs{A}^2 + \abs{U(x,y,0)}^2 + 
+				2 \abs{A}\abs{U(x,y,0)}cos(arg[U(x,y,0)] - arg[A])$
+	\1	\Definition \textbf{Born Approximation}
+		\2	Linear scattering
+		\2	Negelct multiple scatttering
+		\2	Replace total field by initial field
+		\2	$\nabla^2 E_d + \frac{\omega^2}{c^2}n^2 E_d = 
+					-\frac{\omega^2}{c^2}2n \Delta n E_{inc}$
+\section*{Photon Transport Equation}
+	\1	$\pd{u(r,\Omega,t)}{t} = -v \Omega \cdot \nabla u(r,\Omega,t)
+			- v(\mu_a + \mu_s)u(r,\Omega,t)$ 
+	\1	$	+ v \mu_s \int u(r,\Omega',t)f(\Omega',\Omega)d\Omega' + q(r,\Omega,t)$
+		\2	$v$ speed of light
+		\2	$\nabla u(r,\Omega,t)$ evolution of density in phase space
+		\2	$(\mu_a + \mu_s)$ Absorption and scattering coefficients
+		\2	$(\mu_a + \mu_s)u(r,\Omega,t)$ loss due to absorption and scattering
+		\2  $v \mu_s \int ...$ Coupling due to scattering
+		\2	$f(\Omega',\Omega)$ phase function
+		\2	$q(r,\Omega,t)$ Source
+	\1	Rewritten Parameters
+		\2	Angular photon density: $u(r,\Omega,t)$ 
+		\2	Photon Radiance: $L(r,\Omega,t) = v u(r,\Omega,t)$
+		\2	Photon denisty: $U(r,t) = \int u(r,\Omega,t) d\Omega$
+		\2	Photon Fluence: $\phi(r,t) \equiv v U(r,t)$
+		\2	Photon current Density: $J(r,t) = \int L(r,\Omega,t) \Omega d\Omega$
+	\1	Fick's Law
+		\2	$J(r) = -D \lambda \phi(r)$
+\end{outline}
+\end{document}
+
+
