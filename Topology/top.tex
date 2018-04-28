@@ -302,6 +302,103 @@
 			\2	$F_1,F_2,...$ is a sequence of closed subsets of $X$
 			\2	If $int(F_k) = \emptyset$ then $int(\bigcup_{k=1}^{\infty} F_k = \emptyset$
 			\2	If $X = \bigcup_{k=1}^{\infty} F_k$ then $\exists~j \in \mathbb{N}~s.t. int(F_j) \ne \emptyset$
+		\section{Topological Spaces}
+		\1	Definition \textbf{Topological Space}
+			\2	A pair of objects $(X,\tau)$ where $X$ is a set, and $\tau$ is a 
+					collection of subsets of $X$, ($\tau \subseteq \mathcal{P}(X)$).
+					satisfying:
+						\3	$\emptyset \in \tau$, $X \in \tau$
+						\3	$U_i \subseteq \tau \Rightarrow \bigcup_{i \in I} U_i \in \tau$
+						\3	$U_1,U_2,...,U_n \in \tau \Rightarrow \bigcap_{k=1}^n U_k \in \tau$
+			\2	$\tau$ is a topology on $X$, and elements of $\tau$ are open sets
+		\1	\Theorem Given $X = \bigcup_{i \in I} X_i$ with $X_j \cap X_k = \emptyset$,
+								 then $\tau = \{U \subseteq X~:~U \cap X_i \in \tau_i$ is a 
+								 topology on $X$
+		\1	\Definition \textbf{Subspace Topology}
+			\2	$Y \subseteq X$
+			\2	$\tau_Y = \{U \cap Y~:~U \in \tau\}$ is the subspace topology on $Y$
+		\1	\Definition \textbf{Hausdorff Space}
+			\2	$\forall~x,y \in X$, $\exists~U,V \in \tau$ s.t. $x \in U,~y \in V$,
+					and $U \cap V = \emptyset$
+		\1	\Theorem \textbf{Hausdorff Theorems}
+			\2	Set $X$ with two or more points endowed with trivial topology is not
+					Hausdorff
+			\2	An infinite set endowed with the cofinal topology is not Hausdorff
+			\2	Every metric space is a Hausdorff space
+		\1	\Theorem \textbf{Closed sets}
+			\2	A subset $F \subseteq X$ is closed iff $S \in F \Leftrightarrow X \setminus S \in \tau$
+			\2	$\emptyset \in F$ and $X \in F$
+			\2	$F_1,F_2,...,F_n \in F$ then $\bigcup_{k=1}^n F_k \in F$
+			\2	$\bigcap_{i \in I} F_i \in F$
+		\1	\Theorem \textbf{Singletons are closed in Hausdorff Space}
+			\2	In a Hausdorff space $(X,\tau)$, $\forall~x \in X$ the
+					singleton $\{x\}$ is a closed subset of $X$
+		\1	\Definition \textbf{Interior}
+			\2	$int(A) = \bigcup\{U \in \mathcal{P}(X)~:~U \in tau$  and $ U \subset A\}$
+			\2	$A$ is open iff $A = int(A)$
+		\1	\Definition \textbf{Closure}
+			\2	$cl(A) = \bigcap\{F \in \mathcal{P}(X)~:~X \setminus F \in \tau$ and $A \subseteq F$
+			\2	$A$ is closed iff $A = cl(A)$
+		\1	\Definition \textbf{Boundary}
+			\2	$\partial(A) = cl(A) \cap cl(X \setminus A) = cl(A) \setminus int(A)$
+		\1	\Definition \textbf{Dense Subset and Seperable Topological Space}
+			\2	$E \subseteq (X,\tau)$ is dense if $cl(E) = X$
+			\2	A topological space is seperable if it admits a countable dense subset
+			\2	$\forall~U \in \tau$, $U \cap A \ne \emptyset$
+		\1	\Definition \textbf{Neighborhood}
+			\2	$N$ is a neighborhood of $x \in (X,\tau)$ if $\exists~U \in \tau$
+					such that $x \in U \subseteq N$
+			\2	$int(N)$ is a neighborhood of $x$ iff $N$ is a neighborhood of $x$
+		\1	\Definition \textbf{Limit Point}
+			\2	$x$ is a limit point of $A$ if 
+					$\forall~U \in \tau$, $x \in U$ $\Rightarrow~A \cap (U \setminus \{x\}) \ne \emptyset$
+			\2	$cl(A) = A \cup $all its limit points
+			\2	$A$ is closed iff it contains all its limit points
+		\1	\Definition \textbf{Interior and Closure on Subspace Topology}
+			\2	$Y \cap cl_X(A) = cl_Y(A)$
+			\2	$Y \cap int(A) \subseteq int_Y(A)$
+				\3	Notice, closures have equality, while interiors have only subset
+		\1	\Definition \textbf{Metrizable}
+			\2	A topological space is metrizable if the open sets defined by the metric
+					$d$ is precisely the topology $\tau$
+			\2	Every metric space is metrizable
+			\2	Not Hausdorff $\rightarrow$ not metrizable
+			\2	$\exists$ Hausdorff spaces that are not metrizable
+	\section*{Base  (and Subbase) for a Topology}
+		\1	\Definition \textbf{Base (Basis for Topology)}
+			\2	$\forall~U \in \tau, ~\exists G \subseteq~B$ s.t. $\bigcup_{g \in G} g = U$
+			\2	The topology is made up of unions of elements in the base $B$
+			\2	$\tau$ is itself a base for the topology
+		\1	\Theorem \textbf{Balls as a basis}
+			\2	$B = \{B(x;r)~:~x \in X$ and $r \in \mathbb{Q} \cap (0,\infty)\}$
+			\2	$B = \{B(x;1/n)~:~x \in X$ and $n \in \mathbb{N}$
+			\2	$B = \{B(e;1/n)~:~e \in E$ and $n \in \mathbb{N}$, where $E$ is a dense subset
+		\1	\Theorem \textbf{Intersection Property of a Base}
+			\2	$B_1,~B_2 \in B$ implies $B_1 \cap B_2 \ne \emptyset$
+		\1	\Definition \textbf{Subbase}
+			\2	A cover of $X$
+			\2	$\bigcup_{s \in S} s = X$
+	\section*{Continuous Functions on Topological Spaces}
+		\1	\Definition \textbf{Continuous Function}
+			\2	For every neighborhood $V$ of $f(x)$ in $Y$, there exists a
+					neighborhood $U$ of $x$ in $X$ such that $f(U) \subseteq V$ 
+					(eqvuivalently $U \subseteq f^{-1}(V)$)
+			\2	A function is continuous if for every open set $U$ in $Y$, 
+					$f^{-1}(U) \in \tau$
+			\2	Composition of continuous functions is continuous
+		\1	\Definition \textbf{Product Topology}
+			\2	$X = X_1 \cross X_2 \cross ... \cross X_n$
+			\2	$\tau_k$ is a topology on $X_k$
+			\2	The product topology $\tau$ is the smallest topology so 
+					that $\pi_k~:~(X,\tau) \rightarrow (X_k,\tau_k)$ the projection
+					maps are continuous
+		\1	\Definition \textbf{Open Map}
+			\2	For every open subset $U$ of $X$, its image $f(U) \in Y$ is open
+			\2	In the product topology, the projection maps are open maps
+		\1	\Definition \textbf{Homeomorphism}
+			\2	A continuous bijection between two topological spaces whose inverse
+					is also continuous
+			\2	Homeomorphic property is an equivalence relation
 	\end{outline}
 \end{document}
 
