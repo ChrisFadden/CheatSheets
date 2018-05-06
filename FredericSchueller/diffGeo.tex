@@ -1,0 +1,108 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+
+\title{Differential Geometry Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	\section*{Topological Manifolds and Bundles}
+	\begin{outline}		
+		\1	\Definition \textbf{Topological Manifolds}
+			\2	A paracompact, Hausdorff, topological space $(M,\mathcal{O})$ is
+					called a $d$-dimensional topological manifold if for every point
+					$p \in M$, there exists a neighborhood $U(p)$ and a homeomorphism
+					$x~:~U(p) \rightarrow \mathbb{R}^d$.  The dimension of the manifold
+					is given by $\text{dim}(M) = d$
+			\2	A submanifold can be defined if $N \subseteq M$ and $(N,\mathcal{O}|_N)$
+					is again a manifold
+			\2	The product manifold is defined if $(M,\mathcal{O}_M)$ and 
+					$(N,\mathcal{O}_N)$ are topological manifolds of dimension $m$ and
+					$n$, then the product manifold is of dimension $m + n$ and
+					is represented by $(M \cross N,\mathcal{O}_{M \cross N})$.
+		\1	\Definition \textbf{Bundle}
+			\2	A bundle is a triple $(E,\pi,M)$ where $E$ and $M$ are topological
+					manifolds called the total space (E) and base space (M), while
+					$\pi$ is a continuous surjective map $\pi~:~E \rightarrow M$ called
+					the projection map.
+			\2	Bundles can often be denote by $(E,\pi,M) \equiv E \rightarrow_{\pi} M$
+		\1	\Definition \textbf{Fibre}
+			\2	For a bundle $E \rightarrow_{\pi} M$, let $p \in M$, then
+					the fibre $F$ at point $p$ is $F_p = \pi^{-1}(p)$
+		\1	\Definition \textbf{Fibre Bundle}
+			\2	$E \rightarrow_{\pi} M$ and let $F$ be a manifold,\\ 
+					and $\forall~p \in M~:~\pi^{-1}(p) \cong_{top} F$
+		\1	\Definition \textbf{Pull-back Bundle}
+			\2	Let $E \rightarrow_{\pi} M$ be a bundle, and let $f~:~N \rightarrow M$
+					be a map between manifolds.  The pullback bundle is induced by $f$, so
+					that $E_2 \rightarrow_{\tau} N$, where $E_2 = \{(n,e) \in N \cross E~:~f(n) = \pi(e)\}$
+		\1	\Definition \textbf{Chart}
+			\2	Let $(M,\mathcal{O})$ be a $d$-dimensional manifold, then the pair
+					$(U,x)$ where $U \in \mathcal{O}$ and $x~:~U \rightarrow \mathbb{R}^d$
+					is a homeomorphism, the pair $(U,x)$ is the chart of the manifold
+			\2	$x^i(p)$ are the coordinates of $p \in U$ 
+		\1	\Definition \textbf{Atlas}
+			\2	A collection of charts $\mathscr{A} = \{(U_a,x_a) ~|~a \in \mathcal{A}\}$
+					is called an atlas if $\bigcup U_a = M$
+			\2	Two charts $(U,x)$ and $(V,y)$ are $C^k$ compatible if
+					the map $y \circ x^{-1}~:~x(U \cap V) \rightarrow y(U \cap V)$ is
+					$C^k$
+			\2	An atlas is a maximal atlas if for every $(U,x) \in \mathscr{A}$,
+					$(V,y) \in \mathscr{A}$ for all $(V,y)$ charts that are $C^k$ 
+					compatible with $(U,x)$
+			\2	$C^k$ atlases $\mathscr{A}$ and $\mathscr{B}$ are compatible if
+					$\mathscr{A} \cup \mathscr{B}$ is again a $C^k$ atlas
+	\section*{Differenitable Manifolds}
+		\1	\Theorem \textbf{Whitney}
+			\2	Any maximal $C^k$ atlas with $k \ge 1$ contains a $C^{\infty}$
+					atlas
+			\2	Any two maximal $C^k$ atlases which contain the same $C^{\infty}$
+					atlas are identitcal
+		\1	\Definition \textbf{Smooth Map}
+			\2	Let $\phi~:~M \rightarrow N$, where $(M,\mathcal{O},\mathscr{A}_M)$
+					and $(N,\mathcal{O}_N,\mathscr{A}_N)$ are $C^k$ manifolds.
+					$\phi$ is $C^k$ differentiable at $p \in M$ if for some charts
+					$(U,x) \in \mathscr{A}_M$, $p \in U$, $(V,y) \in \mathscr{A}_N$
+					$\phi(p) \in V$ and $y \circ \phi \circ x^{-1}$ is $k$-times differentiable
+					at $x(p) \in \mathbb{R}^{\text{dim}(M)}$
+			\2	The map $\phi$ is smooth if it is infinitely differentiable $C^{\infty}$
+		\1	\Definition \textbf{Diffeomorphism}
+			\2	$\phi~:~M \rightarrow N$ is a bijective map between smooth manifolds,
+					$\phi$ and $\phi^{-1}$ are smooth, then $\phi$ is a diffeomorphism
+			\2	Two manifolds $(M,\mathcal{O}_M,\mathscr{A}_M)$ and 
+					$(N,\mathcal{O}_N,\mathscr{A}_N)$ are diffeomorphic if there exists
+					a diffeomorphism $\phi~:~M \rightarrow N$ between them.
+			\2	$M \cong_{diff} N$
+		\1	\Theorem \textbf{Moise}
+			\2	Let $\text{dim}(M) = 1,2,\text{ or } 3$, then there is a unique
+					smooth structure on $M$ up to diffeomorphism.
+	%Chapter 8 (pg. 54/60)	
+	\end{outline}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
