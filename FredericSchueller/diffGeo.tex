@@ -79,8 +79,90 @@
 		\1	\Theorem \textbf{Moise}
 			\2	Let $\text{dim}(M) = 1,2,\text{ or } 3$, then there is a unique
 					smooth structure on $M$ up to diffeomorphism.
-	%Chapter 8 (pg. 54/60)	
-	\end{outline}
+	
+	\section*{Tensors}
+		\1	\Definition \textbf{K-Vector Space}
+			\2	A triple $(V,*,+)$ with a field $(K)$ with the following operations:
+				\3	"Cross Product" $\cross~:~V \cross V \rightarrow V$
+				\3	"Scalar Multiplication" $*~:~K \cross V \rightarrow V$
+			\2	Vector Spaces are linear spaces
+				\3	Elements $V$ are called vectors
+				\3	Elements of $K$ are scalars
+			\2	\Definition \textbf{Linear Map}
+				\3	$f(\lambda v_1 + v_2) = \lambda f(v_1) + f(v_2)$
+				\3	A bijective linear map is an isomorphism between vector spaces
+		\1	\Definition \textbf{Hom Space}
+			\2	$Hom(V,W) \equiv \{f~:~f~:~V \rightarrow_{Linear} W\}$
+				\3	Also a vector space
+			\2	\Definition \textbf{Endomorphism}
+				\3	$End(V) \equiv Hom(V,V)$
+		\1	\Definition \textbf{Dual Vector Space}
+			\2	$V^* \equiv Hom(V,K)$
+				\3	Space of linear maps from $V$ to the underlying field $K$
+				\3	Linear functionals, covectors, one-forms are all equivalent names
+						for elements of the dual space
+		\1	\Definition \textbf{Bilinear Maps}
+			\2	$f(\lambda v_1 + v_2,w) = \lambda f(v_1,w) + f(v_2,w)$
+			\2	$f(v,\lambda w_1 + w_2) = \lambda f(v,w_1) + f(v,w_2)$
+			\2	For a fixed second argument, is linear in the argument that is summed
+			\2	NOT A LINEAR MAP (it is a special kind of nonlinear map)
+
+		\1	\Definition \textbf{Tensor}
+			\2	A $(p,q)$ tensor $T^p_q$ on $V$ is a multilinear map
+			\2	$T~:~V^* \cross ... \cross V^*_p \cross V \cross ... \cross V_q \rightarrow K$
+			\2	$T^1_1 = End(V^*)$
+
+		\1	\Definition \textbf{Dual Basis}
+			\2	Let a basis $B$ for $V$ be given as $B = \{e_1,...,e_n\}$
+			\2	The dual basis is the unique basis $B_2 = \{f^1,...,f^n\}$ such
+					that $f^i(e_j) = \delta_j^i$
+
+	\section*{Tangent Vector Spaces}
+		\1	Let $M$ be a manifold, define the infinite-dimensional vector space over
+				$\mathbb{R}$ in the intuitive way (i.e. $(f+g)(p) \equiv f(p) + g(p)$ etc.)
+		\1	\Definition \textbf{Smooth Curve}
+			\2	Smooth map $\gamma~:~\mathbb{R} \rightarrow M$
+			\2	\Definition \textbf{Directional Derivative} 
+				\3	$(f \circ \gamma)'(0)$, where $\gamma(0) = p$
+			\2	\Definition \textbf{Tangent Vector}
+				\3	$X_{\gamma,p} ~:~f \rightarrow (f \circ \gamma)'(0)$
+				\3	The "velocity" of the manifold at a point along curve $\gamma$
+		\1	\Definition \textbf{Tangent Space}
+			\2	$T_pM \equiv \{X_{\gamma,p}~|~\gamma \text{ is a smooth curve through p}\}$
+			\2	$(\frac{\partial}{\partial x^a})_p \equiv X_{\gamma(a),p}$
+				\3	Components of the Tangent space are the tangent vectors
+		\1	\Definition \textbf{Cotangent Space}
+			\2	$T_p^*M \equiv (T_pM)^*$
+			\2	$(dx^a)_p \equiv X^*_{\gamma(a),p}$
+				\3	Components of cotangent space are differential forms
+			\2	$(dx^a) \frac{\partial}{\partial x^b} = \delta_b^a$
+		\1	\Definition \textbf{Gradient}
+			\2	$d_p f~:~T_pM \rightarrow \mathbb{R}$
+		\1	\Definition \textbf{Push-forward}
+			\2	$\phi~:~M \rightarrow N$
+			\2	The pushforward of $\phi$ is the linear map
+					$(\phi_*)_p~:~T_pM \rightarrow_{Linear} T_{\phi(p)}N$
+			\2	push-forwards map vectors to vectors
+		\1	\Definition \textbf{Pull-back}
+			\2	The pullback of a differential form on $N$ is given by:
+				\3	$(\phi^*)_p ~:~T^*_{\phi(p)}N \rightarrow T_p^*M$
+				\3	$(\phi^*)_p(\omega)~:~T_pM \rightarrow \mathbb{R}$
+			\2	Pull-backs map covectors to covectors
+		\1	\Definition \textbf{Immersion}
+			\2	$\phi$ is an immersion of $M$ into $N$ if $d_p\phi \equiv ~:~T_pM \rightarrow T_{\phi(p)}N$
+					is injective $\forall~p \in M$
+			\2	$M$ is an immersed submanifold of $N$
+			\2	$\phi$ is a submersion if it is surjective
+		\1	\Definition \textbf{Embedding}
+			\2	$\phi$ must be an immersion
+			\2	$M \cong_{top} \phi(M) \subseteq N$
+			\2	$M$ is homeomorphic to $\phi(M)$ in the subset topology from $N$	
+		\1	\Theorem \textbf{Whitney}
+			\2	Any smooth manifold can be embedded in $\mathbb{R}^{\text{2 dim(M)}}$
+			\2	Any smooth manifold can be immersed in $\mathbb{R}^{\text{2 dim(M) - 1}}$
+		
+		%Chapter 11 (Tensors over a ring)
+		\end{outline}
 \end{document}
 
 
