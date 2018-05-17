@@ -1,0 +1,212 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+
+\title{Mathematics of Computerized Tomography Cheat Sheet}
+\begin{document}
+	\maketitle	
+	\begin{outline}		
+		\section*{Fourier Transform}
+			\1	Continuous Functions $C^{\infty}(\mathbb{R})$
+				\2	Rigorous Definition of Continuous Function $C^0(\mathbb{R})$
+					\3	$f~:~\mathbb{R} \rightarrow \mathbb{R}$
+					\3	$f~:~x \mapsto y$
+					\3	Open set $(y_0,y_1)$ in $y$ has a preimage $(x_0,x_1) \equiv f^{-1}(y_0,y_1)$
+							that is also open
+					\3	\textbf{EXAMPLE:} What about $f(x) = x^2?$
+						\4	$(-2,2) \mapsto [0,4)$?
+						\4	Answer:	The initial open set must be in the image, i.e in $y$,
+								and those are definitely open in $x$	
+				\2	$C^k$ Functions
+					\3	$C^1$ Functions are functions with a continuous first derivative
+					\3	$C^k$ Functions are functions with $k$ continuous derivatives
+					\3	\textbf{EXAMPLE:}
+						\4	$f(x) = \begin{cases} x & x \ge 0 \\ 0 & x < 0   \end{cases}$
+						\4	Is Continuous, but not differentiable, so $C^0(\mathbb{R})$
+					\3	\textbf{EXAMPLE:}
+						\4	$f(x) = x^2sin(\frac{1}{x})$, $f(0) = 0$
+						\4	$f'(x) = -cos(\frac{1}{x}) + 2x sin(\frac{1}{x})$, $f'(x) = 0$
+						\4	This function is differentiable, but the derivative is not 
+								continuous.  
+						\4	$C^1$ is a stronger condition than just being differentiable
+					\3	\textbf{EXAMPLE:}
+						\4	$f(x) = \abs{x}^{k+1}$
+						\4	Has $k$ continuous derivatives, so $C^{k}$ (if $k$ is even)
+				\2	$C^{\infty}$ Functions
+					\3	Functions with an infinite amount of continuous derivatives 
+							($C^{\infty}$) are called "smooth"
+					\3	\textbf{EXAMPLE:}
+						\4	$f(x) = e^{-1/x}$, $f(x<0) = 0$
+						\4	Has infinitely many continuous derivatives
+				\2	Analytic Function $C^{\omega}$
+					\3	Analytic functions are functions that have a convergent Taylor
+							Series
+					\3	Analytic Functions are always smooth ($C^{\infty}$)
+					\3	If a complex function has a convergent complex Taylor (Laurent)
+							Series, then it is complex differentiable (a very nice property)
+					\3	\textbf{EXAMPLE:}
+						\4	Polynomials
+						\4	Exponential functions
+						\4	Trig functions, logarithm functions
+					\3	\textbf{EXAMPLE:}
+						\4	The function $f(x) = e^{-1/x}$, $f(x<0) = 0$, while smooth
+								is not analytic
+						\4	ALL ANALYTIC FUNCTIONS ARE SMOOTH
+						\4	NOT ALL SMOOTH FUNCTIONS ARE ANALYTIC	
+			\1	Lesbegue Space ($L_p$)
+				\2 $L_p(\mathbb{R}) \equiv \forall~f~:~(\int_S \abs{f}^p d\mu)^{\frac{1}{p}} < \infty$
+					\3	$S$ is a set
+					\3	$\mu$ is a measure on the set $S$ and a $\sigma$-algebra
+					\3	Measure theory is a whole course by itself, and is needed for the
+							completely rigorous definition...
+				\2	$L_2$ Spaces
+					\3	$f~:~\sqrt{\int_{-\infty}^{\infty} \abs{f(x)}^2 dx} < \infty$
+					\3	Square-integrable functions
+					\3	Very popular function space, since it forms a natural inner
+							product, a desirable property when doing math/physics
+				\2	$L_1$ Spaces
+					\3	$f~:~\int_{-\infty}^{\infty} \abs{f(x)} dx < \infty$
+					\3	Absolutely integrable functions
+					\3	Less nice than $L_2$ (no natural inner product)
+					\3	Functions can be in $L_1$, but not $L_2$
+					\3	\textbf{EXAMPLE:}
+						\4	$f(x) = \frac{1}{\sqrt{x}}$, $x = (0,1)$
+						\4	As $x \rightarrow 0$, $L_1$ has no problem, but $L_2$ transforms
+								it into $log(x)$, which has a problem as $x \rightarrow 0$
+					\3	\textbf{EXAMPLE:}
+					\3	Functions can be in $L_2$, but not in $L_1$
+						\4	$f(x) = \frac{1}{x}$ (Harmonic series integral doesn't converge)
+			\1	Fourier Transform
+				\2	Fourier Transform: $\hat{f}(k) = (2\pi)^{-n/2} \int_{\mathbb{R}^n}e^{-jxk}f(x) dx$
+				\2	Inverse Fourier Transform: $\bar{f}(x) = (2\pi)^{-n/2} \int_{\mathbb{R}^n}e^{jxk} \hat{f}(k) dk$
+				\2	Transform formula are valid only for functions in $L_1$
+				\2	Defining the transform this way, with the $(2\pi)^{-n/2}$ out front
+						means that the transform is orthonormal (Very nice property)
+				\2	\textbf{EXAMPLE: 1D}
+					\3	$\hat{f}(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-jxk}f(x) dx$
+					\3	$\bar{f}(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{jxk} \hat{f}(k) dk$
+			\1	Fourier Properties ($L_1(\mathbb{R}^n)$)
+				\2	R1 (Scaling Property):	$f(cx) \mapsto \frac{1}{\abs{c}^n} \hat{f}(\frac{k}{c})$
+				\2	R2 (Shift Property): $f(x - y) \mapsto e^{-jky}\hat{f}(k)$
+				\2	R3 (Derivative Property): $\pd[m]{f}{x} \mapsto j^{\abs{m}}k^m \hat{f}(k)$
+					\3	(Holds for $m < 0$, i.e. integrals instead of derivatives)
+				\2	R3	(Derivative in Frequency): $(x^mf(x)) \mapsto j^{\abs{m}} \pd[m]{f}{k}$
+				\2	R4 (Convolution):	$f * g \mapsto (2\pi)^{n/2} \hat{f}\hat{g}$
+				\2	R4 (Convolution):	$fg \mapsto (2\pi)^{-n/2}\hat{f} * \hat{g}$
+				\2	R5 (Parseval Relation): $\int_{\mathbb{R}^n} f \hat{g} dx = \int_{\mathbb{R}^n}\hat{f}gdx$
+				\2	Plancharel's Theorem:	
+					\3	If $f$ is in both $L_1$ and $L_2$ then:
+					\3	$\int_{-\infty}^{\infty} \abs{f(x)}^2 dx = \int_{-\infty}^{\infty} \abs{\hat{f}(k)}^2 dk$
+			\1	Compact Support
+				\2	Functions with compact support in general are only nonzero over a compact subset
+				\2	In Euclidean space $\mathbb{R}^n$, this means than it is nonzero
+						over a closed ($[a,b]$) subset that is bounded
+				\2	Fourier Transform a compactly supported function is complex analytic $C^{\omega}(\mathbb{C}^n)$
+			\1	Schwartz Space
+				\2	$\mathscr{S}(\mathbb{R}^n)$ contains functions that are smooth
+						($C^{\infty}$) and for which the supremeum ($sup~\approx~max$)
+						of $\abs{x^a \pd[b]{f}{x}} < \infty$ for all $a,b \in \mathbb{N}^n$
+				\2	Schwartz functions decay rapidly (faster than any polynomial)
+				\2	Functions with compact support are in $\mathscr{S}$
+				\2 Schwartz Spaces are where $\bar{\hat{f}} = \hat{\bar{f}} = f$
+					\3	i.e. The Fourier transform can be inverted to recover the original function
+					\3	Fourier inversion can technically be done a slightly larger class
+							of functions in $L_1$, but certainly not all of $L_1$, and definitely
+							not all of $L_2$	
+			\1	Dual Space 
+				\2	Linear Algebra Analog to Functional Analysis
+					\3	What we've done so far (a crash course in functional analysis) has
+							an analog in finite dimensional linear algebra
+					\3	In linear algebra, we have  $x = [x_1,x_2,...,x_n]^T$ as
+							a column vector
+					\3	In what we have done, the functions are equivalent to the elements
+							in the column vector
+				\2	Definition of Dual Space
+					\3	A dual space is different from a function space (column vector).
+					\3	A function over the real numbers takes a number $x \in \mathbb{R}$
+							as input, and returns $y \in \mathbb{R}$ as the image
+					\3	A real linear functional takes as input a function $x \in C^k(\mathbb{R})$
+							and returns a real number $y \in \mathbb{R}$
+					\3	Linear Functionals, members of the dual space, can be thought of
+							as the "transpose" of the function, as a row vector
+					\3	Linear functional $\approx$ $x^T = [x_1,x_2,...,x_n]$
+				\2	Functionals are only rigorously defined by how they
+						act on other functions.  Their properties can be found in an abstract
+						setting, but any calculation must involve other actual functions
+			\1	Tempered Distributions
+				\2	Elements of the Dual Space to Schwartz Functions, $T \in \mathscr{S}'$
+						are called tempered distributions
+				\2	Distributions are differentiated according to:
+					\3	$\pd[m]{Tf}{x} = (-1)^{\abs{m}} T \pd[m]{f}{x}$
+				\2	The Fourier Transform is extended to tempered distributions via:
+					\3	$\hat{T}f = T\hat{f}$
+			\1	Dirac Delta Function
+				\2	The Dirac Delta Function $\delta \in \mathscr{S}'$ is a tempered distribution
+				\2	As a tempered distribution, it is defined by how it acts on functions.
+						The Dirac delta function could be defined as
+						$\delta(f,a) \equiv \delta_af = f(a)$
+				\2	This is usually written (through abuse of notation) as:
+						$\int_{-\infty}^{\infty} f(x) \delta(x - a) = f(a)$
+				\2	Applying the formula for finding the Fourier Transform of a distribution
+						leads to $\delta_a(x) \mapsto (2\pi)^{-n/2}e^{-jka}$
+				\2	The inverse Fourier transform, finding a $g(k) \mapsto \delta_a(x)$
+						is a little more involved, and basically comes down to finding a
+						limiting process definition of the delta function
+						\3	Different authors have different preferences for defining the
+								limiting process.  Natterer has chosen to go with Bessel functions,
+								other authors use Gaussians that continuously shrink in width,
+								others use sinc functions that continuously shrink in width.
+						\3	Several different functions can converge to the delta function,
+								and so each is equally valid, and it comes down to personal
+								preference how you define it.  Engineers ignore it all together
+								and just say the inverse Fourier transform of a complex exponential
+								is the delta function
+			\1	Hilbert Transform
+				\2	A second distribution is the Cauchy principal value integral, which
+						is a functional in the dual Schwartz space $(\mathscr{S}')$
+				\2	The Cauchy Principal Value Integral is defined as:
+					\3	$Tf \equiv \int \frac{f(x)}{x} dx = \int_{-\infty}^{\infty} \frac{f(x) - f(-x)}{2x}dx$
+				\2	The Fourier Transform has a derivation that Natterer does, and it
+						comes out to:
+					\3	$\hat{T}f = -j (\frac{\pi}{2})^{1/2} \int_{-\infty}^{\infty} sgn(k) f(k) dk$
+					\3	$\hat{T}(k) = -j (\frac{\pi}{2})^{1/2}sgn(k)$
+				\2	The Hilbert Transform is the convolution of the functional and the
+						function, with a factor of $\frac{1}{\pi}$, and is again another
+						functional $H \in \mathscr{S}'$
+					\3	$Hf(x) = \frac{1}{\pi}\int_{-\infty}^{\infty} \frac{f(y)}{x-y}dy$
+				\2	The Fourier Transform can again be found using the distributional form as
+					\3	$Hf(x) \mapsto -j sgn(k) \hat{f}(k)$
+					\3	Therefore, the Hilbert transform of a function adds a phase shift
+							to the Fourier transform
+				\2	\textbf{EXAMPLE:}
+					\3	$H 1 = \frac{1}{\Pi t}$ where $\Pi$ is the "Shah" distribution
+						\4	$\Pi$ is just the sum of delta functions, also known as a comb filter
+					\3	$H sin(\omega t) = -sgn(\omega) cos(\omega t)$
+					\3	$H cos(\omega t) = sgn(\omega) sin(\omega t)$
+					\3	$H \frac{1}{t^2 + 1} = \frac{t}{t^2 + 1}$
+				\2	Hilbert Transforms can be used to ensure that a signal has no
+						negative frequency components
+					\3	$a(t) = f(t) + j Hf(t)$
+					\3	$a(t)$ is called the analytic representation of $f(t)$
+					\3	This can be very useful in signal processing applications, 
+							especially communications, where you are modulating baseband
+							signals and want to efficiently manipulate the modulated signal.
+					\3	NOTE: ANALYTIC REPRESENTATION DOES NOT MEAN ITS ANALYTIC (nice properties
+							including complex differentiation etc.)
+		\section*{Special Functions}
+			\1	Gamma Function
+			\1	Bessel Function
+			\1	Gegenbauer Polynomials
+			\1	Mellin Transform
+			\1	Spherical Harmonics
+			\1	Hypergeometric Function (w/ $\Gamma$ functions)
+		\section*{Sobolev Spaces}
+			\1	Hilbert Space	
+			\1	Sobolev Space
+			
+	\end{outline}
+\end{document}
+
