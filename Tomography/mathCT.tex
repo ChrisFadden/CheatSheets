@@ -148,6 +148,7 @@
 				\2	As a tempered distribution, it is defined by how it acts on functions.
 						The Dirac delta function could be defined as
 						$\delta(f,a) \equiv \delta_af = f(a)$
+						\3	$\delta~:~C^k(\mathbb{R}) \cross \mathbb{R} \rightarrow \mathbb{R}$
 				\2	This is usually written (through abuse of notation) as:
 						$\int_{-\infty}^{\infty} f(x) \delta(x - a) = f(a)$
 				\2	Applying the formula for finding the Fourier Transform of a distribution
@@ -198,7 +199,27 @@
 							including complex differentiation etc.)
 		\section*{Special Functions}
 			\1	Gamma Function
+				\2	Definition
+					\3	$\Gamma(z) \equiv \int_0^{\infty} x^{z-1} e^{-x} dx$
+					\3	$\Gamma(z) = \frac{e^{-\gamma z}}{z}\Pi_{n=1}^{\infty} (1 + \frac{z}{n})^{-1} e^{z/n}$
+						\4	$\gamma \approx 0.577$ is the Euler-Mascheroni constant
+				\2	Properties
+					\3	$\Gamma(n) = (n-1)!$
+					\3	$z \Gamma(z) = \Gamma(z+1)$	
+					\3	$\Gamma(1-z)\Gamma(z) = \frac{\pi}{sin(\pi z)}$
+					\3	$\Gamma(z)\Gamma(z+\frac{1}{2}) = 2^{1 - 2z} \sqrt{\pi} \Gamma(2z)$
+					\3	$\Gamma(\frac{1}{2}) = \sqrt{\pi}$
+					\3	Complex Analytic (Very nice) over $\mathbb{C}$ except the negative integers...
+				\2	Derivative of Gamma Function
+					\3	$\Gamma'(m+1) = m!(-\gamma + \sum_{k=1}^m \frac{1}{k})$
+					\3	$\od[m]{\Gamma(x)}{x} = \int_0^{\infty} t^{x-1}e^{-t}(\text{ln} t)^n dt$
 			\1	Bessel Function
+				\2	Solution of Bessel's differential equation
+					\3	$x^2 \od[2]{y}{x} + x \od{x}{y} + (x^2 - \alpha^2)y = 0$
+					\3	Comes up alot when dealing with Cylindrical and Spherical Coordinate systems
+					\3	Especially calculating Laplacians
+				\2	Definition (First Kind)
+					\3	$J_{\alpha} = \sum_{m=0}^{\infty} \frac{(-1)^m}{m! \Gamma(m + \alpha + 1)} (\frac{x}{2})^{2m+\alpha}$
 			\1	Gegenbauer Polynomials
 			\1	Mellin Transform
 			\1	Spherical Harmonics
