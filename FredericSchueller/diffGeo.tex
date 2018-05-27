@@ -161,8 +161,144 @@
 			\2	Any smooth manifold can be embedded in $\mathbb{R}^{\text{2 dim(M)}}$
 			\2	Any smooth manifold can be immersed in $\mathbb{R}^{\text{2 dim(M) - 1}}$
 		
-		%Chapter 11 (Tensors over a ring)
-		\end{outline}
+	\section*{Tensors Over a Ring}
+		\1	\Definition \textbf{Vector Fields}
+			\2	Set of all vector vields on $M$ is $\Gamma(TM)$
+			\2	$\Gamma(TM) \equiv \{ \sigma~:~M \rightarrow TM | \sigma 
+					 \text{smooth and } \pi \circ \sigma = id_{M}\}$
+				\3	$\pi$ is the projection map $\pi~:~TM \rightarrow M$
+			\2	Equivalent definition:
+				\3	$\sigma$ is a derivation on the algebra $C^{\infty}(M)$
+				\3	$\sigma~:~C^{\infty}(M) \rightarrow C^{\infty}(M)$
+				\3	$\sigma(fg) = g\sigma(f) + f\sigma(g)$
+			\2	Example
+				\3	$\sigma~:~U \rightarrow TU$
+				\3	$p~\mapsto~(\frac{\partial}{\partial x^a})_p$
+				\3	$\frac{\partial}{\partial x^a}~:~C^{\infty}(U) \rightarrow C^{\infty}(U)$
+				\3	$f~\mapsto~\frac{\partial}{\partial x^a}(f) = \partial_a(f \circ x^{-1}) \circ x = \partial_a f$
+		\1	\Definition \textbf{Push-forward on Manifold}
+			\2	$\phi_*~:~TM \rightarrow TN$
+			\2	$X~\mapsto~(\phi_*)_{\pi(X)}(X)$
+		\1	\Definition \textbf{Push-forward Vector Field}
+			\2	$\Phi_*(\sigma) \in \Gamma(TN)$	
+			\2	$\Phi_*(\sigma) \equiv \phi_* \circ \sigma \phi^{-1}$
+		\1	\Definition \textbf{Module}
+			\2	$\Gamma(TM)$ is a module (vector space over a ring) over $C^{\infty}(M)$
+			\2	The triple $(C^{\infty}(M),+,\cdot)$ is a ring
+		\1	\Definition \textbf{Properties of Modules (M)}
+			\2	Finitely generated if it has a finite generating set
+			\2	Free if it has a basis
+			\2	Projective if it is a direct summand of a free module $F$ if:
+				\3	$M \oplus Q = F$
+				\3	Every free module is also projective
+			\2	Examples
+				\3	$\Gamma(T\mathbb{R}^2)$ is free
+				\3	$\Gamma(TS^2)$ is not free
+		\1	\Definition \textbf{Basis of a Module}
+			\2	Finitely generated module F is free
+			\2	$d \in \mathbb{N}$ is the cardinality of the basis
+			\2	$F \cong R \oplus R \oplus ..._d \equiv R^d$
+		\1	\Theorem \textbf{Serre, Swan}
+			\2	$E$ is a vector fibre bundle over smooth manifold $M$
+				\3	Every fibre of a vector fibre bundle is a vector space
+			\2	$\Gamma(E)$ is a finitely generated, projective $C^{\infty}(M)$ module
+		\1	\Theorem \textbf{Hom spaces over R}
+			\2	$\text{Hom}_R(P,Q) \equiv \{\phi~:~P \rightarrow Q\}$
+			\2	$\text{Hom}_R(P,Q)$ is a finitely generated, projective $R$-module
+			\2	Dual of the module
+				\3	$\text{Hom}_{C^{\infty}(M)}(\Gamma(TM),C^{\infty}(M)) \equiv \Gamma(TM)^* = \Gamma(T^*M)$
+				\3	Covectors (differential forms)
+		\1	\Definition \textbf{Pull-back}
+			\2	$\phi~:~M \rightarrow N$, $\omega \in \Gamma(T^*N)$
+			\2	$\Phi^*(\omega) \in \Gamma(T^*M)$
+			\2	$\Phi^*(\omega)~:~M \rightarrow T^*M$
+			\2	$p~\mapsto~\Phi^*(\omega)(p)$
+	
+	\section*{Differential Forms}
+		\1	\Definition \textbf{Differential Form}
+			\2	$(0,n)$ smooth tensor field $\omega$ which is totally anti-symmetric
+			\2	$\omega(X_1,...,X_n) = sgn(\pi) \omega(X_{\pi(1)},...,X_{\pi(2)})$
+				\3	$pi \in S_n$
+				\3	$X_i \in \Gamma(TM)$
+			\2	$\Omega^n(M)$ is the set of all $n$-forms on $M$
+				\3	$C^{\infty}$-module
+				\3	$\Omega^0(M) = C^{\infty}(M)$
+				\3	$\Omega^1(M) = \Gamma(T^*M)$
+		\1	\Definition \textbf{Pull-back}
+			\2	$\Phi^*(\omega) \in \Omega^n(M)$
+			\2	$\Phi^*(\omega)~:~M \rightarrow T^*M$
+			\2	$\Phi^*(\omega)(p)(X_1,...,X_n) \equiv \omega(\phi(p))(\phi_*(X_1),...,\phi_*(X_n))$
+				\3	$X_i \in T_pM$
+			\2	Vectors are pushed forward
+			\2	Forms are pulled back
+		\1	\Definition \textbf{Wedge Product}
+			\2	$\wedge~:~\Omega^n(M) \cross \Omega^m(M) \rightarrow \Omega^{n+m}(M)$
+			\2	$\sigma \wedge \omega = \omega \otimes \sigma - \sigma \otimes \omega$
+			\2	$(f\omega_1 + \omega_2) \wedge \sigma = f \omega_1 \wedge \sigma + \omega_2 \wedge \sigma$
+		\1	\Theorem \textbf{Pull-back and Wedge}
+			\2	$\Phi^*(\omega \wedge \sigma) = \Phi^*(\omega) \wedge \Phi^*(\sigma)$
+	
+	\section*{Grassman Algebra}
+		\1	\Definition \textbf{Grassman Algebra}
+			\2	$Gr(M) \equiv \Omega(M) = \bigoplus_{n=0}^{\text{dim}M} \Omega^n(M)$
+			\2	Grassman Algebra is the algebra $(\Omega(M),+,\cdot,\wedge)$
+		\1	\Definition \textbf{Exterior Derivative}
+			\2	$d~:~C^{\infty}(M) \rightarrow \Gamma(T^*M)$
+			\2	$f~\mapsto~df$
+			\2	$df~:~\Gamma(TM) \rightarrow C^{\infty}(M)$
+			\2	$X~\mapsto~df(X) = X(f)$
+			\2	$df = \partial_a f dx^a$
+			\2	$d(fg) = gdf + fdg$
+			\2	$d~:~\Omega^0(M) \rightarrow \Omega^1(M)$
+		\1	\Definition \textbf{Lie Bracket (Commutator)}
+			\2	$X,Y \in \Gamma(TM)$
+			\2	$[X,Y]~:~C^{\infty}(M) \rightarrow C^{\infty}(M)$
+			\2	$f~\mapsto~[X,Y](f) \equiv X(Y(f)) - Y(X(f))$
+			\2	EXAMPLE:
+				\3	$d\omega (X,Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X,Y])$
+		\1	\Theorem \textbf{Exterior Derivative and Wedge Product}
+			\2	$d(\omega \wedge \sigma) = d\omega \wedge \sigma + (-1)^n \omega \wedge d\sigma$
+			\2	$d\omega = d\omega_A \wedge dx^A$
+		\1	\Theorem \textbf{Exterior Derivative and Pullback}
+			\2	$\Phi^*(d\omega) = d(\Phi^*(\omega))$
+		\1	\Definition \textbf{Symplectic form}
+			\2	$d\omega = 0$ on $M$, $\omega \in \Omega^2(M)$
+			\2	$\forall~Y \in \Gamma(TM)~:~\omega(X,Y) = 0$ implies $X = 0$
+			\2	Manifold with symplectic form is a symplectic manifold
+	
+	\section*{de Rham Cohomology}
+		\1	\Definition \textbf{Closed and Exact Forms}
+			\2	Closed: $d\omega = 0$
+			\2	Exact: if $\exists~\sigma \in \Omega^{n-1}(M)~:~\omega = d\sigma$
+			\2	$\omega \in \Omega^n(M)$ is closed iff $\omega in \text{ker}(d~:~\Omega^n(M) \rightarrow \Omega^{n+1}(M)$
+			\2	$\omega \in \Omega^n(M)$ is exact iff $\omega \in \text{im}(d~:~\Omega^{n-1}(M) \rightarrow \Omega^n(M)$
+
+		\1	\Theorem \textbf{Composition of Exterior Derivative}
+			\2	$d^2 \equiv d \circ d = 0$
+			\2	Every Exact form is Closed
+		
+		\1	\Definition \textbf{Cohomology Subspaces}
+			\2	$Z^n \equiv \text{ker}(d~:~\Omega^n(M) \rightarrow \Omega^{n+1}(M))$
+				\3	Space of closed $n$-forms
+			\2	$B^n \equiv \text{im}(d~:~\Omega^{n-1}(M) \rightarrow \Omega^n(M))$
+				\3	Space of exact $n$-forms
+		\1	\Theorem \textbf{Poincare Lemma}
+			\2	$M \subseteq \mathbb{R}^d$ is a simply connected domain
+			\2	$Z^n = B^n$ $\forall~n > 0$
+			\2	Closed forms are exact
+		\1	\Definition \textbf{De Rham Cohomology Group}
+			\2	$H^n(M) \equiv Z^n / B^n$
+      \2	$Z^n / \sim$
+				\3	$\omega \sim \sigma$ iff $\omega - \sigma \in B^n$
+			\2	Exact forms are equivalent to closed forms iff
+					$H^n(M) \cong 0$
+		\1	\Theorem \textbf{De Rham's Theorem}
+			\2	$H^0(M) \cong \mathbb{R}^c$
+			\2	$c$ is the number of connected components of $M$
+			\2	$H^0(\mathbb{R}) \cong H^0(S^1) \cong \mathbb{R}$
+
+	\section*{Lie Groups and Lie Algebra}
+	\end{outline}
 \end{document}
 
 
