@@ -296,8 +296,159 @@
 			\2	$H^0(M) \cong \mathbb{R}^c$
 			\2	$c$ is the number of connected components of $M$
 			\2	$H^0(\mathbb{R}) \cong H^0(S^1) \cong \mathbb{R}$
-
 	\section*{Lie Groups and Lie Algebra}
+		\1	\Definition \textbf{Lie Group}
+			\2	A Group $(G,\cdot)$ where $G$ is a smooth manifold and:
+				\3	$\mu~:~G \cross G \rightarrow G$
+				\3	$(g_1,g_2) \mapsto g_1 \cdot g_2$
+				\3	$i~:~G \rightarrow G$
+				\3	$g~\mapsto g^{-1}$
+				\3	Are all smooth
+			\2	Dimension is the dimension of $G$ as a manifold
+			\2	Examples:
+				\3	$(\mathbb{R}^n,+)$ the $n$-dimensional translation group
+				\3	$(S^1,\cdot)$ is represented by $U(1) \equiv \{z \in \mathbb{C}~|~\abs{z} = 1\}$
+				\3	$[GL(n,\mathbb{R}),\circ] = \{\phi~:~\mathbb{R}^n \rightarrow 
+							\mathbb{R}^n ~|~\text{det}\phi \ne 0\}$ General Linear Group
+				\3	$[O(p,q),\circ] \equiv \{\phi~:~V \rightarrow V~|~
+							\forall~v,w \in V~:~\braket{\phi(v)}{\phi(w)} = \braket{v}{w}\}$
+		\1	\Definition \textbf{Left Translation map}
+			\2	$l_g~:~G \rightarrow G$
+			\2	$h \mapsto l_g(h) \equiv g \cdot h \equiv gh$
+			\2	Always a diffeomorphism for Lie Groups
+			\2	$l_g(hk) \ne l_g(h)l_g(k)$
+			\2	$l_g \circ l_h = l_{gh}$
+		\1	\Definition \textbf{Push Forward}
+			\2	$(L_g)_*~:~\Gamma(TG) \rightarrow \Gamma(TG)$
+			\2	$X \mapsto (L_g)_*(X)$
+			\2	$(L_g)_*(X)(h) \equiv (l_g)_*(X(g^{-1}h))$
+			\2	$(L_g)_*(X)(f) \equiv X(f \circ l_g)$
+			\2	\Theorem $(L_g)_* \circ (L_h)_* = (L_{gh})_*$
+		\1	\Definition \textbf{Left-Invariant}
+			\2	$\forall~g \in G~:~(L_g)_*(X) = X$
+			\2	$X(f \circ l_g) = X(f) \circ l_g$
+			\2	Set of all Left Invariant vector fields is $\mathcal{L}(G) \subseteq \Gamma(TG)$
+			\2	\Theorem $\mathcal{L}(G) \cong_{vec} T_eG$
+				\3	$e \in G$ is the identity element
+			\2	\Theorem $\text{dim}\mathcal{L}(G) = \text{dim} G$
+			\2	\Theorem $\mathcal{L}(G)$ is a Lie subalgebra of $\Gamma(TG)$
+				\3	$\forall~X,Y \in \mathcal{L}(G)~:~[X,Y] \in \mathcal{L}(G)$
+				\3	$(\Gamma(TM),+,\cdot,[-,-])$ is an infinite-dimensional Lie algebra
+			\2	\Definition $\mathcal{L}(G)$ is the associated Lie algebra of $G$
+	\section*{Classification of Lie Algebras}
+		\1	\Definition \textbf{Abelian Lie algebra}
+			\2	$\forall~x,y \in L~:~[x,y] = 0$
+		\1	\Definition \textbf{Lie Algebra Ideal}
+			\2	$[I,L] \subseteq I$
+			\2	$\forall~x \in I~:~\forall~y \in L~:~[x,y] \in I$
+		\1	\Definition \textbf{Simple Lie algebra}
+			\2	Simple if it is non-abelian and it contains no non-trivial ideals ($0$ and $L$)
+			\2	Semi-simple if it contains to non-trivial abelian ideals
+			\2	All simple Lie algebra is also semi-simple
+		\1	\Definition \textbf{Derived Subalgebra Sequence}
+			\2	$L' \equiv [L,L]$
+			\2	$L \supseteq L' \supseteq L'' \supseteq ... \supseteq L^{(n)} ...$
+		\1	\Definition \textbf{Solvable Lie Algebra}
+			\2	$\exists~k \in \mathbb{N}$ s.t. $L^{(k)} = 0$
+		\1	\Definition \textbf{Direct Sum of Lie Algebra}
+			\2	$[x_1+x_2,y_1+y_2]_{L_1 \bigoplus_{Lie}L_2} \equiv [x_1,y_1]_{L_1} + [x_2,y_2]_{L_2}$
+		\1	\Definition \textbf{Semi-Direct sum}
+			\2	$[R,L]_{R \bigoplus_s L} \subseteq R$
+			\2	$R$ is an ideal of $R \bigoplus_s L$
+		\1	\Theorem \textbf{Levi}
+			\2	Any finite-dimensional complex Lie Algebra $L$ can be decomposed as
+					$L = R \bigoplus_s (L_1 \bigoplus ... \bigoplus L_n)$
+			\2	$R$ is a solvable Lie Algebra
+			\2	$L1,...,L_n$ are simple Lie Algebras
+		\1	\Theorem A Lie Algebra is semi-simple iff it can be expressed as a direct
+				sum of simple Lie Algebras
+		\1	\Definition \textbf{Adjoint Map}
+			\2	$ad_x~:~L \rightarrow L$
+			\2	$y \mapsto ad_x(y) \equiv [x,y]$
+			\2	\Theorem $ad~:~L \rightarrow \text{End}(L)$ is a Lie Algebra homomorphism
+				\3	$ad([x,y]) = [ad(x),ad(y)]$
+		\1	\Definition \textbf{Killing Form}
+			\2	$K$-bilinear map
+			\2	$\kappa~:~L \cross L \rightarrow K$
+			\2	$(x,y) \mapsto \kappa(x,y) \equiv tr(ad_x \circ ad_y)$
+			\2	$\kappa(x,y) = \kappa(y,x)$
+			\2	\Theorem $\kappa([x,y],z) = \kappa(x,[y,z])$
+			\2	\Theorem \textbf{Cartan}
+				\3	A Lie Algebra is semi-simple iff the Killing form is non-degenerate
+				\3	$(\forall~y \in L:\kappa(x,y) = 0) \Rightarrow x = 0$
+		\1	\Definition \textbf{Structure Constants}
+			\2	$L$ is a Lie Algebra over $K$ and $\{E_i\}$ is a basis
+			\2	$[E_i,E_j] = C^k_{ij}E_k$
+			\2	$C^k_{ij} = -C^k_{ji}$
+			\2	\Theorem adjoint and killing form in basis
+				\3	$(ad_{E_i})^k_j = C^k_{ij}$
+				\3	$\kappa_{ij} = C^m_{ik}C^k_{jm}$
+		
+		\1	\Definition \textbf{Cartan subalgebra}
+			\2	$H$ of $L$ is a maximal Lie subalgebra of $L$ such that:
+			\2	$\exists$ a basis $\{h_1,...,h_r\}$ such that
+					$\{h_1,...,h_r,e_1,...,e_{d-r}\}$ is a basis of $L$
+			\2	$e_{1},...,e_{d-r}$ are eigenvectors of $ad(h)$ for any $h \in H$
+				\3	$\forall~h \in H~:~\exists~\lambda_a(h) \in \mathbb{C}~:~ad(h)e_a = \lambda_a(h)e_a$
+			\2	\Definition \textbf{Cartan Weyl Basis} is $\{h_1,...,h_r,e_1,...,e_{d-r}\}$
+		
+		\1	\Theorem Let $L$ be a finite-dimensional semi-simple complex Lie Algebra
+			\2	$L$ possesses a Cartan subalgebra
+			\2	All Cartan subalgebras of $L$ have the same dimension (rank of $L$)
+			\2	any Cartan subalgebra of $L$ is abelian
+		\1	\Definition \textbf{Roots of Lie Algebra}
+			\2	$\lambda_1,...,\lambda_{d-r} \in H^*$ are the roots of $L$
+			\2	$\Phi \equiv \{\lambda_a\} \subseteq H^*$ is the root set of $L$
+			\2	$\Phi$ is not a linearly independent subset of $H^*$
+		\1	\Definition \textbf{Fundamental Roots of Lie Algebra}
+			\2	$\Pi \subseteq \Phi$
+			\2	$\Pi$ is a linearly independent subset of $H^*$
+			\2	$\forall~\lambda \in \Phi$, $\exists~n_1,...,n_m \in \mathbb{N}$ such that
+					$\lambda = \pm \sum_{i=1}^m n_i \pi_i$
+			\2	\Theorem
+				\3	$\Pi \subseteq \Phi$ always exists
+				\3	$\Pi$ is a basis of $H^*$
+				\3	$\abs{\Pi} = \text{dim}H^* = \text{dim}H$ equals the rank of $L$
+		\1	\Theorem Restriction of $\kappa$ to $H$ is a pseudo-inner product on $H$
+			\2	$(\kappa^*)^{ij}\kappa_{jk} = \delta^i_k$
+		\1	\Theorem Restriction of $\kappa^*$ to $H^*_{\mathbb{R}}$ is a true inner product
+			\2	$a,b \in H^*_{\mathbb{R}}$
+			\2	$\abs{a} \equiv \sqrt{\kappa^*(a,a)}$
+			\2	$\phi \equiv \cos^{-1}(\frac{\kappa^*(a,b)}{\norm{a}\norm{b}})$
+		\1	\Definition \textbf{Weyl Transformation}
+			\2	$s_{\lambda}~:~H^*_{\mathbb{R}} \rightarrow H^*_{\mathbb{R}}$
+			\2	$\mu \mapsto s_{\lambda}(\mu)$
+			\2	$s_{\lambda}(\mu) \equiv \mu - 2 \frac{\kappa^*(\lambda,\mu)}{\kappa^*(\lambda,\lambda}\lambda$
+			\2	$s_{\lambda}$ is a Weyl Transformation
+			\2	\Definition \textbf{Weyl Group}
+				\3	$W \equiv \{s_{\lambda}~|~\lambda \in \Phi\}$
+				\3	Group under composition of maps
+				\3	\Theorem The Weyl group is generated by the fundamental roots in $\Pi$
+					\4	$\forall~w \in W~:~\exists~\pi_1,...,\pi_n \in \Pi~:~
+								w = s_{\pi_1} \circ s_{\pi_2} \circ ... \circ s_{\pi_n}$
+				\3	\Theorem Every root can be produced from a fundamental root by the
+						action of W
+					\4	$\forall~\lambda \in \Phi~:~\exists~\pi \in \Pi~:~\exists~w \in W~:~ \lambda = w(\pi)$
+				\3	\Theorem The Weyl Group permutes the roots
+					\4	$\forall~\lambda \in \Phi~:~\forall~w \in W~:~w(\lambda) \in \Phi$
+		\1	\Definition \textbf{Cartan Matrix}
+			\2	$C_{ij} \equiv 2 \frac{\kappa^*(\pi_i,\pi_j)}{\kappa^*(\pi_i,\pi_i)}$
+			\2	$C_{ij}$ is $r \cross r$, where $r$ is the rank of the Lie Algebra
+			\2	\Theorem Every simple finite dimensional complex Lie Algebra has a 
+					unique Cartan matrix and vice versa
+		\1	\Definition \textbf{Bond Number}
+			\2	$n_{ij} \equiv C_{ij}C_{ji}$
+			\2	$n_{ij} = 4 \cos^2(\phi)$
+		\1	\Theorem The roots of a simple Lie algebra have, at most, two distinct
+				lengths
+		\1	\Theorem \textbf{Killing, Cartan}
+			\2	Any simple finite-dimensional complex Lie Algebra can be reconstructed
+					from its set of fundamental roots $\Pi$, which only come in the following
+					forms:
+				\3	4 infinite families
+				\3	5 exceptional cases
+	
+	\section*{Lie Group $SL(2,\mathbb{C})$}
 	\end{outline}
 \end{document}
 

@@ -4,6 +4,7 @@
 \usepackage{mathrsfs}
 \def\Definition{{\color{blue} \textbf{Definition:} }}
 \def\Theorem{{\color{red} \textbf{Theorem:} }}
+\newcommand*\pFq[2]{{}_{#1}F_{#2}}
 
 \title{Mathematics of Computerized Tomography Cheat Sheet}
 \begin{document}
@@ -198,6 +199,8 @@
 					\3	NOTE: ANALYTIC REPRESENTATION DOES NOT MEAN ITS ANALYTIC (nice properties
 							including complex differentiation etc.)
 		\section*{Special Functions}
+			\1	Best Book is Abramowitz and Stegun Handbook of Mathematical Functions
+			\1	NIST Handbook of Mathematical Functions pdf can be found online
 			\1	Gamma Function
 				\2	Definition
 					\3	$\Gamma(z) \equiv \int_0^{\infty} x^{z-1} e^{-x} dx$
@@ -219,15 +222,200 @@
 					\3	Comes up alot when dealing with Cylindrical and Spherical Coordinate systems
 					\3	Especially calculating Laplacians
 				\2	Definition (First Kind)
-					\3	$J_{\alpha} = \sum_{m=0}^{\infty} \frac{(-1)^m}{m! \Gamma(m + \alpha + 1)} (\frac{x}{2})^{2m+\alpha}$
+					\3	$J_{\alpha} = \sum_{m=0}^{\infty} \frac{(-1)^m}{m! \Gamma(m + \alpha + 1)} (\frac{x}{2})^{2m+\alpha}$	
+					\3	$J_{\frac{-1}{2}} = \sqrt{\frac{2}{\pi x}} cos(x)$
+					\3	$J_{\frac{1}{2}} = \sqrt{\frac{2}{\pi x}} sin(x)$
+					\3	$J_{n} = \sum_{m=0}^{\infty} \frac{(-1)^m}{2^{2m + n} m! (n + m)!}x^{2m + n}$
+						\4	The follow only valid for integer $n$
+					\3	$J_{-n}(x) = (-1)^nJ_n(x)$
+					\3	$J_n(x) = \frac{1}{\pi}\int_0^{\pi} \cos(n \tau - x \sin(\tau))d\tau$
+					\3	$J_n(x) = \frac{1}{2 \pi} \int_{-\pi}^{\pi} e^{jx \sin(\theta) - j n \theta}d\theta$
+					\3	Bessel functions of any order are orthogonal (very nice property)
+						\4	Can be written like a Fourier Series
+						\4	$f(r,\theta) = \sum_{n=-\infty}^{\infty} \sum_{m=1}^{\infty}
+									f_{nm}e^{jn\theta} J_n(\frac{ra_m}{a})$
+						\4	$a_m$ are the zeros of the zeros of the Bessel function of order $m$
+						\4	$a$ is a slightly more complicated costant... (makes the wronskian
+								zero at $r = a$ for orthogonality...)
+				\2	Definition (Second Kind)
+					\3	$Y_{\alpha} = \frac{J_{\alpha}(x)\cos(a\pi) - J_{-\alpha}(x)}{\sin(a\pi)}$
+						\4	Not valid for integer $\alpha$
+					\3	$Y_{\alpha}(0) \rightarrow -\infty$
+						\4	Has a singularity at the origin
+					\3	Also a solution to Bessel's equation
+						\4	In same way that sines and cosines are solutions to harmonic
+								oscillator, $J_{\alpha}(x)$ and $Y_{\alpha}$ are solutions
+								to Bessel's differential equation
+				\2	Hankel Functions
+					\3	$H_{\alpha}^{(1)} = J_{\alpha}(x) + j Y_{\alpha}(x)$ (First Kind)
+					\3	$H_{\alpha}^{(2)} = J_{\alpha}(x) - j Y_{\alpha}(x)$ (Second Kind)
+					\3	Also solutions to Bessel's differential equation (linear combination of solutions)
+					\3	Form Green's Functions for Helmholtz Equation in 2D
+						\4	$G(\bm{x};\bm{y}) = \frac{j}{4}H_0^{(1)}(k_0\rho)$, $\rho = \abs{\bm{x} - \bm{y}}$
+						\4	$G(\bm{x};\bm{y}) = \frac{-j}{4}H_0^{(2)}(k_0\rho)$
+						\4	Choice depends on what direction the wave is propogating
 			\1	Gegenbauer Polynomials
-			\1	Mellin Transform
+				\2	Special Polynomials that are orthogonal on $[-1,1]$ (Which can be
+						shifted to any interval you want
+				\2	Orthogonal with respect to the weight $(1 - x^2)^{\lambda - 1/2}$
+				\2	$\int_{-1}^1 (1-x^2)^{\lambda - 1/2}C_l^{\lambda}(x)
+						C^{\lambda}_k(x) dx$
+					\3	$= 0$ if $l \ne k$
+					\3	$= \frac{2^{2\lambda -1}(\Gamma(\lambda + \frac{1}{2}))^2l!}{(l+\lambda)\Gamma(l + 2\lambda)}$
+							for $l = k$
+				\2	Chebyshev Polynomials ($\lambda = 0$)
+					\3	$C_l^0(x) = T_l(x) = \cos(l \cos^{-1}(x))$ $\abs{x} \le 1$
+					\3	$T_l(x) = \cosh(l \cosh^{-1}(x))$ $\abs{x} \ge 1$
+					\3	Solutions to Chebyshev's differential equation
+					\3	Best polynomial approximation in $L_{\infty}$ norm to an arbitrary function
+				\2	Legendre Polynomials ($\lambda = \frac{1}{2}$)
+					\3	$C_l^{1/2} = P_l = \frac{1}{2^ll!}\od[l]{}{x}(x^2 - 1)^l$
+						\4	Can be generalized to Legendre functions by having arbitrary
+								(non-integer) order $l$ and using $\Gamma$ functions
+					\3	Solutions to Legendre's differential equation
+					\3	Best polynonomial approximation in $L_2$ norm to an arbitrary function
+					\3	Associated Legendre Polynomials
+						\4	$P_l^m = (-1)^m (1-x^2)^{m/2}\od[m]{}{x}(P_l(x))$
+				\2	Fourier Transform of Gegenbauer Polynomials
+					\3	$\hat{(wC_m^{\lambda})}(\omega) = \frac{\Gamma(2\lambda)}{\Gamma(\lambda)}
+								\sqrt{2\pi}2^{-\lambda} j^{-m}\omega^{-\lambda}J_{m+\lambda}(\omega)$
+					\3	Gegenbauer polynomials and Bessel Functions are intimately connected
+					\3	Gegenbauer polynomials can be even further generalized by 
+							Jacobi polynomials
 			\1	Spherical Harmonics
-			\1	Hypergeometric Function (w/ $\Gamma$ functions)
+				\2	Spherical harmonics are solutions to Laplace's equation
+						$\nabla^2 f = 0$ in spherical coordiantes
+				\2	The solutions are $Y_l^m(\theta,\phi) = N e^{j m \phi} P_l^m(cos(\theta))$
+			\1	Hypergeometric Function
+				\2	$\pFq{2}{1}(a,b;c;z) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
+							\sum_{n=0}^{\infty} \frac{\Gamma(a + n)\Gamma(b + n)}{\Gamma(c + n)\Gamma(1+n)}
+							z^n$
+				\2	$\pFq{m}{n}$ has a generalization, where it has $m$ first arguments
+						before the $;$, and $n$ second arguments before the second $;$, with
+						the associated Gamma Functions.  The last argument is always the
+						argument to the function ($z$ or $x$).
+				\2	$C_n^{\lambda} = \binom{n+2\lambda - 1}{n}	
+							\pFq{2}{1}(-n,n+2\lambda;\lambda + \frac{1}{2};\frac{1}{2}(1-x))$
+				\2	$J_{\alpha}(x) = \frac{(x/2)^{\alpha}}{\Gamma(\alpha + 1)}
+							\pFq{0}{1}(\alpha + 1; - \frac{x^2}{4})$
+				\2	Hypergeometric Functions generalize nearly every function you've
+						ever heard of, and studying their properties can give insight into
+						their behavior
 		\section*{Sobolev Spaces}
-			\1	Hilbert Space	
+			\1	Cauchy Sequences
+				\2	A sequence $x_1,x_2,... \in X$
+				\2	$\forall \varepsilon > 0$, $\exists~N \in \mathbb{N}$ such that for
+						$m,n \in \mathbb{N}$, $m,n > N$, $d(x_m,x_n) < \varepsilon$
+				\2	In $\mathbb{R}$, $\abs{x_m - x_n} < \varepsilon$
+				\2	Every Cauchy sequence is bounded
+				\2	Every convergent sequence is Cauchy
+				\2	NOT every Cauchy sequence converges in the set
+				\2	Completeness
+					\3	A property of a metric space where every Cauchy sequence converges
+							to an element of $X$
+					\3	EXAMPLE:	$\mathbb{R}$, $\mathbb{R}^n$, $\mathbb{C}$
+					\3	EXAMPLE (NOT): $\mathbb{Q}$ is not complete (a sequence of rationals
+							could converge to $\pi$)
+			\1	Banach Space
+				\2	Operator Norm
+					\3	$T~:~X \rightarrow Y$ Linear Map
+					\3	$\norm{T} = \sup\{\norm{Tx}_Y~:~x \in X, \norm{x}_X \le 1\}$
+					\3	EXAMPLE: $T~:~L_1(\mathbb{R}) \rightarrow L_2(\mathbb{R})$
+						\4	$\norm{T} = \sup\{\sqrt{\int \abs{T[f(x)]}^2 dx}~:~f(x) \in L_1(x),
+									\int \abs{f(x)} dx < 1$
+				\2	Definition
+					\3	A Banach Space of functions is a complete vector space with a norm (the operator norm)
+					\3	Vector space has the same axiomatic properties that you learned in Linear algebra
+							(though can have infinite basis elements)
+					\3	Complete means every Cauchy sequence converges
+			\1	Hilbert Space
+				\2	Definition
+					\3	A Hilbert Space is a Banach Space where the norm induces an 
+							inner product (dot product)
+					\3	Norm will induce an inner product iff:
+						\4	$\forall~x,y \in X~:~\norm{x+y}^2 + \norm{x-y}^2 = 2(\norm{x}^2+\norm{y}^2)$
+						\4	Shows that $L_2(\mathbb{R})$ is the only Lesbegue space with an
+								inner product
+						\4	$L_2(\mathbb{R})$ is a Hilbert space with inner product
+								$\braket{f}{g} = \int f(x)g(x) dx$
+				\2	Adjoint Operator
+					\3	Adjoint Operator is roughly the hermitian transpose of a function
+							in a Hilbert Space (The adjoint shares most properties of Hermitian transpose)
+					\3	$A~:~H_1 \rightarrow H_2$ is the standard (forward) operator between Hilbert Spaces
+					\3	$A^*~:~H_2 \rightarrow H_2$ is the adjoint operator
+					\3	$\braket{Ah_1}{h_2}_{H_2} = \braket{h_1}{A^*h_2}_{H_1}$
+					\3	In the operator norm, $\norm{A^*A} = \norm{A}^2$
+				\2	Self-adjoint Operator
+					\3	An operator that is equal to its adjoint
+					\3	Generalization of "Symmetric" or "Hermitian" matrices
+					\3	$\braket{Ah_1}{h_2} = \braket{h_1}{Ah_2}$
+				\2	Spectral Theorem
+					\3	Normal Operator
+						\4	A normal operator commutes with its hermitian adjoint
+								$A^*A = AA^*$
+						\4	More general than self-adjoint
+						\4	Unitary operator $U^*U = UU^* = I$ (similar to Orthogonal matrices)
+					\3	The Spectral theorem holds for normal operators on a Hilbert Space
+							(including self-adjoint operators)
+					\3	Spectral theorem states that a normal operator on a Hilbert Space
+							can be reduced to a multiplication operator in a suitable basis
+					\3	EXAMPLE:
+						\4	Let $f$ be a function, $U~:~H \rightarrow L_2(\mathbb{R})$ be a unitary operator,
+								and $A$ be a normal operator
+						\4	There exists $\exists~[T_fg](x) = f(x)g(x)$ a multiplication operator 
+								(generalization of a diagonal matrix)
+						\4	$\norm{T} = \norm{f}_{\infty}$ where $L_{\infty}$ norm is the
+								maximum value, $L_{\infty}[f(x)] = \sup\{f(x)\}$
+						\4	$U^* T U = A$
+					\3	EXAMPLE:
+						\4	Derivative with Fourier Transform
+						\4	$U \equiv \mathcal{F}$ The unitary operator is the Fourier Transform
+						\4	$[T_fg](\omega) = j\omega g(\omega)$
+						\4	$A = \pd{}{t}$
+						\4	$\mathcal{F}^{-1} j \omega \mathcal{F} = \pd{}{t}$
+					\3	Spectral Theorem is what allows a normal matrix to have an
+							eigendecomposition with orthonormal eigenvectors
+					\3	Spectral Theorem allows the application of things like eigenvalues
+							and eigenvectors to more general function spaces rather than
+							just matrices (extremely powerful)
 			\1	Sobolev Space
-			
+					\2	Definition
+						\3	$W^{m,p}(\mathbb{R}) = \{u \in L_p(\mathbb{R}),~
+								 \partial^{\alpha} u \in L^p(\mathbb{R}),~\forall~\alpha \in \mathbb{N}^d,
+									\abs{\alpha} \le m\}$
+						\3	$\norm{u}_{W^{m,p}} = ( \sum_{\abs{\alpha \le m}} \int \abs{\partial^{\alpha}u}^pdx)^{1/p}$
+						\3	Sobolev spaces $W^{m,p}(\mathbb{R})$ consist of 
+								functions in $L_p(\mathbb{R})$ with up to the $m$th derivative
+								also in $L^p(\mathbb{R})$
+						\3	All Sobolev spaces are Banach spaces
+						\3	A useful notation specializes to $L_2$ spaces, 
+								$W^{m,2}(\mathbb{R}) = H^m(\mathbb{R})$, which is a Hilbert Space
+					\2	EXAMPLE:
+						\3	$H^1(\mathbb{R}) = u \in L_2(\mathbb{R})$ such that
+									$\nabla u \in L_2(\mathbb{R})$
+						\3	$\norm{u} = (\int \abs{u(x)}^2 dx + \int \abs{\nabla u(x)}^2 dx)^{1/2}$
+					\2	Sobolev Spaces are generally the function spaces considered when
+							solving partial differential equations, because of the Trace Theorem
+					\2	Trace Theorem
+						\3	Definition
+							\4	Assume $\Omega$ is a bounded domain, with Lipschitz (nice, continuous) boundary $\partial \Omega$
+							\4	$T~:~W^{1,p}(\Omega) \rightarrow L^p(\partial \Omega)$
+							\4	$Tu = u|_{\partial \Omega}$ for $u \in W^{1,p}(\Omega) \cap C(\bar{\Omega})$
+							\4	$\norm{Tu}_{L_p(\partial \Omega)} \le c(p,\Omega) \norm{u}_{W^{1,p}}(\Omega)$ for 
+									$u \in W^{1,p}(\Omega)$
+						\3	$Tu$ is called the trace of $u$
+						\3	It says that the trace is equal to the function on the boundary,
+								if the function is in a suitable function space
+						\3	In just the Sobolev space, the trace is bounded by a constant
+								times the function
+						\3	Extremely useful when finding function spaces for boundary conditions
+					\2	Natterer Definition of Sobolev Space
+						\3	$H^{\alpha} = \{f \in \mathscr{S}'(\mathbb{R}^n)~:~
+									(1 + \abs{\omega}^2)^{\alpha/2} \hat{f} \in L_2(\mathbb{R}^n)$
+						\3	Functions in the dual Schwartz space whose weighted Fourier 
+								transforms are in $L_2$
+						\3	The definition is fairly equivalent, over only the domain of
+								his definition (i.e. Tempered distributions)
 	\end{outline}
 \end{document}
 
