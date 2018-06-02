@@ -446,9 +446,67 @@
 					from its set of fundamental roots $\Pi$, which only come in the following
 					forms:
 				\3	4 infinite families
-				\3	5 exceptional cases
+				\3	5 exceptional cases	
+	\section*{Representation Theory of Lie Groups and Lie Algebras}
+		\1	\Definition \textbf{Representation of $L$}
+			\2	$\rho~:~L \rightarrow End(V)$
+			\2	$V$ is a finite-dimensional vector space over the same field as $L$
+				\3	$V$ is the representation space of $\rho$
+				\3	The dimension of $\rho$ is $\text{dim} V$
+			\2	EXAMPLE: $SL(2,\mathbb{C})$
+				\3	$\text{im}_{\rho}(\mathfrak{sl}(2,\mathbb{C})) = 
+						\{(a,b;c,d) \in \text{End}(\mathbb{C}^2)~|~a + d = 0\}$
+				\3	$\text{im}_{\rho}(\mathfrak{sl}(2,\mathbb{C})) =
+						\{\phi \in \text{End}(\mathbb{C}^2) ~|~\text{tr}\phi = 0\}$
+		\1	\Definition \textbf{Homomorphism of Representations}
+			\2	$\forall~x \in L~:~f \circ \rho_1(x) = \rho_2(x) \circ f$
+		\1	\Definition \textbf{Faithful Representation}
+			\2	$\text{dim}(\text{im}_{\rho}(L)) = \text{dim}L$
+		\1	\Definition \textbf{Direct Sum Representation}
+			\2	$\rho \oplus \rho_2~:~L \rightarrow \text{End}(V_1 \oplus V_2)$
+				\3	$x \mapsto (\rho_1 \oplus \rho_2)(x) \equiv \rho_1(x) \oplus \rho_2(x)$
+		\1	\Definition \textbf{Tensor Product Representation}
+			\2	$\rho_1 \otimes \rho_2~:~L \rightarrow \text{End}(V_1 \cross V_2)$
+				\3	$x \mapsto \rho_1(x) \otimes \text{id}_{V_2} + \text{id}_{V_1} \otimes \rho_2(x)$
+		\1	\Definition \textbf{Reducible Representation}
+			\2	$\exists U \subseteq V$ s.t. $\forall~x \in L~:~\forall~u \in U~:~\rho(x)u \in U$
+			\2	$\rho|_U~:~L \rightarrow \text{End}(U)$
+		\1	\Definition \textbf{$\rho$-Killing Form}
+			\2	$\kappa_{\rho}~:~L \cross L \rightarrow \mathbb{C}$
+			\2	$(x,y) \mapsto tr(\rho(x) \circ \rho(y))$
+		\1 \Theorem If $\rho$ is a faithful representation of a complex semi-simple
+				Lie algebra, then $\kappa_{\rho}$ is non-degenerate
+		\1	\Definition \textbf{Casimir Operator}
+			\2	$\kappa_{\rho}(x,\xi_i) = X^i(x)$
+			\2	$\Omega_{\rho} \equiv \sum_{i=1}^{\text{dim} L} \rho(X_i) \circ \rho(\xi_i)$
+		\1	\Theorem $[\Omega_{\rho},\rho(x)] = 0$
+		\1	\Theorem $\Omega_{\rho} = c_{\rho} \text{id}_V$
+			\2	$c_{\rho} = \frac{\text{dim}L}{\text{dim}V}$
+	\section*{Reconstruction of a Lie Group from its Algebra}
+		\1	\Definition \textbf{Integral Curve}
+			\2	$Y \in \Gamma(TM)$
+			\2	An integral curve of $Y$ is a $\gamma~:~(-\varepsilon,\varepsilon) \rightarrow M$
+			\2	$\forall~\lambda \in (-\varepsilon,\varepsilon)~:~X_{\gamma,\gamma(\lambda)} = Y|_{\gamma(\lambda)}$
+			\2	There always exists an integral curve for any $Y$
+			\2	Integral Curves are locally unique
+		\1	\Definition \textbf{Maximal Integral Curve}
+			\2	$I^p_{\text{max}} \equiv \bigcup\{I \subseteq \mathbb{R}~|~$there 
+					exists an integral curve $\gamma~:~I \rightarrow M$ of $Y$ through $p\}$
+		\1	\Theorem A vector field is complete if $I_{\text{max}}^p = \mathbb{R}~\forall~p \in M$
+		\1	\Theorem On a compact manifold, every vector field is complete
+		\1	\Theorem Every left-invariant vector field on a Lie Group is complete
+			\2	There always exist complete vector fields on a Lie group, even if 
+					it is not compact
+		\1	\Definition \textbf{Exponential Map}
+			\2	$\text{exp}~:~T_eG \rightarrow G$
+			\2	$A \mapsto \gamma^A(1)$
+			\2	exp is smooth and a local diffeomorphism
+			\2	If $G$ is compact, then exp is surjective
+		\1	\Theorem The image of exp is the connected component
+				of $G$ containing the identity
+			\2	If $G$ is connected, then exp is surjective
 	
-	\section*{Lie Group $SL(2,\mathbb{C})$}
+	\section{Principal fibre bundles}
 	\end{outline}
 \end{document}
 
