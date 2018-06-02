@@ -506,7 +506,35 @@
 				of $G$ containing the identity
 			\2	If $G$ is connected, then exp is surjective
 	
-	\section{Principal fibre bundles}
+	\section*{Principal fibre bundles}
+		\1	A bundle whose typical fibre is a Lie Group
+		\1	\Definition \textbf{Lie Group Action on Manifold}
+			\2	$\rhd~:~G \cross M \rightarrow M$
+			\2	$\forall~p \in M~:~e \rhd p = p$
+			\2	$\forall~g_1,g_2 \in G~:~(g_1 \cdot g_2) \rhd p = g_1 \rhd (g_2 \rhd p)$
+			\2	$\rhd$ is a left Lie Group action (left G-action) on $M$
+			\2	Left G-manifold is a manifold equipped with a left G-action
+			\2	Representations of Lie Groups are just a special case of left G-actions
+		\1	\Definition \textbf{Orbit}
+			\2	$G_p \equiv \{q \in M~:~\exists~g \in G~:~q = g \rhd p\}$
+			\2	\Definition \textbf{Orbit Space}
+				\2	$M/G \equiv \{G_p~|~p \in M\}$
+		\1	\Definition \textbf{Stabiliser}
+			\2	$S_p \equiv \{g \in G~|~g \rhd p = p\}$
+			\2	$S_p$ is a subgroup of $G$
+			\2	$\rhd$ is free if $\forall~p \in M$, $S_p = \{e\}$
+			\2	$\rhd$ is transitive if $\forall~p,q \in M$, $\exists~g \in G$ s.t. 
+					$p = g \rhd p$
+			\2	\Theorem If $\rhd$ is a free action, then $g_1 \rhd p = g_2 \rhd p$ iff
+					$g_1 = g_2$
+			\2	\Theorem If $\rhd$ is a free action, then $G_p \cong_{diff} G$
+		\1	\Definition \textbf{Principal G-bundle}
+			\2	$\pi~:~E \rightarrow M$ is isomorphic as a bundle to 
+					$\rho~:~E \rightarrow E/G$, where $\rho$ is the quotient map
+					sending each $p \in E$ to its equivalence class (orbit)
+	
+	\section*{Connections}
+
 	\end{outline}
 \end{document}
 
