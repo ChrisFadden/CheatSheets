@@ -1,0 +1,92 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+
+\title{Functional Analysis Cheat Sheet}
+\begin{document}
+	\maketitle
+	
+	\section*{Banach Spaces}
+	\begin{outline}		
+		\1	\Definition \textbf{Normed Space}
+			\2	Complex vector space $(V,+,\cdot)$ equipped with a norm
+					($\norm{\cdot}~:~V \rightarrow \mathbb{R}$)
+				\3	$f,g \in V$, $z \in \mathbb{C}$	
+				\3	$\norm{f} \ge 0$ (non-negativity)
+				\3	$\norm{f} = 0$ iff $f = 0$ (definiteness)
+				\3	$\norm{z \cdot f} = \abs{z}\norm{f}$ (scalability)
+				\3	$\norm{f + g} \le \norm{f} + \norm{g}$ (triangle inequality)
+			\2	Metric $d$ on $V$ is $d(f,g) \equiv \norm{f - g}$
+			\2	Normed space $(V,\norm{\cdot})$ is complete if the metric space
+					$(V,d)$ is complete (Every Cauchy sequence converges)
+		\1	\Definition \textbf{Banach Space}
+			\2	Complete normed vector space
+		\1	\Definition \textbf{Bounded Linear Operator}
+			\2	$\sup_{f \in V} \frac{\norm{Af}_W}{\norm{f}_V} < \infty$
+		\1	\Theorem A linear operator $A~:~V \rightarrow W$ is bounded iff any of
+				the following equivalent conditions are satisfied
+			\2	$\sup_{\norm{f}_V = 1}\norm{Af}_W < \infty$
+			\2	$\exists~k > 0~:~\forall~f \in V~:~\norm{f}_V \le 1$ implies $\norm{Af}_W \le k$
+			\2	$\exists~k > 0~:~\forall~f \in V~:~\norm{Af}_W \le k\norm{f}_V$
+			\2	$A$ is continuous with respect to the topologies induced by the
+					respective norms on $V$ and $W$
+			\2	$A$ is continuous at $0 \in V$
+		\1	\Definition \textbf{Operator Norm}
+			\2	$\norm{A} \equiv \sup_{\norm{f}_V = 1} \norm{Af}_W = 
+					\sup_{f \in V}\frac{\norm{Af}_W}{\norm{f}_V}$
+		\1	\Theorem The set $\mathcal{L}(V,W)$ of bounded linear operators from
+				a normed space $(V,\norm{\cdot}_V)$ to a Banach space $(W,\norm{\cdot}_W)$
+				equipped with pointwise addition and scalar multiplication and the operator
+				norm, is a Banach space
+		\1	\Definition \textbf{Dual Space}
+			\2	Let $V$ be a normed space
+			\2	The dual space is $V^* \equiv \mathcal{L}(V,\mathbb{C})$
+			\2	Dual of a normed space is a Banach space
+			\2	Elements of dual space are called covectors or functionals on $V$
+		\1	\Definition \textbf{Weak Convergence}
+			\2	$\forall~\phi \in V^*~:~\lim_{n \rightarrow \infty} \phi(f_n) = \phi(f)$
+		\1	\Theorem 
+			\2	Let $(V,\norm{\cdot})$ be a normed space, and let $D_A$ be a dense
+					subspace of $V$
+			\2	$\forall~f \in V$, $\exists~\{a_n\}_{n \in \mathbb{N}} \in D_A$ which
+					converges to $f$
+		\1	\Definition \textbf{Function Extension}
+			\2	$A~:~D_A \rightarrow W$, $D_A \subseteq V$
+			\2	$\hat{A}~:~V \rightarrow W$ such that
+					$\forall~a \in D_A~:~\hat{A}a = Aa$
+		\1	\Theorem \textbf{BLT (Bounded Linear Transformation)}
+			\2	Let $V$ be a normed space and $W$ be a Banach space
+			\2	Any densely defined lienar map $A~:~D_A \rightarrow W$ has a unique
+					extension $\hat{A}~:~V \rightarrow W$ such that $\hat{A}$ is bounded
+			\2	$\norm{\hat{A}} = \norm{A}$
+	
+	\section*{Separable Hilbert Spaces}
+	\end{outline}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
