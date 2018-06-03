@@ -534,7 +534,72 @@
 					sending each $p \in E$ to its equivalence class (orbit)
 	
 	\section*{Connections}
-
+		\1	$(P,\pi,M)$ is a principal $G$-bundle, and $A \in T_eG$
+			\2	$X^A \in \Gamma(TP)$
+			\2	$X^A_p~:~C^{\infty}(P) \rightarrow \mathbb{R}$
+			\2	$f \mapsto \pd{}{t}[f(p \lhd exp(tA))](0)$
+			\2	$i_p~:~T_eG \rightarrow T_pP$
+			\2	$A \mapsto X^A_p$
+		\1	\Definition \textbf{Vertical Subspace}
+			\2	$V_pP = \text{ker}[(\pi_*)_p]$
+			\2	$X^A_p \in V_pP$ 
+		\1	\Definition \textbf{Horizonal Subspace}
+			\2	$T_pP = H_pP \oplus V_pP$
+		\1	\Definition \textbf{Connection}
+			\2	A choice of horizontal space at each $p \in P$ such that
+				\3	$(\lhd g)_*X_p \in H_{p \lhd g}P$
+				\3	$X|_p = \text{hor}(X|_p) + \text{ver}(X|_p)$
+		\1	\Definition \textbf{Connection One-Form}
+			\2	$\omega_p~:~T_pP \rightarrow T_eG$
+			\2	$X_p \mapsto i^{-1}_p (\text{ver}(X_p))$
+			\2	$H_pP = \text{ker}(\omega_p)$
+		\1	\Theorem $\omega_p \circ i_p = \text{id}_{T_eG}$
+		\1	\Definition \textbf{Tang-Mills Field}
+			\2	$\omega^U~:~\Gamma(TU) \rightarrow T_eG$
+			\2	$\omega^U \equiv \sigma^*\omega$
+				\3	$\pi \circ \sigma = \text{id}_U$
+			\2	\Definition \textbf{Christoffel Symbol}
+				\3	$\Gamma^i_{j\mu}(m) \equiv (\omega^U_{\mu}(m))^i_j$
+		\1	\Definition \textbf{Gauge Map}
+			\2	$\Omega~:~U_1 \cap U_2 \rightarrow G$
+			\2	$\sigma_2(m) = \sigma_1(m) \lhd \Omega(m)$
+			\2	$\Omega^i_j = \frac{\partial y^i}{\partial x^j}$
+	
+	\section*{Parallel Transport}
+		\1	\Definition \textbf{Horizontal Lift}
+			\2	$\gamma~:~[0,1] \rightarrow M$
+			\2	$\gamma^{l}~:~[0,1] \rightarrow P$
+			\2	$\gamma^{l}(0) = p_0 \in \text{preim}_{\pi}(\{\gamma(0)\})$
+				\3	$\pi \circ \gamma^l = \gamma$
+				\3	$\forall~\lambda \in [0,1]~:~\text{ver}(X_{\gamma^l,\gamma^l(\lambda)}) = 0$
+				\3	$\forall~\lambda \in [0,1]~:~\pi_*(X_{\gamma^l,\gamma^l(\lambda)}) = X_{\gamma,\gamma(\lambda)}$
+		\1	\Definition \textbf{Parallel Transport}
+			\2	$T_{\gamma}~:~\text{preim}_{\pi}(\{\gamma(0)\}) \rightarrow \text{preim}_{\pi}(\{\gamma(1)\})$
+			\2	$p \mapsto \gamma^l_p(1)$
+		\1	\Definition \textbf{Holonomy Group}
+			\2	$Hol_a(\omega) \equiv \{g_{\lambda} | \gamma^l_p(1) = p \lhd g_{\gamma}$
+					for some loop $\gamma\}$
+			\2	Holonomy group of $\omega$ at base point $a$
+	
+	\section*{Covariant Exterior Derivative}
+		\1	\Definition \textbf{Exterior Covariant Derivative}
+			\2	$\phi$ is a k-form
+			\2	$D\phi~:~\Gamma(TP)^{k+1} \rightarrow V$
+			\2	$(X_1,...,X_{k+1}) \mapsto d\phi(\text{hor}(X_1),...,\text{hor}(X_{k+1}))$
+		\1	\Definition \textbf{Curvature of Connection One-Form}
+			\2	$\Omega~:~\Gamma(TP) \cross \Gamma(TP) \rightarrow T_eG$
+			\2	$\Omega \equiv D\omega$
+		\1	\Definition \textbf{Yang-Mills Field Strength}
+			\2	$\text{Riem} \equiv F \equiv \sigma^*\Omega \in \Omega^2(U) \otimes T_eG$
+			\2	$\text{Riem}^i_{j\mu \nu} = \partial_{\nu}\Gamma^i_{j\mu} -
+					\partial_{\mu}\Gamma^i_{j\nu} + \Gamma^i_{k\mu}\Gamma^k_{j\nu} -
+					\Gamma^i_{k \nu}\Gamma^k_{j\mu}$
+		\1	\Theorem \textbf{First Bianchi Identity}
+			\2	$D \Omega = 0$
+		\1	\Definition \textbf{Torsion}
+			\2	$\theta \in \Omega^1(P) \otimes V$
+			\2	$\Theta \equiv D\omega \in \Omega^2(P) \otimes V$
+	
 	\end{outline}
 \end{document}
 
