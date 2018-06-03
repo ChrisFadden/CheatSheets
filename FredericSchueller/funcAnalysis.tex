@@ -215,6 +215,125 @@
 		\1	\Theorem The Lesbegue measure on $\mathbb{R}$ is finite
 	
 	\section*{Integration of Measurable Functions}
+		\1	\Definition \textbf{Characteristic function}
+			\2	$\chi_A~:~M \rightarrow \mathbb{R}$
+			\2	$\chi_A(m) = 1$ if $m \in A$
+			\2	$\chi_A(m) = 0$ if $m \notin A$
+		\1	\Definition \textbf{Simple Functions}
+			\2	$s(M) = \{r_1,...,r_n\}$
+			\2	$s$ is simple if it is a linear combination of characteristic functions
+		\1	\Theorem $\chi_A$ is measurable iff $A \in \Sigma$
+		\1	\Definition \textbf{Integral of a non-negative, measurable, simple function}
+			\2	$s~:~M \rightarrow \mathbb{R}$, $s = \sum_{i=1}^n r_i \chi_{A_i}$
+			\2	$\int_M s d\mu \equiv \sum_{i=1}^n r_i \mu(A_i)$
+		\1	\Theorem Let $s$ and $t$ be non-negative, measurable, simple functions
+				and let $c \in [0,\infty)$
+				\2	$\int_M(cs + t)d\mu = c \int_M s d\mu + \int_M t d\mu$
+		\1	\Definition \textbf{Integral of non-negative measurable functions}
+			\2	$f~:~M \rightarrow \mathbb{R}$ is the non-negative measurable function
+			\2	$s~:~M \rightarrow \mathbb{R}$ such that $s \le f$
+			\2	$\int_M f d\mu \equiv \sup_{s \in S}\int_M s d\mu$
+				\3	$\int_A f d\mu \equiv \int_M f \chi_A d\mu$
+		\1	\Theorem \textbf{Markov Inequality}
+			\2	Let $f~:~M \rightarrow \mathbb{R}$ be a non-negative,measurable function
+			\2	$\forall~z \in [0,\infty]$:
+			\2	$\int_M f d\mu \ge z \mu(f^{-1}([z,\infty]))$
+		\1	\Theorem \textbf{Monotone Convergence}
+			\2	$f_n$ is a sequence of non-negative measurable functions, such that
+					$f_{n+1} \ge f_n$, and $\lim_{n\rightarrow \infty}f_n = f$
+			\2	$\lim_{n\rightarrow \infty} \int_M f_n d\mu = \int_M f d\mu$
+			\2	$\int_M(\sum_{n=0}^{\infty}f_n)d\mu = \sum_{n=0}^{\infty}\int_M f_n d\mu$
+		\1	\Theorem Let $f$ be a non-negative, measurable function.  Then
+				$\int_M f d\mu = 0$ iff $f = 0$ almost everywhere
+		\1	\Definition \textbf{Lesbegue Integrable}
+			\2	A function $f$ is measurable and:
+			\2	$\int_M \abs{f}d\mu < \infty$
+			\2	Set of all Lesbegue Integrable functions is represented by $L^1(M)$
+		\1	\Theorem \textbf{Dominated Convergence}
+			\2	$\abs{f}_n \le g$ almost everywhere
+			\2	$\lim_{n \rightarrow \infty}\int_M\abs{f_n - f}d\mu = 0$
+			\2	$\lim_{n \rightarrow \infty}\int_Mf_nd\mu = \int_M f d\mu$
+		\1	\Theorem \textbf{Holder's Inequality}
+			\2	$p,q \in [1,\infty]$, $\frac{1}{p} + \frac{1}{q} = 1$
+			\2	$\abs{\int_M fg d\mu} \le (\int_M\abs{f}^pd\mu)^{\frac{1}{p}}
+					(\int_M \abs{g}^qd\mu)^{\frac{1}{q}}$
+			\2	$\norm{fg}_1 \le \norm{f}_p \norm{g}_p$
+		\1	\Theorem $L^p$ are Banach Spaces for $p \in [0,\infty]$
+			\2	$L^2$ is a Hilbert space
+	
+	\section*{Self-adjoint Operators}
+		\1	\Definition \textbf{Adjoint Operator}
+			\2	$A^*~:~D_{A^*} \rightarrow \mathcal{H}$
+			\2	$D_{A^*} \equiv \{\psi \in \mathcal{H}~|~\exists~\eta \in \mathcal{H}~:~
+					\forall~a \in D_{A}~:~\braket{\psi}{Aa} = \braket{\eta}{a}$
+			\2	$A^*\psi = \eta$
+		\1	\Theorem If $A$ is densely defined, then $(A + z)^* = A^* + z^*$
+		\1	\Definition \textbf{Kernel and Range}
+			\2	$\text{ker}(A) \equiv \{a \in D_A~|~Aa = 0\}$
+			\2	$\text{ran}(A) \equiv \{Aa~|~a \in D_A\}$
+			\2	image and range are equivalent
+			\2	\Definition \textbf{injective}
+				\3 iff $\text{ker}(A) = \{0\}$
+			\2	\Definition \textbf{surjective}
+				\3	iff $\text{ran}(A) = \mathcal{H}$
+		\1	\Theorem	An operator $A$ is invertible iff $\text{ker}(A) = \{0\}$ and
+				$\bar{\text{ran}(A)} = \mathcal{H}$
+		\1	\Theorem If $A$ is densely defined, then $\text{ker}(A^*) = \text{ran}(A)^{\bot}$
+		\1	\Theorem If $A,B$ are densely defined, If $A \subseteq B$ then
+				$B^* \subseteq A^*$
+		\1	\Definition \textbf{Symmetric Operator}
+			\2	$\forall~a,b \in D_A~:~\braket{a}{Ab} = \braket{Aa}{b}$
+		\1	\Theorem If $A$ is symmetric, then $A \subseteq A^*$
+		\1	\Definition \textbf{Self-adjoint Operator}
+			\2	$A~:~D_A \rightarrow \mathcal{H}$
+			\2	$A = A^*$
+			\2	$D_A = D_{A^*}$
+			\2	$\forall~a \in D_A~:~Aa = A^*a$
+			\2	Any self-adjoint operator is also symmetric (converse not true)
+		\1	\Theorem A self-adjoint operator is maximal with respect to self-adjoint
+				extension
+			\2	$A \subseteq B = B^* \subseteq A^* = A$, $B = A$
+		\1	\Definition \textbf{Closable Operator}
+			\2	A densely defined operator $A$ is closable if its adjoint $A^*$ is also
+					densely defined
+			\2	Closure of a closable operator is $\bar{A} \equiv A^{**} = (A^*)^*$
+			\2	An operator is closed if $A = \bar{A}$
+		\1	\Theorem A symmetric operator is necessarily closable
+		\1	\Theorem If $A$ is symmetric, then $A^{**} \subseteq A^*$
+		\1	\Definition \textbf{Essentially self-adjoint operator}
+			\2	A symmetric operator $A$ is essentially self-adjoint if 
+					$\bar{A}$ is self-adjoint
+		\1	\Theorem If $A$ is essentially self-adjoint, there exists a unique
+				self-adjoint extension of $A$ ($\bar{A}$)
+		\1	\Theorem A symmetric operator $A$ is self adjoint if
+				$\text{im}(A + z) = \mathcal{H} = \text{im}(A + \bar{z})$
+		\1	\Theorem A symmetric operator is essentially self-adjoint iff
+				$\text{ker}(A^* + z) = \{0\} = \text{ker}(A^* + \bar{z})$
+	
+	\section*{Spectrum of Operators}
+		\1	\Definition \textbf{Resolvent Map}
+			\2	$R_A~:~\rho(A) \rightarrow \mathcal{L}(\mathcal{H})$
+			\2	$z \mapsto (A - z)^{-1}$
+			\2	$\mathcal{L}(\mathcal{H}) \equiv \mathcal{L}(\mathcal{H},\mathcal{H})$
+			\2	$\rho(A) \equiv \{z \in \mathbb{C}~|~(A - z)^{-1} \in \mathcal{L}(\mathcal{H})$
+		\1	\Theorem \textbf{Closed Graph Theorem}
+			\2	If $A$ is closeed, then $(A - z)^{-1} \in \mathcal{L}(\mathcal{H})$
+					iff $(A - z)$ is bijective
+		\1	\Definition \textbf{Spectrum}
+			\2	$\sigma(A) \equiv \mathbb{C} \setminus \rho(A)$
+		\1	\Definition \textbf{Eigenvalues and Eigenvectors}
+			\2	$A~:~D_A \rightarrow \mathcal{H}$
+			\2	$\exists~\psi \in D_A \setminus \{0\}~:~A\psi = \lambda \psi$
+			\2	$\psi$ is the eigenvector
+			\2	$\lambda$ is the associated eigenvalue
+		\1	\Theorem $\lambda$ an eigenvalue of $A$ then $\lambda \in \sigma(A)$
+		\1	\Definition \textbf{Eigenspace}
+			\2	$\text{Eig}_A(\lambda) \equiv \{\psi \in D_A~|~A\psi = \lambda \psi\}$
+			\2	$\lambda$ is non-degenerate if $\text{dim Eig}_A(\lambda) = 1$ and 
+					degenerate if $\text{dim Eig}_A(\lambda) > 1$
+			\2	The degeneracy of $\lambda$ is $\text{dim Eig}_A(\lambda)$
+		\1	\Theorem Eigenvectors associated to distinct eigenvalues of a self-adjoint
+				operator are orthogonal
 	\end{outline}
 \end{document}
 
