@@ -64,6 +64,157 @@
 			\2	$\norm{\hat{A}} = \norm{A}$
 	
 	\section*{Separable Hilbert Spaces}
+		\1	\Definition \textbf{Hilbert Space}
+			\2	A vector space $(\mathcal{H},+,\cdot)$ equipped with a sesqui-linear
+					inner product $\braket{\cdot}{\cdot}$ which incudes a norm
+					$\norm{\cdot}_{\mathcal{H}}$ with respect to which $\mathcal{H}$ is
+					a Banach space
+					\3	$\norm{\cdot}~:~V \rightarrow \mathbb{R}$
+					\3	$f \mapsto \sqrt{\braket{f}{f}}$
+			\2	Sequi-linear inner products are maps 
+					$\braket{\cdot}{\cdot}~:~\mathcal{H} \cross \mathcal{H} \rightarrow \mathcal{H}$
+					wich are conjugate symmetric, linear in the second argument and 
+					positive definite
+		\1	\Theorem \textbf{Cauchy-Schwartz Inequality}
+			\2	Let $\braket{\cdot}{\cdot}$ be a sesqui-linear inner product
+					on $V$.  $\forall~f,g \in V$:
+			\2	$\abs{\braket{f}{g}}^2 \le \braket{f}{f}\braket{g}{g}$
+		\1	\Theorem \textbf{Jordan- Von Neumann}
+			\2	A norm $\norm{\cdot}$ on $V$ is induced by a sequi-linear inner
+					product $\braket{\cdot}{\cdot}$ on $V$ iff the parallelogram identity
+					holds for all $f,g \in V$
+			\2	$\norm{f + g}^2 + \norm{f - g}^2 = 2\norm{f}^2 + 2\norm{g}^2$
+			\2	$\braket{f}{g} = \frac{1}{4}(\norm{f+g}^2 - \norm{f-g}^2 +
+					j\norm{f - jg}^2 - j\norm{f + ig}^2)$ (polarisation identity)
+		\1	\Theorem Let $\mathcal{H}$ be a Hilbert space, then its dual
+				$\mathcal{H}^*$ is also a Hilbert Space
+			\2	$\norm{f}_{\mathcal{H}^*} \equiv \sup_{\phi \in \mathcal{H}}
+					\frac{\abs{f(\phi)}}{\norm{\phi}_{\mathcal{H}}}$
+		\1	\Theorem Inner products on a vector space are sequentially continuous
+			\2	$\lim_{n \rightarrow \infty} \braket{\phi}{\psi_n} = \braket{\phi}{\psi}$
+		\1	\Definition \textbf{Hamel Basis}
+			\2	Subset $\mathcal{B} \subseteq V$ such that:
+				\3	Any finite subset $\{e_i\} \subseteq \mathcal{B}$ is linearly independent
+					\4	$\sum_{i=1}^n \lambda^ie_i = 0$ implies $\lambda_i = 0~\forall~i$
+				\3	$\mathcal{B}$ is a generating (or spanning) set for $V$
+					\4	$\forall~v \in V,~v = \sum_{i=1}^n \lambda^i e_i$
+			\2	\Definition \textbf{Finite Dimensional}
+				\3	If a vector space $V$ admits a finite Hamel basis, it is finite-dimensional,
+						and its dimension is $\text{dim}V \equiv \abs{\mathcal{B}}$
+				\3	Otherwise, it is infinite-dimensional, and $\text{dim}V = \infty$
+				\3	A basis on a Banach space is either finite or uncountably infinite
+		\1	\Theorem Every vector space admits a Hamel basis
+		\1	\Definition \textbf{Schauder basis}
+			\2	Let $(W,\norm{\cdot})$ be a Banach space
+			\2	A Schauder basis of $W$ is a sequence $\{e_n\}_{n \in \mathbb{N}}$ in
+					$W$ such that, $\forall~f \in W$, $\exists~\{\lambda^n\}_{n \in \mathbb{N}} \in \mathbb{C}$
+					which is unique such that
+			\2	$\lim_{n \rightarrow \infty}\norm{f - \sum_{i=0}^n \lambda^ie_i} = 0$
+			\2	Span of Schauder basis is dense in $W$
+			\2	A Schauder basis is ordered
+			\2	\Definition \textbf{Normalized Schauder basis}
+				\3	$\forall~n \in \mathbb{N}~:~\norm{e_n} = 1$
+		\1	\Definition \textbf{Separable Hilbert Space}
+			\2	An infinite-dimensional Hilbert space is separable iff it
+					admits an orthonormal Shauder basis
+			\2	$\forall~i,j \in \mathbb{N}~:~\braket{e_i}{e_j} = \delta_{ij}$
+		\1	\Theorem \textbf{Pythagoras}
+			\2	Let $\mathcal{H}$ be a Hilbert space, and let $\{\psi_0,...,\psi_n\} \subset \mathcal{H}$
+					be a finite orthogonal set.  Then:
+			\2	$\norm{\sum_{i=0}^n \psi_i}^2 = \sum_{i=0}^n \norm{\psi_i}^2$
+		\1	\Theorem $\norm{\psi}^2 = \sum_{i=0}^{\infty} \abs{\braket{e_i}{\psi}}^2$
+		\1	\Definition \textbf{Unitary Map (Operator)}
+			\2	Isomorphism of Hilbert Spaces
+			\2	Let $\mathcal{H}$ and $\mathcal{G}$ be Hilbert spaces
+			\2	A bounded bijection $U \in \mathcal{L}(\mathcal{H},\mathcal{G})$
+					is called a unitary map or unitary operator if
+				\3	$\forall~\psi,\phi \in \mathcal{H}~:~\braket{U\psi}{U\phi}_{\mathcal{G}} =
+						\braket{\psi}{\phi}_{\mathcal{H}}$
+		\1	\Theorem Let $U~:~\mathcal{H} \rightarrow \mathcal{G}$ be a surjective
+				map which preserves the inner product.  Then $U$ is a unitary map.
+			\2	$\norm{U} = 1$
+			\2	$\forall~\psi \in \mathbb{H}~:~\norm{U \psi}_{\mathcal{G}} = \norm{psi}_{\mathcal{H}}$
+		\1	\Theorem Every infinite dimensional separable Hilbert space is unitarily
+				equivalent to $\ell^2(\mathbb{N})$
+				\2	$\ell^2(\mathbb{N})$ are the square summable complex sequences
+				\2	$\ell^2(\mathbb{N}) \equiv \{a~:~\mathbb{N} \rightarrow \mathbb{C}~|~
+						\sum_{i=0}^{\infty} \abs{a_i}^2 < \infty\}$
+	
+	\section*{Projectors}
+		\1	\Definition \textbf{Projection and Orthogonal Complement}
+			\2	Fix a unit vector $e \in \mathcal{H}$, and have $\psi \in \mathcal{H}$
+			\2	Projection $\psi_{\parallel} \equiv \braket{e}{\psi}e$
+			\2	Orthogonal Complement $\psi_{\bot} \equiv \psi - \psi_{\parallel}$
+		\1	\Theorem A closed subset $\mathcal{M}$ of a complete normed space $\mathcal{H}$ is
+				complete
+		\1	\Theorem A closed linear subspace of a Hilbert space is a sub-Hilbert space
+				with the same inner product.  If the Hilbert space is separable, so is 
+				the sub-Hilbert space
+		\1	\Definition \textbf{Orthogonal Complement of Hilbert Space}
+			\2	$\mathcal{M}^{\bot} \equiv \{\psi \in \mathcal{H}~|~\forall~\phi \in \mathcal{M}~:~
+						\braket{\phi}{\psi} = 0\}$
+		\1	\Theorem $\mathcal{M}^{\bot}$ is a closed linear subspace of $\mathcal{H}$
+			\2	$\mathcal{H} = \mathcal{M} \oplus \mathcal{M}^{\bot}$
+		\1	\Definition \textbf{Orthogonal Projector}
+			\2	$P_{\mathcal{M}}~:~\mathcal{H} \rightarrow \mathcal{M}$
+			\2	$\psi \mapsto \psi_{\parallel}$
+			\2	$P_{\mathcal{M}} \circ P_{\mathcal{M}} = P_{\mathcal{M}}$
+			\2	$\braket{P_{\mathcal{M}}\psi}{\phi} = \braket{\psi}{P_{\mathcal{M}}\phi}$
+			\2	$P_{\mathcal{M}^{\bot}} \psi = \psi_{\bot}$
+			\2	$P_{\mathcal{M}} \in \mathcal{L}(\mathcal{H},\mathcal{M})$
+		\1	\Theorem Every projector is the orthogonal projector to some closed
+				linear subspace
+		\1	\Theorem \textbf{Riesz Representation}
+			\2	Every $f \in \mathcal{H}^*$ is of the form $f_{\phi}$ for a unique
+					$\phi \in \mathcal{H}$
+				\3	$f_{\phi}~:~\mathcal{H} \rightarrow \mathbb{C}$
+				\3	$\psi \mapsto \braket{\phi}{\psi}$
+	
+	\section*{Measure Theory}
+		\1	\Definition \textbf{$\sigma$-algebra}
+			\2	$\Sigma \subseteq P(M)$
+			\2	$\Sigma$ is a $\sigma$-algebra for $M$ if:
+				\3	$M \in \Sigma$
+				\3	If $A \in \Sigma$ then $M \setminus A \in \Sigma$
+				\3	For any sequence $A_n \in \Sigma$, $\bigcup_{n=0}^{\infty}A_n \in \Sigma$
+		\1	\Definition \textbf{Measurable Space}
+			\2	Pair $(M,\Sigma)$ 
+			\2	The elements of $\Sigma$ are measurable subsets of $M$
+		\1	\Definition \textbf{Measure}
+			\2	$\mu~:~\Sigma \rightarrow [0,\infty]$
+			\2	$\mu(\emptyset) = 0$
+			\2	$\mu(\bigcup_{n=0}^{\infty}A_n) = \sum_{n=0}^{\infty}\mu(A_n)$
+		\1	\Definition \textbf{Measure Space}
+			\2	Triple $(M,\Sigma,\mu)$ where $(M,\Sigma)$ is a measurable space, and
+					$\mu$ is a measure
+			\2	$A,B \in \Sigma$ and $A \subseteq B$ then $\mu(A) \le \mu(B)$
+			\2	$A,B \in \Sigma$ and $A \subseteq B$ and $\mu(A) < \infty$ then
+					$\mu(B \setminus A) = \mu(B) - \mu(A)$
+			\2	$\mu(\bigcup_{i=0}^{n}A_i) \le \sum_{i=0}^{n}\mu(A_i)$
+			\2	\Definition \textbf{Finite Measure}
+				\3	$\exists~\{A_n\}_{n \in \mathbb{N}}$ such that
+						$\bigcup_{n=0}^{\infty}A_n = M$ and $\mu(A_n) < \infty$
+		\1	\Definition \textbf{Generated $\sigma$-algebra}
+			\2	$\sigma(\varepsilon)$ is the smallest $\sigma$-algebra on $M$ containing
+					all the sets in $\varepsilon$
+			\2	$\sigma(\varepsilon) = \bigcap_{i \in I} \Sigma_i$
+		\1	\Definition \textbf{Borel $\sigma$-algebra}
+			\2	Let $(M,\mathcal{O})$ be a topological space
+			\2	The Borel $\sigma$-algebra on $(M,\mathcal{O})$ is $\sigma(\mathcal{O})$
+		\1	\Definition \textbf{Set of measure zero}
+			\2	$A \in \Sigma$ such that $\mu(A) = 0$
+		\1	\Definition \textbf{Almost Everywhere}
+			\2	A property holds everywhere $M$ except for a null subset of $M$
+		\1	\Definition \textbf{Complete measure}
+			\2	Every subset of every null set is measurable
+			\2	$\forall~A \in \Sigma~:~\forall~B \in P(A)~:~\mu(A) = 0 \implies B \in \Sigma$
+		\1	\Definition \textbf{Lesbegue measure on $\mathbb{R}^d$}
+			\2	There exists a unique, complete, translation-invariant measure 
+					$\lambda^d~:~\sigma(\mathcal{O}_{\mathbb{R}^d}) \rightarrow [0,\infty]$
+			\2	$\lambda^d([a_1,b_1) \cross ... \cross [a_d,b_d)) = \Pi_{i=1}^d(b_i - a_i)$
+		\1	\Theorem The Lesbegue measure on $\mathbb{R}$ is finite
+	
+	\section*{Integration of Measurable Functions}
 	\end{outline}
 \end{document}
 
