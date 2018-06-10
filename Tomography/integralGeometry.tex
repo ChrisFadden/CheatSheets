@@ -127,9 +127,61 @@
 				\3	$(\Lambda \phi) \in \mathbb{P}^n$
 			\2	$cf = \mathcal{R}^*(\Lambda \hat{f})$
 				\3	$c = (-4\pi)^{(n-1)/2}\Gamma(n/2)/\Gamma(1/2)$
-				\3	$f \in \mathcal{S}(\mathbb{R}^n)$
-	
+				\3	$f \in \mathcal{S}(\mathbb{R}^n)$	
 	\section*{The Plancherel Formula}
+		\1	\Definition \textbf{Measure on $\mathbb{P}^n$}
+			\2	$d\omega dp : \phi \rightarrow \int_{\mathbb{S}^{n-1}}\int_{mathbb{R}}\phi(\omega,p)d\omega dp$
+			\2	$\phi \in C^0(\mathbb{P}^n)$ with compact support
+		\1	\Theorem The mapping $f \rightarrow L_p^{(n-1)/4}\hat{f}$ extends to 
+				an isometry of $L^2(\mathbb{R}^n)$ onto the space $L_e^2(\mathbb{S}^{n-1} \cross \mathbb{R})$
+				of even functions in $L^2(\mathbb{S}^{n-1} \cross \mathbb{R})$
+			\2	The measure on $\mathbb{S}^{n-1} \cross \mathbb{R}$ is
+					$\frac{1}{2}(2 \pi)^{1-n} d\omega dp$
+		\1	\Theorem \textbf{Plancherel Formula}
+			\2	$c \int_{\mathbb{R}^n} f(x)g(x) = \int_{\mathbb{P}^n}(\Lambda \hat{f})(\xi)
+					\hat{g}(\xi) d\xi$
+	
+	\section*{Radon Transform of Distributions}
+		\1	\Theorem $\int_{\mathbb{P}^n}\hat{f}(\xi)\phi(\xi) d\xi =
+				\int_{\mathbb{R}^n} f(x) \check{\phi}(x) dx$
+			\2	$f \in C_c(\mathbb{R}^n)$
+			\2	$\phi \in C(\mathbb{P}^n)$
+			\2	$d\xi = (\Omega_n)^{-1} d\omega dp$ 
+			\2	$\int_{\mathbb{R}^n} f(x) dx = \int_{\mathbb{R}} \hat{f}(\omega,p)dp$
+		\1	\Definition For $S \in \mathcal{E}'(\mathbb{R}^n)$ the functional
+				$\hat{S}$ is defined by:
+			\2	$\hat{S}(\phi) = S(\check{\phi})$
+				\3	$\phi \in \mathcal{E}(\mathbb{P}^n)$
+		\1 \Definition 	For $\Sigma \in \mathcal{D}'(\mathbb{P}^n)$, the functional
+				$\hat{\Sigma}$ is
+			\2	$\hat{Sigma}(f) = \Sigma(\hat{f})$
+				\3	$f \in D(\mathbb{R}^n)$
+			\2	$\forall~S \in \mathcal{E}'(\mathbb{R}^n)$, $\hat{S} \in \mathcal{E}'(\mathbb{P}^n)$
+		\1	\Theorem For $S \in \mathcal{E}'(\mathbb{R}^n)$, $\Sigma \in \mathcal{D}'(\mathbb{P}^n)$
+			\2	$\mathcal{R}(L_xS) = L_p \hat{S}$
+			\2	$\mathcal{R}^*(L_p\Sigma) = L_x \check{\Sigma}$
+		\1	\Definition \textbf{Hilbert Transform on Distributions}
+			\2	$\mathcal{H}(T)(F) = T(-\mathcal{H}F)$
+				\3	$F \in \mathcal{D}(\mathbb{R})$
+				\3	$\mathcal{H}(T) \in \mathcal{D}'(\mathbb{R})$
+
+		\1	\Definition \textbf{Radon Inversion on Distributions}
+			\2	$\mathcal{R} : S \rightarrow \hat{S}$
+				\3	$S \in \mathcal{E}'(\mathbb{R}^n)$
+			\2	$cS = \mathcal{R}^*(\Lambda \hat{S})$
+				\3	$c = (-4\pi)^{(n-1)/2}\Gamma(n/2)/\Gamma(1/2)$
+			\2	If $n$ is odd then $cS = L_x^{(n-1)/2}(\mathcal{R}^* \hat{S})$
+		\1	\Theorem Let $f \in L^1(\mathbb{R}^n)$ vanish outside a compact set.
+				Then the distribution $T_f$ has Radon transform given by:
+			\2	$\hat{T}_f = T_{\hat{f}}$
+			\2	$T_h : \phi \rightarrow \int \phi h d\mu$
+			\2	$\mathcal{R}^*(T_{\phi}) = T_{\check{\phi}}$
+		\1	\Theorem If $n$ is odd, $\forall~f \in L^1(\mathbb{R}^n)$ vanishing outside
+				a compact set:
+			\2	$c f = L_x^{(n-1)/2}(\mathcal{R}^*(\hat{f}))$
+				\3	$c = (-4\pi)^{(n-1)/2}\Gamma(n/2)/\Gamma(1/2)$
+	
+	\section*{Integration over d-planes; X-ray Transforms; The Range of the d-plane Transform}
 	\end{outline}
 \end{document}
 
