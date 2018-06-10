@@ -1,0 +1,100 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+\newcommand*\pFq[2]{{}_{#1}F_{#2}}
+
+\title{Integral Geometry Cheat Sheet}
+\begin{document}
+	\maketitle	
+	\begin{outline}		
+		\section*{The Radon Transform and the Support Theorem}
+		\1	\Definition \textbf{Radon Transform}
+			\2	$\hat{f}(\xi) = \int_{\xi}f(x) dm(x)$
+				\3	$\mathcal{R}~:~\mathbb{R}^n \rightarrow \mathbb{P}^n$
+					\4	$\mathbb{P}^n$ is the space of all hyperplanes 
+		\1	\Definition \textbf{Dual Radon Transform}
+			\2	$\check{\phi}(x) = \int_{x \in \xi} \phi(\xi)d\mu(\xi)$
+				\3	$\mathcal{R}^*~:~\mathbb{P}^n \rightarrow \mathbb{R}^n$
+		\1	\Definition \textbf{Hyperplane Space $\mathbb{P}^n$}
+			\2	$\xi \in \mathbb{P}^n, \xi = \{x \in \mathbb{R}^n~:~\braket{x}{\omega} = p\}$
+				\3	$\omega \equiv (\omega_1,...,\omega_n)$ is a unit vector
+				\3	$p \in \mathbb{R}$
+			\2	$(\omega,p) \mapsto \xi$
+			\2	$\mathbb{S}^{n-1} \cross \mathbb{R} \rightarrow \mathbb{P}^n$
+		\1	\Definition \textbf{Radon Transform on $(\omega,p)$}
+			\2	$f_t \equiv x \rightarrow f(t + x)$, $t \in \mathbb{R}^n$ 
+			\2	$\hat{f}_t(\omega,p) = \int_{\braket{x}{\omega} = p}f(x + t)dm(x)$
+			\2	$\hat{f}_t(\omega,p) = \int_{\braket{y}{\omega} = p + \braket{t}{\omega}}f(y)dm(y)$
+			\2	$\hat{f}_t(\omega,p) = \hat{f}(\omega,p + \braket{t}{\omega})$
+			\2	$L_p \coloneqq \phi(\omega,p) \rightarrow \pd[2]{}{p} \phi(\omega,p)$
+		\1	\Theorem $f \rightarrow \hat{f}$ and $\phi \rightarrow \check{\phi}$ 
+				intertwine $L_x$ and $L_p$
+			\2	$\mathcal{R}(L_xf) = L_p(\hat{f})$
+			\2	$\mathcal{R}^*(L_p \phi) = L_x \check{\phi}$
+		\1	\Definition \textbf{Radon and Fourier Transform}
+			\2	$\mathcal{F}\{f\} \equiv \tilde{f}(u) = \int_{\mathbb{R}^n} f(x) e^{-j \braket{x}{\omega}} dx$
+				\3	$u \in \mathbb{R}^n$
+			\2	$\tilde{f}(s\omega) = \int_{-\infty}^{\infty} \hat{f}(\omega,r)e^{-jsr}dr$
+				\3	$s \in \mathbb{R}$
+				\3	$\omega$ is a unit vector
+			\2	$n$-dimensional Fourier Transform is the 1-dimensional Fourier transform
+					of the Radon transform.
+			\2	$f(x) = \int_{\mathbb{R}^n} f_1(x-y)f_2(y) dy$ then~\\
+					$\hat{f}(\omega,p) = \int_{\mathbb{R}}\hat{f}_1(\omega,p-q)\hat{f}_2(\omega,q)dq$
+		\1	\Definition \textbf{Schwartz Space}
+			\2	$\mathcal{S}(\mathbb{R}^n)$ of complex-valued rapidly decreasing functions
+				\3	$f \in C^{\infty}(\mathbb{R}^n)$ belongs to $\mathcal{S}(\mathbb{R}^n)$
+						iff $\forall~k,l \in \mathbb{N}$
+				\3	$\sup_{x \in \mathbb{R}^n}\abs{(1 + \abs{x})^k(L_x^lf)(x)} < \infty$
+			\2	$\mathcal{S}(\mathbb{S}^{n-1} \cross \mathbb{R})$ 
+				\3	$\phi \in C^{\infty}(\mathbb{S}^{n-1} \cross \mathbb{R})$, $\forall~k,l \in \mathbb{N}$
+				\3	$\sup_{\omega \in \mathbb{S}^{n-1},r \in \mathbb{R}} 
+						\abs{(1 + \abs{r}^k) \od[l]{}{r}(D\phi)(\omega,r)} < \infty$
+			\2	$\mathcal{S}(\mathbb{P}^n) \equiv \phi \in \mathcal{S}(\mathbb{S}^{n-1} \cross \mathbb{R})
+					~:~\phi(\omega,p) = \phi(-\omega,-p)$
+		\1	\Theorem For each $f \in \mathcal{S}(\mathbb{R}^n)$ the Radon transform
+				$\hat{f}(\omega,p)$ satisfies: $\forall~k \in \mathbb{N}$, 
+				$\int_{\mathbb{R}}\hat{f}(\omega,p)p^kdp$ can be written as a $k$-th
+				degree homogeneous polynomial in $\omega_1,...,\omega_n$
+				\2	$\mathcal{S}^*(\mathbb{P}^n) = \{F \in \mathcal{S}(\mathbb{P}^n)~:~
+				\forall~k \in \mathbb{N},~\int_{\mathbb{R}}F(\omega,p)p^k dp$ is a
+				homogeneous polynomial in $\omega_1,...,\omega_n$ of degree $k\}$
+		\1	\Definition \textbf{Dual of Compact Function Space}
+			\2	$\mathcal{D}(\mathbb{P}^n)$ is the $C^{\infty}(\mathbb{P}^n)$ functions with compact support
+			\2	$\mathcal{D}^*(\mathbb{P}^n) = \mathcal{S}^*(\mathcal{P}^n) \cap \mathcal{D}(\mathcal{P}^n)$ 
+		\1	\Theorem \textbf{Schwartz Theorem}
+			\2	The Radon transform $\mathcal{R}~:~f \rightarrow \hat{f}$ is a linear
+					one-to-one mapping $\mathcal{S}(\mathbb{R}^n) \rightarrow \mathcal{S}^*(\mathbb{P}^n)$
+		\1	\Definition \textbf{Mean Value}
+			\2	$S_r(x) \coloneqq \{y~:~\norm{y - x} = r\} \in \mathbb{R}^n$
+			\2	$A(r)$ is the area of the sphere $S_r(x)$
+			\2	$B_r(x) \coloneqq \{y~:~\norm{y - x} < r\}$
+			\2	$(M^rf)(x) \coloneqq \frac{1}{A(r)}\int_{S_r(x)}f(\omega)d\omega$
+			\2	\Definition \textbf{Lie Group Interpretation}
+				\3	$K$ is the orthogonal group $\bm{O}(n)$
+				\3	$dk$ is the Haar measure, $\int dk = 1$
+				\3	$y \in \mathbb{R}^n$ and $r = \abs{y}$
+				\3	$(M^rf)(x) = \int_K f(x + k \cdot y)dk$
+				\3	$\check{\phi}(x) = \int_K \phi(x + k \cdot \xi_0)dk$
+					\4	$\xi_0$ is a fixed hyperplane through the origin
+		\1	\Definition \textbf{Dual and Forward Radon Transform}
+			\2	$\mathcal{R}^*\mathcal{R}(f)(x) = 
+				\frac{\Omega_{n-1}}{\Omega_n}\int_{\mathbb{R}^n}\abs{x - y}^{-1}f(y)dy$
+				\3	$\Omega_k = 2 \frac{\pi^{k/2}}{\Gamma(k/2)}$ is the area of unit
+						sphere in $\mathbb{R}^k$
+		\1	\Theorem \textbf{Support Theorem}
+			\2	$f \in C^0(\mathbb{R}^n)$
+			\2	$\forall~k > 0, \abs{x}^kf(x)$ is bounded
+			\2	$\exists~\varepsilon > 0~:~\hat{f}(\xi) = 0~d(0,\xi) > \varepsilon$
+				\3	$d$ is a distance function
+			\2	If the conditions are satisfied, then $f(x) = 0~\forall~\abs{x} > \varepsilon$
+		\1	\Theorem \textbf{Paley-Wiener Theorem}
+			\2	The Radon transform is a bijection $\mathcal{R}~:~D(\mathbb{R}^n) \rightarrow D^*(\mathbb{P}^n)$
+	
+	\section*{The Inversion Formula and Injectivity Questions}
+	\end{outline}
+\end{document}
+
