@@ -9,7 +9,8 @@
 \title{Integral Geometry Cheat Sheet}
 \begin{document}
 	\maketitle	
-	\begin{outline}		
+	\begin{outline}	
+		\section*{Chapter I}
 		\section*{The Radon Transform and the Support Theorem}
 		\1	\Definition \textbf{Radon Transform}
 			\2	$\hat{f}(\xi) = \int_{\xi}f(x) dm(x)$
@@ -182,6 +183,22 @@
 				\3	$c = (-4\pi)^{(n-1)/2}\Gamma(n/2)/\Gamma(1/2)$
 	
 	\section*{Integration over d-planes; X-ray Transforms; The Range of the d-plane Transform}
+		\1	\Definition \textbf{d-dimensional Radon Transform}
+			\2	$\mathcal{R} : f \rightarrow \hat{f}$
+			\2	$\hat{f} = \int_{\xi}f(x) dm(x)$
+				\3	$\xi$ is a $d$-plane
+		\1	\Theorem	Let $f,g \in C(\mathbb{R}^n)$, $\norm{x}^mf(x)$ and
+				$\norm{x}^mg(x)$ are bounded on $\mathbb{R}^n$.  Assume that 
+				$\hat{f}(\xi) = \hat{g}(\xi)$ whenever $\xi$ lies outside the
+				unit ball.
+			\2	$f(x) = g(x)$ for $\norm{x} > 1$
+		\1	\Theorem \textbf{Inverse of d-dimensional Radon Transform}
+			\2	$cf = (-L_x)^{d/2}(\mathcal{R}^*\hat{f})$
+				\3	$c = (4\pi)^{d/2}\Gamma(n/2)/\Gamma((n-d)/2)$
+				\3	$f(x) = 0(\norm{x}^{-N})$ for some $N > d$
+	
+	\section*{Chapter II}
+	\section*{A Duality in Integral Geometry}
 	\end{outline}
 \end{document}
 
