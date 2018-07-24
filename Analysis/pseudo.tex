@@ -1,0 +1,54 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+
+\title{Pseudodifferential Operators Cheat Sheet}
+\begin{document}
+\maketitle
+
+%Treves Introduction to Pseudodifferential Operators
+\begin{outline}		
+	\section*{Parametrices of Elliptic Equations}
+		\1	$P(D)u = f$
+			\2	$f \in C_c^{\infty}$ 
+			\2	$D = (D_1,...,D_n)$
+			\2	$D_j = -\sqrt{-1} \frac{\partial}{\partial x^j}$
+			\2	$P(\xi)$ is a polynomial with complex coefficients in $n$ real variables
+					$\xi_1,...,\xi_n$
+			\2	$f \in C_c^{\infty}(\mathbb{R}^n)$ 
+				\3	$\infty$ continuous derivatives with compact support
+		\1	Fourier Transform of $P(D)u = f$
+			\2	$P(\xi)\hat{u} = \hat{f}$
+			\2	$\hat{u}(\xi) = \int_{\mathbb{R}^n} e^{-jx \cdot \xi}u(x)dx$
+			\2	$u(x) = (2\pi)^{-n} \int_{\mathbb{R}^n} e^{jx \cdot \xi}\hat{u}(\xi)d\xi$
+			\2	$u(x) = (2\pi)^{-n} \int e^{jx \cdot \xi} \frac{\hat{f}(\xi)}{P(\xi)}d\xi$
+				\3	Rarely makes sense, because of the zeros of $P(\xi)$
+		\1	\Definition	\textbf{Principal Symbols}
+			\2	Degree of $P(\xi)$ is $m$
+			\2	$P(\xi) = P_m(\xi) + Q(\xi)$
+				\3	Degree of $Q(\xi)$ is at most $m-1$
+			\2	$P_m(\xi)$ is the \textbf{principal symbol} of $P(D)$
+			\2	$P_m(D)$ is the \textbf{principal part} of $P(D)$
+		\1	\Definition \textbf{Elliptic Operator}
+			\2	The differential operator $P(D)$ is said to be elliptic
+					if $P_m(\xi) \ne 0~\forall~\xi \in \mathbb{R}^n\setminus \{0\}$
+		\1	\Theorem If $P$ is elliptic, the set of zeros of the polynomial 
+				$P(\xi)$ in $\mathbb{R}^n$ is compact
+			\2	Statement is not iff, there exist polynomials with compact sets of
+					zeros that are not elliptic
+			\2	Statement leads to the following approximate reconstruction integral
+					$v(x) = (2\pi)^{-n} \int e^{jx \cdot \xi} \frac{\hat{f}(\xi)}{P(\xi)}\chi(\xi)d\xi$
+				\3	$\chi \in C^{\infty}(\mathbb{R}^n)$
+				\3	$\chi(\xi) = 0$ if $\abs{\xi} < \rho$
+				\3	$\chi(\xi) = 1$ if $\abs{\xi} > \rho_2 > \rho$
+				\3	The real zeros of $P(\xi)$ are contained in the open ball centered
+						at the origin with radius $\rho$
+			\2	$P(D)v(x) = (2\pi)^{-n} \int e^{jx \cdot \xi} \hat{f}(\xi)\chi(\xi)d\xi = f(x) - Rf(x)$
+			\2	$RF(x) = (2\pi)^{-n}\int e^{jx \cdot \xi}\hat{f}(\xi)~(1 - \chi(\xi))d\xi$
+
+\end{outline}
+\end{document}
+
+
