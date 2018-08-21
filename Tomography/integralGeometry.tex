@@ -199,6 +199,20 @@
 	
 	\section*{Chapter II}
 	\section*{A Duality in Integral Geometry}
+
+	\section*{Example of a Radon Transform}
+		\1	http://dsp-book.narod.ru/TAH/ch08.pdf
+		\1	$exp(-x_1^2 - x_2^2 - ... - x_n^2) \mapsto (\pi)^{\frac{n-1}{2}	} e^{-p^2}$
+			\2	2D: $exp(-x^2 - y^2) \mapsto \sqrt{\pi} exp(-p^2)$
+			\2	3D: $exp(-x^2 - y^2 - z^2) \mapsto \pi exp(-p^2)$
+		\1	$f(x) = \frac{-1}{8\pi^2} \nabla^2 \int_{\abs{\xi} = 1} \hat{f}(\xi \cdot x, \xi) d\xi$
+			\2	$\hat{f}(p,\xi) = \pi exp(-p^2)$
+			\2  $f(x,y,z) = exp(-x^2 - y^2 - z^2)$
+			\2	$-8\pi^2 exp(-x^2 - y^2 - z^2) = \nabla^2 \Psi(x,y,z)$
+			\2	$\od[2]{f}{x} = exp(-x^2) \rightarrow f(x) = c_1 + c_2 x + \frac{\sqrt{\pi}}{2}erf(x) + \frac{e^{-x^2}}{2}$
+				\3	$erf(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}dt$
+			\2	$\Psi(x,y,z) =? c_1 + c_xx + c_yy + c_zz +
+						\pi^kxyzerf(x,y,z) + \pi^{3/2} e^{-x^2 - y^2 - z^2}$
 	\end{outline}
 \end{document}
 
