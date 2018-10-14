@@ -1,0 +1,162 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+\def\Example{{\color{violet} \textbf{Example:} }}
+\newcommand*\pFq[2]{{}_{#1}F_{#2}}
+%Hartshorne
+\title{Abstract Algebra Cheat Sheet}
+\begin{document}
+	\maketitle	
+	\begin{outline}	
+		\section*{Groups and Subgroups}
+
+		\subsection*{Binary Operation}
+		\1	\Definition \textbf{Binary Operation}
+			\2	$* : S \cross S \rightarrow S$
+			\2	$(a,b) \in S \cross S$, $*[(a,b)] = a * b$
+			\2	\Example $+$ on $\mathbb{R},\mathbb{C},\mathbb{Z},...$
+			\2	\Example $\cdot$ on $\mathbb{R},\mathbb{C},\mathbb{Z},...$	
+			\2	\Example \textbf{NOT a Binary operation} $[M(\mathbb{R}),+]$
+				\3	It is not defined on matrices of different size
+		\1	\Definition \textbf{Closure}
+			\2	$H \subseteq (G,*)$
+			\2	$\forall~a,b \in H$, $a*b \in H$
+			\2	\Example \textbf{NOT Closure} $(\mathbb{R}^*,+)$
+				\3	$\mathbb{R}^* = \mathbb{R} \setminus \{0\}$
+				\3	$2,-2 \in \mathbb{R}^*$, but $2 - 2 = 0 \notin \mathbb{R}^*$
+		\1	\Definition \textbf{Commutative}
+			\2	$a*b = b*a$ $\forall~a,b \in S$
+		\1	\Definition \textbf{Associative}
+			\2	$(a*b)*c = a*(b*c)$ $\forall~a,b,c \in S$
+		\1	\Theorem Composition is always associative
+			\2	$f,g,h : S \rightarrow S$
+			\2	$f \circ (g \circ h) = (f \circ g) \circ h$
+		\1	\Definition \textbf{Identity Element}
+			\2	$\exists!~e \in S$
+			\2	$e*s = s*e = s$ $\forall~s \in S$
+		\1	\Definition \textbf{Homomorphism}
+			\2	$\phi : S \rightarrow T$
+			\2	$\phi(x *_S y) = \phi(x) *_T \phi(y)$ $\forall~x,y \in S$
+		\1	\Definition \textbf{Isomorphism}
+			\2	Bijective Homomorphism
+			\2	one-to-one and onto homomorphism
+			\2	injective and surjective homomorphism
+			\2	$S \cong T$
+		\1	\Theorem An isomorphism $\phi$ will map the identity element to the identity
+								element	$e \mapsto \phi(e) = e_T$.
+		\subsection*{Groups}
+		\1	\Definition \textbf{Group}
+			\2	$(G,*)$
+			\2	\textbf{Closure} $a * b \in G$ $\forall~a,b \in G$
+			\2	\textbf{Associative} $(a * b) * c = a*(b*c)$ $\forall~a,b,c \in G$
+			\2	\textbf{Identity} $\exists!~e \in G$ s.t. $e*g = g*e = g$ $\forall~g \in G$
+			\2	\textbf{Inverse} $\exists~a^{-1} \in G$ s.t. $a^{-1} * a = a * a^{-1} = e$
+					$\forall~a \in G$
+			\2	\Example \textbf{Complex Numbers}
+				\3	$\exp(j\theta) \in U$
+				\3	$\exp(j\theta)\exp(j\phi) = \exp(j\theta + j\phi) = \exp(j\Phi) \in U$
+			\2	\Example \textbf{NOT a group} $(\mathbb{Z}^+,+)$
+				\3	No identity element
+			\2	\Example \textbf{NOT a group} $(\mathbb{Z}^+,\cdot)$
+				\3	Has identity, but no inverse
+			\2	\Example $GL(n,\mathbb{R})$
+				\3	General Linear Group
+				\3	Invertible $n \cross n$ matrices
+				\3	Operation is matrix multiplication
+		\1	\Definition \textbf{Abelian Group}
+			\2	Commutative binary operation
+			\2	\Example Real valued functions with operation addition
+			\2	\Example $(M_{m \cross n},+)$ $m \cross n$ matrices under addition
+			\2	\Example $(\mathbb{Z}_n,+_n)$
+				\3	Group of integers mod $n$ with operation addition mod $n$
+				\3	$\mathbb{Z}_n = \{0,1,2,...,n-1\}$
+				\3	$e = 0$
+				\3	$(-a) = n - a$
+		\1	\Theorem $(a * b)^{-1} = b^{-1} * a^{-1}$ $\forall~a,b \in G$
+	\subsection*{Subgroups}
+		\1	\Definition \textbf{Order of a Group}
+			\2	$|G|$ is the number of elements in G (\textbf{Cardinality})
+		\1	\Definition \textbf{Subgroup}
+			\2	$H \le (G,*)$
+			\2	$H$ is closed under $*$
+			\2	$H$ is itself a group
+			\2	\Example $(\mathbb{Z},+) < (\mathbb{R},+)$
+			\2	\Example \textbf{NOT a subgroup} $(\mathbb{Q}^+,\cdot) \ne (\mathbb{R},+)$
+			\2	\Example $\{e,G\} \le G$ for all groups
+			\2	\Example $(\mathbb{Q}^+,\cdot) < (\mathbb{R}^+,\cdot)$
+		\1 \Theorem $H \subseteq G$ is a subgroup iff
+			\2	$H$ is closed under binary operation of $G$
+			\2	$e_G \in H$
+			\2	$\forall~a \in H$, $a^{-1} \in H$
+		\1	\Theorem $a \in G$ then $H = \{a^n | n \in \mathbb{Z}\}$ is a subgroup of $G$
+			\2	It is the smallest subgroup of $G$ that contains $a$
+			\2	Every subgroup with $a \in A_i$ has $H \subseteq A_i$
+		\1 \Definition \textbf{Cyclic Subgroup}
+			\2	$\{g^n | n \in \mathbb{Z}\} \le G$, $g \in G$
+			\2	$\langle g \rangle = \{g^n | n \in \mathbb{Z}\}$
+		\1	\Definition \textbf{Group Generator}
+			\2	$\langle g \rangle = G$
+			\2	\textbf{Cyclic Group} if $\exists~g \in G : \langle g \rangle = G$
+			\2	\Example $\langle 1 \rangle = (\mathbb{Z},+)$
+			\2	\Example $\langle n - 1 \rangle = (\mathbb{Z}_n,+_n)$
+	\subsection*{Cyclic Groups}	
+		\1	\Definition \textbf{Infinite Order Group}
+			\2 $|\langle g \rangle|$ is the order of the cyclic group $G$
+			\2	If $|\langle g \rangle| < \infty$, then $g^m = e$ for some $m \in \mathbb{N}$
+		\1	\Theorem Every cyclic group is Abelian
+		\1	\Theorem \textbf{Division Algorithm}
+			\2	If $m \in \mathbb{N}$ and $n \in \mathbb{Z}$, then $\exists! q,r \in \mathbb{Z}$
+					such that $n = m q + r$ with $0 \le r < m$
+		\1	\Theorem A subgroup of a cyclic group is cyclic
+		\1	\Theorem If $|G| = n < \infty$, then $G \cong (\mathbb{Z}_n,+_n)$
+			\2	If $|G| = \infty$, then $G \cong (\mathbb{Z},+)$
+		\1	\Theorem $|G| = n$, and $\langle a \rangle = G$.  $b \in G$, and $b = a^s$,
+				then $\langle b \rangle = H$, where $|H| = n/d$, where $d$ is the $\text{gcd}(n,s)$.
+		\1	\Theorem If $|G| = N$, $\langle a \rangle = G$, then $\forall \langle g \rangle = G$
+				are of the form $g = a^r$ where $r$ is relatively prime to $n$
+	
+\section*{Permutations, Cosets, and Direct Products}
+	\subsection*{Groups of Permutations}
+		\1	\Definition \textbf{Permutation}
+			\2	$\phi : S \rightarrow S$ that is bijective
+			\2	\Example
+				\3	$\sigma = \begin{pmatrix}
+												1 & 2 & 3 & 4 & 5 \\
+												4 & 2 & 5 & 3 & 1
+											\end{pmatrix}$
+				\3	$\tau = \begin{pmatrix}
+												1 & 2 & 3 & 4 & 5 \\
+												3 & 5 & 4 & 2 & 1 
+										\end{pmatrix}$
+				\3	$\sigma \circ \tau = \begin{pmatrix}
+																		1 & 2 & 3 & 4 & 5 \\
+																		5 & 1 & 3 & 2 & 4 
+																	\end{pmatrix}$
+		\1	\Theorem $S_A$ is all collections of permutations of $A$.  It is a group
+				under permutation multiplication
+		\1	\Definition \textbf{Symmetric Group on n letters}
+			\2	$S_n$ is permutations of $\{1,2,3,4,5,...,n\}$
+			\2	$|S_n| = n!$
+		\1	\Theorem \textbf{Cayley's Theorem}
+			\2	Every group $G$ is isomorphic to a subgroup of the symmetric group acting on $G$
+		\1	\Definition \textbf{Image of a map}
+			\2	$f : A \rightarrow B$.  $H \subseteq A$
+			\2	Image: $f[H] = \{f(h) | h \in H\}$
+		\1	\Definition \textbf{Orbit}
+			\2	$\sigma \in S_A$.  Fix $a \in A$
+			\2	$O_{a,\sigma} = \{\sigma^n(a) | n \in \mathbb{Z}\}$
+		\1	\Definition \textbf{Cycle}
+			\2	$\sigma \in S_n$ with at most one orbit containing more than one element
+		\1	\Definition \textbf{Length of a cycle}
+			\2	Number of elements in its largest orbit
+		\1	\Definition \textbf{Transposition}
+			\2	A cycle of length two
+		\1	\Theorem Any permutation of a finite set with more than two elements
+				is a product of transpositions	
+	\subsection*{Cosets}
+	\end{outline}
+\end{document}
+

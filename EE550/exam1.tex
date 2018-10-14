@@ -1,0 +1,329 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+\newcommand*\pFq[2]{{}_{#1}F_{#2}}
+%Hartshorne
+\title{Integral Geometry Cheat Sheet}
+\begin{document}
+	\maketitle	
+	\begin{outline}	
+		\section*{Basic Analysis}
+		\subsection*{Sets}
+		\1	\Definition \textbf{Empty Set}
+			\2	$\emptyset \subseteq A$
+			\2	$\emptyset_A \coloneqq \{x \in A | x \ne x\}$
+		\1	\Theorem \textbf{Empty Sets Are Equal}
+			\2	$\emptyset_A = \emptyset_B$
+			\2	$\emptyset_A \subseteq \emptyset_B$
+			\2	$\emptyset_B \subseteq \emptyset_A$
+		\subsection*{Relations}
+		\1	\Definition \textbf{Relation}
+			\2	$n$-ary relation is a subset $\rho \subseteq X_1 \cross ... \cross X_n$
+			\2	binary relation: $\rho \subseteq X_1 \cross X_2$
+				\3	$a \in X_1$ and $b \in X_2$
+				\2	$a$ is related to $b$ if $(a,b) \in \rho$
+		\1	\Definition \textbf{Equivalence Relation}
+			\2	$\rho \subseteq X \cross X$ 
+			\2	\textbf{Reflexive}: $x \rho x$ $\forall x \in X$
+			\2	\textbf{Symmetric}: $x \rho y \Rightarrow y \rho x$
+			\2	\textbf{Anti-Symmetric}: $x \rho y$ and $y \rho x \Rightarrow x = y$
+			\2	\textbf{Transitive}: $x \rho y$ and $y \rho z \Rightarrow x \rho z$
+			\2	\textbf{Preordering}: Reflexive and transitive
+			\2	\textbf{Equivalence Relation}: Reflexive, symmetric, and transitive
+		\1	\Definition \textbf{Partially Ordered Set} (Poset)
+			\2	Binary relation $\le$ which is reflexive, anti-symmetric, and transitive
+			\2	\textbf{Comparable}: $\alpha, \beta \in S$, $\alpha \le \beta$ or $\beta \le \alpha$
+		\1	\Definition \textbf{Totally Ordered Set}
+			\2	Partially ordered set such that every pair of elements is comparable
+		\1	\Definition \textbf{Maximal total ordering}
+			\2	$Q \subseteq P$
+			\2	$P$ is partially ordered
+			\2	$Q$ is totally ordered
+			\2	if any $Q \cup x$ where $x \in P \setminus Q$ is no longer totally ordered
+			\2	$Q$ is the maximal total order
+		\1	\Theorem \textbf{Hausdorff Maximality Theorem}
+			\2	Every nonempty partially ordered set contains a maximal totally ordered subset
+		\1	\Definition \textbf{Well Ordering}
+			\2	A totally ordered set is called well-ordered (ordinal) if every nonempty
+					subset has a minimal element
+
+		\subsection*{Functions}
+		\1	\Definition \textbf{Function}
+			\2	$T : X \rightarrow Y$
+			\2	$x \mapsto T(x)$
+			\2	\textbf{Domain}: $D(T) = X$
+			\2	\textbf{Image}: $R(T) = \{y \in Y : \exists~x \in X | y = T(x)\}$ (Range)
+		\1	\Definition \textbf{Bijection}
+			\2	\textbf{Injective}: $\forall~x,y \in X$ $(x \ne y) \Rightarrow T(x) \ne T(y)$ 
+			\2	\textbf{Surjective}: $R(T) = Y$
+			\2	\textbf{Bijective}: Injective and Surjective
+		\subsection*{Countable Infinity}
+		\1	\Definition \textbf{Countable}
+			\2	$\exists$ a bijection between $S$ and $\mathbb{N}$
+		\1	\Definition \textbf{Cardinality}
+			\2	$\abs{X} = \abs{Y}$ if $\exists$ a bijection between $X$ and $Y$
+			\2	$\abs{X} \le \abs{Y}$ if $\exists$ an injection from $X$ into $Y$
+			\2	$\abs{X} < \abs{Y}$ if every injection from $X$ into $Y$ is not surjective
+		\1	\Theorem Countable union of countable sets is countable
+			\2	Every infinite subset of a countable set is countable
+			\2	If $T$ is countable, then $(t^1,...,t^k) \in T^k$ is countable
+		\1 \Theorem $\mathbb{Q}$ is countable
+
+	\section*{Metric Spaces}
+		\subsection{Basic Metric Spaces}
+		\1	\Definition \textbf{Metric}
+			\2	$d : S \cross S \rightarrow \mathbb{R}$
+			\2	\textbf{Positivity}: $d(x,y) > 0$ $x \ne y$ and $d(x,x) = 0$
+			\2	\textbf{Symmetry}: $d(x,y) = d(y,x)$
+			\2	\textbf{Triangular Inequality}: $d(x,z) \le d(x,y) + d(y,z)$
+		\1	\Definition \textbf{Product Space}
+			\2	$Z = X \cross Y$
+			\2	$d_Z^p(u,v) = ((d_X(x_1,x_2))^p + (d_Y(y_1,y_2))^p)^{\frac{1}{p}}$
+			\2	$d_Z$ could be given in any number of ways
+		\1	\Definition \textbf{Isometry}
+			\2	$\exists$ bijection $T : (X,d_X) \rightarrow (Y,d_Y)$
+			\2	$d_X(u,v) = d_Y(T(u),T(v))$ $\forall~(u,v) \in (X,d_X)$
+		\1	\Definition \textbf{Supremum}
+			\2	Least upper bound
+		\1	\Definition \textbf{Infimum}
+			\2	Greatest lower bound
+		\1	\Definition \textbf{Open Sets}
+			\2	\textbf{Open Ball}: $B_{\varepsilon}^d(x) \coloneqq \{y \in S : d(x,y) < \varepsilon\}$
+			\2	\textbf{Limit Point}: $x$ is a limit point of $E$ if every 
+						neighborhood $x$ contains a point $y \ne x$ such that $y \in E$
+			\2	\textbf{Isolated Point}: $x \in E$ and $x$ is not a limit point of $E$
+			\2	\textbf{Closed Set}:  Every limit point of $E$ is contained in $E$
+			\2	\textbf{interior Point}: $B_{\varepsilon}^d(x) \subseteq E$
+			\2	\textbf{Open Set}: Every point of $E$ is an interior point
+			\2	\textbf{Perfect set}: $E$ is closed and every point of $E$ is a limit point
+			\2	\textbf{Bounded}: $\exists~M$ s.t. $d(x,y) < M$ $\forall x \in E, y \in S$
+			\2	\textbf{Dense}: $E$ is dense in $S$ if every point of $S$ is a limit 
+					point of $E$ or a point of $E$ (or both)
+			\2	\textbf{Diameter}: $\sup\{d(x,y) : x,y \in E\}$
+			\2	\textbf{Distance}: $\inf\{d(x,y) : y \in E\}$
+		\1	\Definition \textbf{Discrete Metric}
+			\2	$d(x,y) = 0$ if $x = y$
+			\2	$d(x,y) = 1$ if $x \ne y$
+		\1	\Theorem Every neighborhood of $x \in (X,d)$ is a $d$-open set
+		\1	\Theorem $S \subseteq X$ is open iff $X \setminus S$ is closed
+			\2 $S \subseteq X$ is closed iff $X \setminus S$ is open
+		\1	\Theorem Abritrary union of open sets is open
+			\2	Finite intersection of open sets is open
+		\1	\Theorem Abritrary intersection of closed sets is closed
+			\2	Finite union of closed sets is closed
+		\1	\Definition \textbf{Interior,closure, boundary}
+			\2	\textbf{interior}: $int(S)$ is the largest open subset of $S$
+			\2	\textbf{closure}: $\bar{S}$ is the smallest closed superset of $S$
+			\2	\textbf{boundary}: $\partial S = \bar{S} \setminus int(S)$
+	\subsection*{Convergence of Sequences}
+		\1	\Definition \textbf{Convergence}
+			\2	$\forall~\varepsilon > 0$ $\exists~n \in \mathbb{N}$ such that
+					$d(x_k,x) < \varepsilon$ $\forall k \ge n$
+			\2	$\forall \varepsilon > 0$ $\exists~n(x,\varepsilon) \in \mathbb{N}$
+					such that $d(f_k(x),f(x)) < \varepsilon$ $\forall~k \ge n$.
+		\1	\Definition \textbf{Cauchy Convergence}
+			\2	$\forall~\varepsilon > 0$ $\exists~n \in \mathbb{N}$ such that
+					$d(x_k,x_l) < \varepsilon$ $\forall~k,. \ge n$
+		\1	\Definition \textbf{Uniform Convergence}
+			\2	$\forall~\varepsilon > 0$ $\exists~n(\varepsilon) \in \mathbb{N}$
+					such that $d(f_k(x),f(x)) < \varepsilon$ $\forall~x \in X$ $\forall k \ge n$
+		\1	\Theorem \textbf{Weierstrass Test of Uniform Convergence}
+			\2	$M_k \coloneqq \sup_{x \in X} d(f_k(x),f(x))$
+			\2	$M_k \rightarrow 0$ as $k \rightarrow \infty$
+		\1	\Definition \textbf{Continuity in Metric Space}
+			\2	$\forall~\varepsilon > 0$, $\exists~\delta(\varepsilon,u) > 0$ such that
+					$d_X(u,v) < \delta \Rightarrow d_Y(f(u),f(v)) < \varepsilon$ $\forall~v \in X$
+			\2	$f : X \rightarrow Y$ is continuous iff for every open set $U \subseteq Y$,
+					$f^{-1}(U) \subseteq X$ is open 
+		\1	\Theorem \textbf{Convergence and Continuity}
+			\2	$f : X \rightarrow Y$ is continuous iff $f(x_k) \rightarrow f(x)$
+			\2	Uniform continuity follows from uniform convergence
+		\1	\Definition \textbf{Lipschitz Continuity}
+			\2	$\exists~K$ such that $d_Y(f(u),f(v)) \le K d_X(u,v)$ $\forall u,v \in X$
+			\2	Lipschitz Continuity implies uniform continuity
+		\1	\Definition \textbf{Holder Continuity}
+			\2	$d_Y(f(u),f(v)) \le K d_X(u,v)^{\alpha}$
+		\1	\Definition \textbf{Monotonicity}
+			\2	Monotonically increasing: $x_k \le x_{k+1}$
+			\2	Monotonically decreasing: $x_k \ge x_{k+1}$
+		\subsection*{Complete Metric Space}
+			\1	\Definition \textbf{Complete}
+				\2	Every Cauchy sequence converges
+			\1	\Theorem $Y \subseteq X$ ic complete iff $Y$ is closed
+			\1	\Definition \textbf{Completion}
+				\2	$(Y,d_2)$ is complete
+				\2	$X(,d_1)$ is isometric to a dense subspace of $(Y,d_2)$
+			\1	\Definition \textbf{Contraction}
+				\2	$d(T(x),T(y)) \le \lambda T(x,y)$ 
+				\2	$\lambda \in [0,1)$ $\forall x,y \in X$
+			\1	\Theorem $(X,d)$ is complete and $T$ is a contraction, then there
+					exists a unique fixed point such that $T(x_f) = x_f$
+		\subsection*{Point Set Topology}
+			\1	\Definition \textbf{Topology}
+				\2	$\emptyset \in \tau$ $X \in \tau$
+				\2	$\cap_{k=1}^n U_k \in \tau$ $\forall~U_k \in \tau$
+				\2	$\cup_{\alpha} U_{\alpha} \in \tau$ $\forall~U_k \in tau$
+			\1 \Definition \textbf{Fine Topology}
+				\2	$\tau_1 \subseteq \tau_2$
+				\2	\textbf{Coarse} $\tau_2 \subseteq \tau_1$
+			\1	\Definition \textbf{Basis}
+				\2	$B \subseteq \tau$
+				\2	$\forall~x \in X$, $\exists b \in B$ s.t. $x \in b$
+				\2	If $x \in b_1 \cap b_2$, then $x \in b_3$ and $b_3 \subseteq b_1 \cap b_2$,
+						with $b_1,b_2,b_3 \in B$
+			\1	\Definition \textbf{Relative Topology}
+				\2	$X \subseteq X$
+				\2	$\tau_Y \coloneqq \{Y \cap U : U \in tau_X\}$
+			\1	\Definition \textbf{Product Topology}
+				\2	$Z = X \cross Y$
+				\2	$\tau_z = \{U_X \cross U_Y : U_X \in tau_X,~U_Y \in \tau_Y\}$
+			\1	\Definition \textbf{Projection map}
+				\2	$\pi_X : X \cross Y \rightarrow X$
+				\2	$\pi_X(x,y) = x$
+			\1	\Definition \textbf{Homeomorphism}
+				\2	Bijective continuous function with continuous inverse
+			\1	\Definition \textbf{Imbedding}
+				\2	$Z = f(X)$
+				\2	$\tilde{f} : X \rightarrow Z$ is a homeomorphism
+				\2	$f : X \rightarrow Y$ is an imbedding of $X$ in $Y$
+		\subsection*{Separation and Connectedness}
+			\1	\Definition \textbf{Separation}
+				\2	$U,V \in \tau$, $U \cap V = \emptyset$
+				\2	$U \cup V = X$
+			\1	\Definition \textbf{Connected}
+				\2	There does not exist a separation of the space
+				\2	The only sets which are both open and closed are $\emptyset$ and $X$
+			\1	\Definition \textbf{Topological Convergence}
+				\2	$\exists~n \in \mathbb{N}$ such that $x_k \in U \subseteq \tau$ 
+						$\forall k \ge n$
+			\1	\Definition \textbf{Hausdorff Space}
+				\2	$u,v \in X$ $u \ne v$
+				\2	$\exists U,V$ with $u \in U$ and $v \in V$, with $U \cap V = \emptyset$
+				\2	If Hausdorff, then a sequence of points in $X$ converges to at most
+						a single point
+		\subsection*{Compactness}
+			\1	\Definition \textbf{Covering}
+				\2	$S \subseteq \bigcup_{\alpha \in I} C_{\alpha}$
+			\1	\Definition \textbf{Compact}
+				\2	Every open covering has a finite subcovering
+			\1	\Theorem An infinite subset of a compact set $K$ must have a limit point
+					in $K$
+			\1	\Theorem $f : X \rightarrow Y$ continuous, and $(X,d_X)$ is compact
+				\2	$f(X)$ is compact
+				\2	$f$ is uniformly continuous on $X$
+			\1	\Theorem Compact subsets of a metric space are closed
+			\1	\Theorem Closed subsets of a compact space are compact in the 
+					relative topology
+			\1	\Theorem \textbf{Heine-Borel}
+				\2	$K \subseteq \mathbb{R}^n$ is compact iff $K$ is bounded and closed
+	\section*{Algebraic Structure of Vector Spaces}
+		\subsection*{Monoids and Groups}
+			\1 \Definition \textbf{Binary Operation}
+				\2	$* : S \cross S \rightarrow S$
+			\1	\Definition	\textbf{Semigroup}
+				\2	A binary algebra $(S;*)$
+				\2	\textbf{Associativity}: $(a * b) * c = a * (b * c)$ $\forall~a,b,c \in S$
+			\1	\Definition \textbf{Identity Element}
+				\2	$1_S * a = a$ $\forall a \in S$
+				\2	$a * 1_S = a$ $\forall a \in S$
+			\1	\Definition \textbf{Zero Element}
+				\2	$0_S * a = a * 0_S = 0$ $\forall a \in S$
+			\1	\Definition \textbf{Monoid}
+				\2	Semigroup with an identity element
+				\2	Binary algebra with associativity and identity
+			\1	\Definition \textbf{Invertible Element}
+				\2	$a^{-1} * a = a * a^{-1} = 1_S$
+			\1	\Definition \textbf{Group}
+				\2	\textbf{Closure}: $a * b \in S$ $\forall a,b \in S$
+				\2	\textbf{Associativity}: $(a*b)*c) = a*(b*c)$
+				\2	\textbf{Identity}: $1 * a = a * 1 = a$ $\forall~a \in S$
+				\2	\textbf{Inverse}: $a^{-1} * a = a * a^{-1} = 1$ $\forall~a \in S$
+			\1	\Definition \textbf{Abelian Group}
+				\2	Commutative Group
+				\2	$a * b = b * a$ $\forall~a,b \in S$
+			\1	\Definition \textbf{Subgroup}
+				\2	$V \subseteq S$
+				\2	$V$ is still a group, with the same identity element
+			\1	\Definition \textbf{Cosets}
+				\2	\textbf{Right Coset}
+					\3	$S * a \coloneqq \{x = b * a : b \in S\}$
+				\2	\textbf{Left Coset}
+					\3	$a * S \coloneqq \{x = a * b : b \in S\}$
+			\1	\Definition \textbf{Normal Subgroup}
+				\2	$G \subseteq S$
+				\2	$\forall~a \in S$, $G * a = a * G$
+				\2	$G$ is a normal subgroup of $S$
+				\2	Every subgroup of an Abelian group is a normal subgroup
+
+		\subsection*{Rings and Fields}
+			\1	\Definition \textbf{Ring}
+				\2	\textbf{Associative} $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+				\2	\textbf{Distributive} $a \cdot (b + c) = a \cdot b + a \cdot c$
+			\1	\Definition \textbf{Commutative Ring}
+				\2	$a \cdot b = b \cdot a$
+			\1	\Definition \textbf{Ideal}
+				\2	$S \subset R$
+				\2	$r \cdot s \in S$ $\forall r \in R$ and $s \in S$
+			\1	\Definition \textbf{Integral Domain}
+				\2	$R$ is a commutative ring with multiplicative identity
+				\2	$R$ has no zero divisors
+			\1	\Definition \textbf{Fields}
+				\2	$F$ is a commutative ring
+				\2	$1_F \cdot a = a \cdot 1_F = a$
+				\2	$F \setminus 0_F$ is an Abelian group
+
+		\subsection*{Modules and Vector Spaces}
+			\1	\Definition \textbf{Module}
+				\2	$R$ is a ring
+				\2  $r(u \oplus v) = ru \oplus rv$
+				\2	$(r + s)u = ru \oplus su$
+				\2	$r(su) = (rs)u$
+			\1	\Definition \textbf{Vector Space}
+				\2	Closure
+				\2	Associativity
+				\2	Distributivity
+			\1	\Definition \textbf{Linear Combination}
+				\2	$x \in V$
+				\2	$x = \bigoplus_{j=1}^n \alpha_j u^j$
+			\1	\Definition \textbf{Linear Dependence}
+				\2	$x = 0 \Rightarrow \alpha_j = 0$ $\forall~j$
+			\1	\Definition \textbf{Span}
+				\2	Set of all finite linear combination of vectors in $S$
+		
+		\subsection*{Hamel Basis}
+			\1	\Definition \textbf{Hamel Basis}
+				\2	$B$ is a lienarly independent set
+				\2	$\text{span}(B) = V$
+			\1	\Definition \textbf{Dimension of Vector Space}
+				\2	Cardinality of its Hamel basis
+			\1	\Definition \textbf{Vector Space Isomorphism}
+				\2	Bijective linear maps
+				\2	\textbf{Linear}: $h(\alpha x \oplus y) = \alpha h(x) * h(y)$
+			\1	\Theorem Two vector spaces are isomorphic over the same field only if
+					dim(V) = dim(W)
+			\1	\Theorem $V$ is a vector space over $\mathbb{F}$, $\text{dim}(V) = n$
+					is isomorphic to $\mathbb{F}^n$
+		
+		\subsection*{Linear Transformation of Vector Spaces}
+			\1	\Definition \textbf{Linear Transformation}
+				\2	$L(\bigoplus_{k=1}^n (\alpha_k x^k)) = \bigotimes_{k=1}^n (\alpha_k L(x^k))$
+			\1	\Definition \textbf{Null Space}
+				\2	$N(L) \coloneqq \{x \in V : Lx = 0_W\}$
+			\1	\Definition \textbf{Range Space}
+				\2	$R(L) \coloneqq \{Y \in W : y = Lx | x \in V\}$
+			\1	\Definition \textbf{Projection}
+				\2	Linear transformation
+				\2	$P^2 = P$
+				\2	$P(Px) = Px$ $\forall x \in V$
+			\1	\Theorem Decomposition of Projection
+				\2	$R(P) \cap N(P) = 0_V$
+				\2	$R(P) \bigoplus N(P) = V$
+				\2	If $\exists$ $U \subseteq V$ and $W \subseteq V$ with $U \cap W = 0_V$
+						and $U \bigoplus W = V$, then $\exists P$ such that $R(P) = U$ and
+						$N(P) = W$
+	\end{outline}
+\end{document}
+
