@@ -156,7 +156,101 @@
 			\2	A cycle of length two
 		\1	\Theorem Any permutation of a finite set with more than two elements
 				is a product of transpositions	
+		\1	\Definition \textbf{S3}
+			\2	Symmetric group on $3$ letters
+			\2	$|S_3| = 3! = 6$
+			\2	Elements of the group
+				\3	$\rho_0 = \begin{pmatrix}
+												1 & 2 & 3 \\
+												1 & 2 & 3 \\
+											\end{pmatrix}$
+				\3	$\rho_1 = \begin{pmatrix}
+												1 & 2 & 3 \\
+												2 & 3 & 1 \\
+											\end{pmatrix}
+											$
+				\3	$\rho_2 = \begin{pmatrix}
+												1 & 2 & 3 \\
+												3 & 1 & 2 \\
+											\end{pmatrix}$
+				\3	$\mu_1 = \begin{pmatrix}
+											1 & 2 & 3 \\
+											1 & 3 & 2 \\
+										\end{pmatrix}$
+				\3	$\mu_2 = \begin{pmatrix}
+											1 & 2 & 3 \\
+											3 & 2 & 1 \\
+										\end{pmatrix}$
+				\3	$\mu_3 = \begin{pmatrix}
+												1 & 2 & 3 \\
+												2 & 1 & 3 \\
+											\end{pmatrix}$
+		\1	\Definition \textbf{Cyclic Notation}
+			\2	$\mu = (1,3,6)$
+			\2	$\mu = \begin{pmatrix}
+										1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+										3 & 2 & 6 & 4 & 5 & 1 & 7 & 8 \\
+									\end{pmatrix}$
+		\1	\Definition \textbf{Disjoint Cycle}
+			\2	Any integer is moved by at most one cycle when written as a product
+		\1	\Theorem Every permutation $\sigma$ of a finite set is a product of disjoint cycles
+	
 	\subsection*{Cosets}
+		\1	\Definition \textbf{Left Coset}
+			\2	$H \le G$
+			\2	$aH = \{ah | h \in H\}$ of $G$ 
+			\2	Left coset of $H$ containing $a$
+		\1	\Theorem \textbf{Lagrange's Theorem}
+			\2	$H \le G$, $\abs{G} < \infty$
+			\2	$\frac{\abs{G}}{\abs{H}} = n \in \mathbb{N}$
+		\1	\Theorem Every group of prime order is cyclic
+		\1	\Theorem $\frac{\abs{G}}{\abs{\langle g \rangle}} = n \in \mathbb{N}$
+		\1	\Definition \textbf{Index}
+			\2	Number of left cosets of $H$ in $G$
+			\2	$[G~:~H]$ is the index of $H$ in $G$
+			\2	$[G~:~H] = \abs{G}/\abs{H}$
+		\1	\Theorem $K \le H \le G$ then $[G~:~K] = [G~:~H][H~:~K]$
+	
+	\subsection*{Conjugate Groups and Homomorphisms}
+		\1	\Definition \textbf{Conjugate}
+			\2	$x,y \in G$
+			\2	$\exists~g \in G$ s.t. $y = gxg^{-1}$
+			\2	$\Psi_g(x) = gxg^{-1}$
+		\1	\Definition \textbf{Homomorphism}
+			\2	$\phi~:~G \rightarrow H$
+			\2	$\phi(xy) = \phi(x)\phi(y)$ $\forall~x,y \in G$
+		\1	\Definition \textbf{Isomorphism}
+			\2	Bijective isomorphism
+		\1	\Definition \textbf{Automorphism}
+			\2	$\phi~:~G \rightarrow G$ isomorphism
+		\1	\Theorem Properties of homomorphism
+			\2	$\phi(e_G) = e_H$
+			\2	$\phi(x_G^{-1}) = [\phi(x)_H]^{-1}$
+			\2	$\phi(x_G^n) = [\phi(x)_H]^n$
+			\2	Conjugate points in $G$ are also conjugate in $H$
+		\1	\Definition \textbf{Center of a group}
+			\2	$g \in Z(G)$ iff $xg = gx$ $\forall~x \in G$
+			\2	$Z(G) = \{g \in G | \Psi_g = \text{id}_g\}$
+		\1	\Definition \textbf{Normal Subgroup}
+			\2	$H \triangleleft G$
+			\2	$\Phi_g(H) = H$ $\forall~g \in G$
+				\3	$gHg^{-1} = H$
+			\2	$Z(G) \triangleleft G$
+				\3	Any subgroup of $Z(G)$ is also a normal subgroup
+		\1	\Definition \textbf{Kernel}
+			\2	$\phi~:~G \rightarrow H$
+			\2	$\text{ker}(\phi) = \{g \in G | \phi(g) = e_H\}$
+			\2	$\text{ker}(\phi) \triangleleft G$
+			\2 If $H \triangleleft G$, $\exists~\phi$ s.t. $\text{ker}(\phi) = H$
+		\1	\Theorem Classification Theorem for Cyclic Groups
+			\2	$G$ is a cyclic group then $G$ is isomorphic either to $\mathbb{Z}$
+					or $\mathbb{Z}_n$
+		\1	\Definition \textbf{Cardinality}
+			\2	$\abs{G \cross H} = \abs{G} \abs{H}$
+		\1	\Theorem If $n \ge 2$, then $\mathbb{Z}_n \cross \mathbb{Z}_n$ is not cylic
+			\2	$\mathbb{Z}_n \cross \mathbb{Z}_n \ncong \mathbb{Z}_{n^2}$
+		\1	\Theorem Every subgroup of a cyclic group is also cyclic
+
 	\end{outline}
 \end{document}
 

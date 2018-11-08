@@ -1,0 +1,269 @@
+\documentclass[14pt]{extarticle}
+\usepackage{researchPaper}
+\usepackage{outlines}
+\usepackage{mathrsfs}
+\usepackage{esint}
+\def\Definition{{\color{blue} \textbf{Definition:} }}
+\def\Theorem{{\color{red} \textbf{Theorem:} }}
+\def\Solution{{\color{cyan} \textbf{Solution:} }}
+\newcommand*\pFq[2]{{}_{#1}F_{#2}}
+%Hartshorne
+\title{Partial Differential Equations Cheat Sheet}
+\begin{document}
+	\maketitle	
+	\begin{outline}
+		\section*{Basic Calculus Facts}
+			\1	\Definition \textbf{Normal Derivative}
+				\2	$\pd{u}{\nu} \coloneqq \nu \cdot Du$
+			\1	\Theorem \textbf{Gauss-Green}
+				\2	$\int_U u_{x_i} dx = \int_{\partial U} u \nu^i dS$
+			\1	\Theorem \textbf{Integration By Parts}
+				\2	$\int_U u_{x_i}v dx = -\int_U uv_{x_i} dx + \int_{\partial U} uv \nu^i dS$
+			\1	\Theorem \textbf{Green's Formulas}
+				\2	$\int_U \Delta u dx = \int_{\partial U} \pd{u}{\nu} dS$
+				\2	$\int_U Dv \cdot Du dx = -\int_U u\Delta v dx + \int_{\partial U} \pd{v}{\nu}udS$ 
+				\2	$\int_U u \Delta v - v \Delta u dx = \int_{\partial U} u \pd{u}{\nu} -
+						v\pd{u}{\nu}dS$
+			\1	\Theorem \textbf{Polar Coordinates}
+				\2	$\int_{\mathbb{R}^n} f dx = \int_0^{\infty} (\int_{\partial B(x_0,r)} fdS)dr$
+				\2	$\od{}{r}(\int_{B(x_0,r)}f dx) = \int_{\partial B(x_0,r)} fdS$
+		\section*{Tranposrt Equation}
+			\subsection*{Constant Coefficients}
+				\1	$u_t + b \cdot Du = 0$
+					\2	$u : \mathbb{R} \cross [0,\infty) \rightarrow \mathbb{R}$ 
+					\2	$b \in \mathbb{R}^n$
+					\2	$Du \coloneqq D_xu$ is the gradient
+				\1	\Definition \textbf{Method of Characteristics}
+					\2	Fix $(x,t) \in \mathbb{R}^n \cross (0,\infty)$
+					\2	$z(s) \coloneqq u(x + sb,t + s)$
+						\3	$s \in \mathbb{R}$
+					\2	$\od{}{s}z(s) = Du(x+sb,t+s) \cdot b + u_t(x+sb,t+s) = 0$
+						\3	$z$ is a constant function of $s$
+						\3	$\forall~(x,t)$, $u$ is constant on the line through $(x,t)$
+								with direction $(b,1) \in \mathbb{R}^{n+1}$.  
+						\3	If we know $u$ at any point on such a line, we know its value
+								everywhere
+				\1	\Definition \textbf{Inititial Value Problem}
+					\2	$\begin{cases}
+									u_t + b \cdot Du = 0 & \mathbb{R}^n \cross (0,\infty) \\
+									u = g & \mathbb{R}^n \cross \{t=0\}
+								\end{cases}$
+						\3	$b \in \mathbb{R}^n$
+						\3	$g : \mathbb{R}^n \rightarrow \mathbb{R}$
+					\2	Parameterize Solution
+						\3	Line through $(x,t)$ with direction $(b,1)$ is $(x+sb,t+s)$
+						\3	Intersects $\Gamma \coloneqq \mathbb{R}^n \cross \{t=0\}$ when
+								$s = -t$
+						\3	This point is $(x-tb,0)$
+						\3	$u(x-tb,0) = g(x-tb)$
+					\2	\Solution $u(x,t) = g(x - tb)$, $(x \in \mathbb{R}^n,t \ge 0)$
+				\1	\Definition \textbf{Nonhomogeneous Problem}
+					\2	$\begin{cases}
+								u_t + b \cdot Du = f & \mathbb{R}^n \cross (0,\infty) \\
+								u = g & \mathbb{R}^n \cross \{t=0\}
+							\end{cases}$
+					\2	Parameterize solution
+						\3	$z(s) = u(x+sb,t+s)$ 
+						\3	$\od{}{s} = Du(x+sb,t+s) \cdot b + u_t(x+sb,t+s) = f(x+sb,t+s)$
+								\begin{align*}
+									u(x,t) - g(x-bt) &= z(0) - z(-t) \\
+										&= \int_{-t}^0 \od{}{s}z(s) ds \\
+										&= \int_{-t}^0 f(x+sb,t+s)ds \\
+										&= \int_0^t f(x+(s-t)b,s)ds \\
+								\end{align*}
+					\2	\Solution $u(x,t) = g(x-tb) + \int_0^t f(x+(s-t)b,s)ds$, $(x \in \mathbb{R}^n,t\ge 0)$
+	\section*{Laplace Equation}
+		\1	$\Delta u = 0$
+			\2	Solution is radially symmetric
+		\1	\Definition \textbf{Harmonic Function}
+			\2	A $u \in C^2$ function which solves Laplace Equation, $\Delta u = 0$
+		\1	Derive Fundamental Solution
+			\2	$u(x) = v(r)$, $r = \abs{x} = \sqrt{x_1^2 + x_2^2 + ... + x_n^2}$
+			\2	$\partial_{x_i} r = \frac{1}{2}(x_1^2 + x_2^2 + ... + x_n^2)^{-1/2}$
+				\3	$\partial_{x_i} r = \frac{1}{r}x_i$
+				\3	$\partial_{x_i} u = v'(r) \frac{1}{r}x_i$
+				\3	$\Delta u = v''(r) \frac{x_i^2}{r^2} + v'(r)(\frac{1}{r} - \frac{x_i^2}{r^3})$
+			\2	$\Delta u = v''(r) + \frac{n-1}{r}$
+				\3	$v'' + \frac{n-1}{r}v' = 0$
+				\3	$\log(v')' = \frac{v''}{v'} = \frac{1-n}{r}$
+				\3	$v'(r) = \frac{a}{r^{n-1}}$
+		\1	\Definition \textbf{Fundamental Solution}
+			\2	\Solution $\Phi(x) \coloneqq \begin{cases}
+						-\frac{1}{2\pi}	\log \abs{x} & n = 2 \\
+						\frac{1}{n(n-2)\alpha(n)}\frac{1}{\abs{x}^{n-2}} & n \ge 3 \\
+					\end{cases}$
+				\3	$x \in \mathbb{R}^n \setminus \{0\}$
+		\1	\Definition \textbf{Poisson Equation Solution}
+			\2	$-\Delta u = f$
+			\2	\begin{proof}
+						\begin{align*}
+						u(x) &= \int_{\mathbb{R}^n} \Phi(x-y)f(y)dy \\
+						u_{x_i}(x) &= \int_{\mathbb{R}^n} \Phi(y) f_{x_i}(x-y) dy \\
+						u_{x_i,x_j}(x) &= \int_{\mathbb{R}^n} \Phi(y) f_{x_i,x_j}(x-y)dy \\
+						\Delta u(x) &= \int_{B(0,\varepsilon)} \Phi(y)\Delta_xf(x-y)dy + \\
+						&\int_{\mathbb{R}^n \setminus B(0,\varepsilon)} \Phi(y)\Delta_xf(x-y) dy \\
+						\int_{B(0,\varepsilon)} \Phi(y)\Delta_xf(x-y)dy &\le
+						C\norm{D^2f}_{L^{\infty}} \int_{B(0,\varepsilon)} \abs{\Phi(y)}dy \\
+						&\le \begin{cases}
+										C\varepsilon^2 \abs{\log \varepsilon} & n = 2 \\
+										C \varepsilon^2 & n \ge 3
+								 \end{cases}\\
+\int_{\mathbb{R}^n \setminus B(0,\varepsilon)} \Phi(y)\Delta_xf(x-y) dy &=
+	-\int_{\mathbb{R}^n \setminus B(0,\varepsilon)} D\Phi(y) \cdot D_yf(x-y)dy \\
+	&+ \int_{\partial B(0,\varepsilon)} \Phi(y) \pd{f}{\nu}(x-y) dS(y) \\
+		\int_{\partial B(0,\varepsilon)} \Phi(y) \pd{f}{\nu}(x-y) dS(y) &\le
+		\norm{Df}_{L^{\infty}}\int_{\partial B(0,\varepsilon)}\abs{\Phi(y)}dS(y) \\
+		&\le \begin{cases}
+						C\varepsilon \abs{\log \varepsilon} & n = 2\\
+						C \varepsilon & n \ge 3
+					\end{cases}\\
+-\int_{\mathbb{R}^n \setminus B(0,\varepsilon)} D\Phi(y) \cdot D_yf(x-y)dy 
+&= \int_{\mathbb{R}^n \setminus B(0,\varepsilon)} \Delta \Phi(y) f(x-y) dy - \\
+&\int_{\partial B(0,\varepsilon)} \pd{\Phi}{\nu}(y)f(x-y)dS(y) \\
+&= -\int_{\partial B(0,\varepsilon)} \pd{\Phi}{\nu}(y)f(x-y)dS(y) \\
+\pd{\Phi}{\nu}(y) &= \nu \cdot D\Phi(y) \\
+\end{align*}
+\begin{align*}
+		&= \frac{1}{n\alpha(n)\varepsilon^{n-1}}|_{\partial B(0,\varepsilon)} \\
+-\int_{\mathbb{R}^n \setminus B(0,\varepsilon)} D\Phi(y) \cdot D_yf(x-y)dy 
+&= -\frac{1}{n\alpha(n)\varepsilon^{n-1}}\int_{\partial B(0,\varepsilon)}f(x-y)dS(y) \\
+&= -\fint_{\partial B(x,\varepsilon)} f(y)dS(y) \\
+&\rightarrow_{\varepsilon \rightarrow 0} -f(x) \\
+						\end{align*}
+					\end{proof}
+	\1	Mean Value Formulas
+		\2	\Theorem $u(x) = \fint_{\partial B(x;r)} u dS = \fint_{B(x;r)} u dy$
+			\3	$u \in C^2(U)$ harmonic
+			\3	$\forall~B(x,r) \subseteq U$
+		\2	\begin{proof}
+					\begin{align*}
+						\phi(r) &= \fint_{\partial B(x,r)} u(y) dS(y) \\
+										&= \fint_{\partial B(0,1)} u(x+rz)dS(z) \\
+						\phi'(r) &= \fint_{\partial B(0,1)}Du(x+rz) \cdot z dS(z) \\
+										 &= \fint_{\partial B(x,r)} Du(y) \cdot \frac{y-x}{r}dS(y) \\
+										 &= \fint_{\partial B(x,r)} \pd{u}{\nu}dS(y) \\
+										 &= \frac{r}{n}\fint_{B(x,r)} \Delta u(y) dy \\
+										 &= 0 \\
+						\phi(r) &= \lim_{s \rightarrow 0} \fint_{\partial B(x,s)} u(y)dS(y) \\
+										&= u(x) \\
+					\end{align*}
+				\end{proof}
+		\2	If $u(x) = \fint_{\partial B(x,r)} u dS$ then $u$ is harmonic
+	\1	\Theorem \textbf{Strong Maximum Principle}
+		\2	$u \in C^2(U) \cap C(\bar{U})$ harmonic
+		\2	$\max_{\bar{U}} u = \max_{\partial U} u$
+		\2	If $U$ is connected, and $\exists~x_0 \in U$ such that
+				$u(x_0) = \max_{\bar{U}} u$, then $u$ is constant
+		\2	\begin{proof}
+					$M = u(x_0) = \fint_{B(x_0,r)} u dy \le M$ which implies that
+				$u(y) = M$ $\forall~y \in B(x,r)$.  $\{x \in U | u(x) = M\}$ is both
+				open and closed, so is equivalent to $U$ if $U$ is connected.
+				\end{proof}
+		\1	\Theorem \textbf{Regularity}
+			\2	If $u \in C(U)$ is harmonic, then $u \in C^{\infty}(U)$
+			\2	\begin{proof}
+						\begin{align*}
+							u^{\varepsilon}(x) &= \int_U \eta_{\varepsilon}(x-y)u(y)dy \\
+								&= \frac{1}{\varepsilon^n} \int_{B(x;\varepsilon}\eta(\frac{\abs{x-y}}{\varepsilon})u(y)dy \\
+								&= \frac{1}{\varepsilon^n}\int_0^{\varepsilon}\eta(r/\varepsilon)
+								(\int_{\partial B(x;r)}u dS)dr \\
+								&= \frac{1}{\varepsilon^n}u(x) \int_0^{\varepsilon}\eta(r/\varepsilon)
+								n\alpha(n)r^{n-1}dr \\
+								&= u(x) \int_{B(0,\varepsilon} \eta_{\varepsilon}dy \\
+								&= u(x)
+						\end{align*}
+					\end{proof}
+		\1	\Theorem \textbf{Local Estimates}
+			\2	$u$ is harmonic
+			\2	$\abs{D^au(x_0)} \le \frac{C_k}{r^{n+k}}\norm{u}_{L^1(B(x_0,r))}$ 
+				\3	$C_0 = \frac{1}{\alpha(n)}$
+				\3	$C_k = \frac{1}{\alpha(n)}(2^{n+1}nk)^k$
+			\2	\begin{proof}
+						\begin{align*}
+              \abs{u_{x_i}(x_0)} &= \abs{\fint_{B(x_0,r/2)} u_{x^i}dx} \\
+																 &= \abs{2^n\frac{1}{\alpha(n)r^n}\int_{\partial B(x_0,r/2)}u \nu_i dS} \\
+																 &\le \frac{2n}{r}\norm{u}_{L^{\infty}} \\
+							\abs{u(x)} &\le \frac{1}{\alpha(n)}(2/r)^n \norm{u}_{L^1} \\
+				 \abs{D^au(x_0)} &\le \frac{C_k}{r^{n+k}}\norm{u}_{L^1(B(x_0,r))}
+						\end{align*}
+					\end{proof}
+		\1	\Theorem \textbf{Liouville's Theorem}
+			\2	$u$ is harmonic and bounded.  Then $u$ is constant
+		\1	\Theorem \textbf{Harnack's Inequality}
+			\2	$\sup_V u \le C \inf_V u$
+				\3	$V \subset \subset U$
+				\3	$C$ depends only on $V$
+			\2	$\frac{1}{C}u(y) \le u(x) \le Cu(y)$
+				\3	$\forall~x,y \in V$
+		\1	\Definition \textbf{Green's Function}
+			\2	$\begin{cases}
+							-\Delta G = \delta & U \\
+							G = 0 & \partial U
+						\end{cases}$
+				\3	$G(x,y) = G(y,x)$
+			\2 \Solution Green's function on Half Space
+				\3	$G(x,y) = \Phi(y-x) - \Phi(y - \tilde{x})$
+			\2	\Solution Green's function for the unit ball
+				\3	$G(x,y) = \Phi(y-x) - \Phi(\abs{x}(y - \tilde{x}))$
+	\subsection*{Energy methods}
+		\1	\Definition \textbf{Dirichlet's Principle}
+			\2	$I[w] = \int_U \frac{1}{2}\abs{D w}^2 - wf dx$
+				\3	$w \in C^2(\bar{U}) | w = g~\partial U$
+		\1	\Theorem \textbf{Dirichlet's Principle}
+			\2	$u$ is a solution to Poisson BVP.  Then
+					$I[u] = \min_{w} I[w]$
+			\2	If $u$ minimizes $I[w]$, then it solves the Poisson BVP
+	\section*{Heat Equation}
+		\1	$u_t - \Delta u = f$
+		\1	\Definition \textbf{Fundamental Solution}
+			\2	$u(x,t) = v(\frac{\abs{x}^2}{t})$
+			\2	\Solution $\Phi(x,t) = \frac{1}{(4\pi t)^{n/2}}e^{-\abs{x}^2/(4t)}$
+			\2	$\int_{\mathbb{R}^n} \Phi(x,t)dx = 1$
+		\1	\Definition \textbf{Fundamental Solution of IVP}
+			\2	$\begin{cases}
+							u_t - \Delta u = 0 & \mathbb{R}^n \cross (0,\infty) \\
+							u = g & \mathbb{R}^n \cross \{t=0\}
+						\end{cases}$
+			\2	\Solution $u(x,t) = \frac{1}{(4\pi t)^{n/2}}\int_{\mathbb{R}^n}e^{-\abs{x-y}^2/(4t)}g(y)dy$
+			\2	Heat equation has infinite propagation speed
+		\1	\Definition \textbf{Nonhomogeneous Fundamental Solution}
+			\2	$\begin{cases}
+							u_t - \Delta u = f & \mathbb{R}^n \cross (0,\infty) \\
+							u = 0 & \mathbb{R}^n \cross \{t=0\}
+						\end{cases}$
+			\2	\Definition \textbf{Duhamel's Principle}
+				\3	$u(x,t) = \int_0^t u(x,t;s)ds$
+			\2	\Solution $u(x,t) = \int_0^t\int_{\mathbb{R}^n} \Phi(y,s)f(x-y,t-s)dyds$
+		\1	\Definition \textbf{General Solution}
+			\2	$\begin{cases}
+						u_t - \Delta u = f & \mathbb{R}^n \cross (0,\infty) \\
+						u = g & \mathbb{R}^n \cross \{t=0\} \\
+					\end{cases}$
+			\2	\Solution $u(x,t) = \int_{\mathbb{R}^n} \Phi(x-y,t)g(y)dy +
+					\int_0^t\int_{\mathbb{R}^n} \Phi(x-y,t-s)f(y,s)dyds$ 
+		\1	\Definition \textbf{Parabolic Cylinder}
+			\2	$U_T \coloneqq U \cross (0,T]$
+		\1	\Definition \textbf{Parabolic Boundary}
+			\2	$\Gamma_T \coloneqq \bar{U}_T \setminus U_T$
+			\2	Consists of bottom and vertical sides
+			\2	\textbf{NOT THE TOP}
+		\1	\Definition \textbf{Heat Ball}
+			\2	$E(x,t;r) \coloneqq \{(y,s) \in \mathbb{R}^{n+1} | s \le t,~\Phi(x-y,t-s) \ge \frac{1}{r^n}\}$
+			\2	Center of the ball is in the middle on the top boundary
+		\1	\Theorem Mean Value Theorem for Heat
+			\2	$u(x,t) = \frac{1}{4r^n}\iint_{E(x,t;r)} u(y,s) \frac{\abs{x-y}^2}{(t-s)^2}dyds$
+		\1	\Theorem Strong maximum priniciple
+			\2	$\max_{\bar{U}_T} u = \max_{\Gamma_T} u$
+			\2	If $u(x_0,t_0) = \max_{\bar{U}_T} u$ then $u$ is constant in $\bar{U}_{t_0}$
+			\2	If $u$ attains its maximum at an interior point, it is constant at all
+					earlier times.  
+		\1	\Theorem Regularity
+			\2	If $u \in C_1^2(U_T)$ solves the heat equation, then $u \in C^{\infty}(U_T)$
+		\1	\Theorem Local Estimates
+			\2	$\max_{E(x,t;r/2)} \abs{D_x^kD_t^lu} \le \frac{1}{r^{k+2l+n+2}}C_{kl}\norm{u}_{L^1}$
+		\1	\Theorem Backward Uniqueness
+			\2	$u(x,T) = v(x,T)$ $x \in U$
+			\2	$u = v$ within $U_T$
+	\end{outline}
+\end{document}
+
